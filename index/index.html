@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PCK — Product Index</title>
+  <style>
+    :root {
+      --ink: #1c1917;
+      --muted: #78716c;
+      --line: #e7e5e4;
+      --surface: #fafaf9;
+      --accent: #1e3a5f;
+      --ready: #166534;
+      --planned: #a16207;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 14px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--ink);
+      background: var(--surface);
+    }
+    .wrap { max-width: 52rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    h1 { font-size: 1.25rem; font-weight: 600; margin: 0 0 0.25rem; letter-spacing: 0.02em; }
+    .lead { color: var(--muted); margin: 0 0 2rem; font-size: 0.875rem; }
+    section { margin-bottom: 2.5rem; }
+    h2 {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0 0 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    ul { list-style: none; margin: 0; padding: 0; }
+    li { border-bottom: 1px solid var(--line); }
+    li:last-child { border-bottom: none; }
+    a.row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      padding: 0.625rem 0;
+      color: inherit;
+      text-decoration: none;
+    }
+    a.row:hover .name { color: var(--accent); text-decoration: underline; }
+    .name { flex: 1; min-width: 0; }
+    .path {
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 50%;
+    }
+    .badge {
+      font-size: 0.625rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.125rem 0.375rem;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .badge.ready { background: #dcfce7; color: var(--ready); }
+    .badge.planned { background: #fef9c3; color: var(--planned); }
+    .sub { margin: 0.5rem 0 0; font-size: 0.8125rem; }
+    .sub a { color: var(--accent); }
+    .docs { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+    .docs ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+    .docs li { border: none; }
+    .docs a { color: var(--accent); font-size: 0.8125rem; }
+    @media (max-width: 640px) {
+      a.row { flex-wrap: wrap; }
+      .path { max-width: 100%; order: 3; width: 100%; padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>PCK — Premium Creative Kit</h1>
+    <p class="lead">Product index. Each item is a standalone file — open to preview or copy for sale/delivery.</p>
+
+    <section>
+      <h2>Phase 1 — Calculators</h2>
+      <ul>
+        <li>
+          <a class="row" href="../calculators/mortgage-affordability/mortgage-affordability.html">
+            <span class="name">Mortgage Affordability</span>
+            <span class="path">calculators/mortgage-affordability/</span>
+            <span class="badge ready">Ready</span>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="../calculators/airbnb-revenue/airbnb-revenue.html">
+            <span class="name">Airbnb Revenue Estimator</span>
+            <span class="path">calculators/airbnb-revenue/</span>
+            <span class="badge ready">Ready</span>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="../calculators/auto-loan-amortization/auto-loan-amortization.html">
+            <span class="name">Auto-Loan Amortization</span>
+            <span class="path">calculators/auto-loan-amortization/</span>
+            <span class="badge ready">Ready</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Phase 2 — UI Kit (18 components)</h2>
+      <p class="sub"><a href="../ui-kit/demo/index.html">Component gallery</a> · <a href="../ui-kit/README.md">Inventory (README)</a> · <a href="../ui-kit/tokens/DESIGN_TOKENS.md">Design tokens</a></p>
+      <ul>
+        <li><a class="row" href="../ui-kit/components/buttons/buttons.html"><span class="name">Buttons</span><span class="path">ui-kit/components/buttons/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/nav-header/nav-header.html"><span class="name">Nav header + mobile</span><span class="path">ui-kit/components/nav-header/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/hero-villa/hero-villa.html"><span class="name">Hero (villa)</span><span class="path">ui-kit/components/hero-villa/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/property-card/property-card.html"><span class="name">Property card</span><span class="path">ui-kit/components/property-card/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/pricing-table/pricing-table.html"><span class="name">Pricing table</span><span class="path">ui-kit/components/pricing-table/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/testimonial/testimonial.html"><span class="name">Testimonial</span><span class="path">ui-kit/components/testimonial/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/cta-banner/cta-banner.html"><span class="name">CTA banner</span><span class="path">ui-kit/components/cta-banner/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/footer/footer.html"><span class="name">Footer</span><span class="path">ui-kit/components/footer/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/feature-grid/feature-grid.html"><span class="name">Feature grid</span><span class="path">ui-kit/components/feature-grid/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/split-block/split-block.html"><span class="name">Split block</span><span class="path">ui-kit/components/split-block/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/stats-row/stats-row.html"><span class="name">Stats row</span><span class="path">ui-kit/components/stats-row/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/newsletter/newsletter.html"><span class="name">Newsletter</span><span class="path">ui-kit/components/newsletter/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/faq-accordion/faq-accordion.html"><span class="name">FAQ accordion</span><span class="path">ui-kit/components/faq-accordion/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/gallery-grid/gallery-grid.html"><span class="name">Gallery grid</span><span class="path">ui-kit/components/gallery-grid/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/contact-form/contact-form.html"><span class="name">Contact form</span><span class="path">ui-kit/components/contact-form/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/logo-bar/logo-bar.html"><span class="name">Logo bar</span><span class="path">ui-kit/components/logo-bar/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/team-card/team-card.html"><span class="name">Team card</span><span class="path">ui-kit/components/team-card/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../ui-kit/components/badge-pills/badge-pills.html"><span class="name">Badge pills</span><span class="path">ui-kit/components/badge-pills/</span><span class="badge ready">Ready</span></a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Phase 3 — Email template blocks</h2>
+      <ul>
+        <li><a class="row" href="../email-templates/blocks/01-hero-property.html"><span class="name">01 — Hero property</span><span class="path">email-templates/blocks/</span><span class="badge planned">Planned</span></a></li>
+        <li><a class="row" href="../email-templates/blocks/02-two-column.html"><span class="name">02 — Two column</span><span class="path">email-templates/blocks/</span><span class="badge planned">Planned</span></a></li>
+        <li><a class="row" href="../email-templates/blocks/03-promo-cta.html"><span class="name">03 — Promo CTA</span><span class="path">email-templates/blocks/</span><span class="badge planned">Planned</span></a></li>
+        <li><a class="row" href="../email-templates/blocks/04-testimonial.html"><span class="name">04 — Testimonial</span><span class="path">email-templates/blocks/</span><span class="badge planned">Planned</span></a></li>
+        <li><a class="row" href="../email-templates/blocks/05-pre-arrival.html"><span class="name">05 — Pre-arrival</span><span class="path">email-templates/blocks/</span><span class="badge planned">Planned</span></a></li>
+        <li><a class="row" href="../email-templates/blocks/06-footer.html"><span class="name">06 — Footer</span><span class="path">email-templates/blocks/</span><span class="badge planned">Planned</span></a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Phase 4 — Landing page templates</h2>
+      <ul>
+        <li><a class="row" href="../landing-pages/boutique-villa/index.html"><span class="name">Boutique villa</span><span class="path">landing-pages/boutique-villa/</span><span class="badge planned">Planned</span></a></li>
+        <li><a class="row" href="../landing-pages/architecture-studio/index.html"><span class="name">Architecture studio</span><span class="path">landing-pages/architecture-studio/</span><span class="badge planned">Planned</span></a></li>
+        <li><a class="row" href="../landing-pages/premium-agency/index.html"><span class="name">Premium agency</span><span class="path">landing-pages/premium-agency/</span><span class="badge planned">Planned</span></a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Phase 5 — Booking slider</h2>
+      <ul>
+        <li><a class="row" href="../booking-slider/booking-discount-slider.html"><span class="name">Direct booking discount slider</span><span class="path">booking-slider/</span><span class="badge planned">Planned</span></a></li>
+      </ul>
+    </section>
+
+    <section class="docs">
+      <h2>Docs</h2>
+      <ul>
+        <li><a href="../docs/PRODUCT_BUNDLE.md">Product bundle</a></li>
+        <li><a href="../docs/CALCULATORS_SPEC.md">Calculators spec</a></li>
+        <li><a href="../docs/UI_KIT_SPEC.md">UI kit spec</a></li>
+        <li><a href="../README.md">Root README</a></li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

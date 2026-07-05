@@ -2,6 +2,10 @@
 
 A multi-part digital product bundle for **hospitality, boutique travel, and premium service brands**.
 
+## Product index
+
+**[index/index.html](index/index.html)** — directory of every product file (calculators, UI kit, planned phases). Not a landing page.
+
 ## Current focus
 
 **Phase 2 — UI Kit** — 18 HTML components ready. Phase 1 calculators also complete.
@@ -31,6 +35,7 @@ Specs: [docs/CALCULATORS_SPEC.md](docs/CALCULATORS_SPEC.md) · [docs/UI_KIT_SPEC
 
 ```
 pck/
+├── index/                # Master product index (open index.html)
 ├── calculators/          # Phase 1 — 3 single-file products
 ├── ui-kit/
 │   ├── components/       # Phase 2 — 18 single-file products
