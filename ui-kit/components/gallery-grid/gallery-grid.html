@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body class="bg-pck-ink m-0 py-12 px-4">
+
+<div id="pck-gallery-grid" class="font-sans max-w-6xl mx-auto">
+  <div class="grid grid-cols-4 grid-rows-2 gap-2 md:gap-3 auto-rows-fr min-h-[420px]">
+    <a href="#" class="col-span-2 row-span-2 relative rounded-xl overflow-hidden group">
+      <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=900&q=85" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+      <div class="absolute inset-0 bg-gradient-to-t from-pck-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </a>
+    <a href="#" class="relative rounded-xl overflow-hidden group aspect-square">
+      <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=500&q=85" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+    </a>
+    <a href="#" class="relative rounded-xl overflow-hidden group aspect-square">
+      <img src="https://images.unsplash.com/photo-1600573472592-401b289b3589?w=500&q=85" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+    </a>
+    <a href="#" class="relative rounded-xl overflow-hidden group aspect-square">
+      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&q=85" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+    </a>
+    <a href="#" class="relative rounded-xl overflow-hidden group aspect-square">
+      <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=500&q=85" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+      <div class="absolute inset-0 bg-pck-ink/50 flex items-center justify-center">
+        <span class="text-white text-sm font-semibold tracking-wide">+ 12 photos</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={important:"#pck-gallery-grid",theme:{extend:{colors:{pck:{ink:"#0c0a09",muted:"#78716c",surface:"#fafaf9",cream:"#f5f0eb",accent:"#1e3a5f",gold:"#a6833d",line:"#e7e5e4"}},fontFamily:{serif:["Georgia","Cambria","Times New Roman","serif"],sans:["system-ui","-apple-system","Segoe UI","Roboto","sans-serif"]}}}};</script>
+</body></html>

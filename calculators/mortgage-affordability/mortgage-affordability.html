@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mortgage Affordability Calculator</title>
+  <style>
+    body:has(> .pck-mortgage-calc) {
+      margin: 0; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center;
+      padding: 48px 20px; background: linear-gradient(165deg, #f1f5f9 0%, #e2e8f0 100%);
+    }
+  </style>
+</head>
+<body>
+
+<div class="pck-mortgage-calc" id="pck-mortgage-calc">
+
+  <div class="ma-result-zone">
+    <div class="ma-result-bg" aria-hidden="true"></div>
+    <p class="ma-headline">
+      <span class="ma-headline-label">Affordable up to</span>
+      <strong class="ma-headline-value" id="pck-ma-out-price">—</strong>
+    </p>
+    <ul class="ma-stats" aria-label="Summary">
+      <li><span>Monthly housing</span><strong id="pck-ma-out-total">—</strong></li>
+      <li><span>Max loan</span><strong id="pck-ma-out-loan">—</strong></li>
+    </ul>
+    <div class="ma-dti" aria-label="Debt-to-income ratios">
+      <div class="ma-dti-row">
+        <div class="ma-dti-head"><span>Front-end DTI</span><strong id="pck-ma-out-front">—</strong></div>
+        <div class="ma-bar" role="presentation"><div class="ma-bar-fill" id="pck-ma-bar-front"></div><span class="ma-bar-cap" style="left: 28%"></span></div>
+        <span class="ma-dti-cap">28% guideline</span>
+      </div>
+      <div class="ma-dti-row">
+        <div class="ma-dti-head"><span>Back-end DTI</span><strong id="pck-ma-out-back">—</strong></div>
+        <div class="ma-bar" role="presentation"><div class="ma-bar-fill ma-bar-fill--back" id="pck-ma-bar-back"></div><span class="ma-bar-cap" style="left: 36%"></span></div>
+        <span class="ma-dti-cap">36% guideline</span>
+      </div>
+    </div>
+    <p class="ma-status" id="pck-ma-out-status" aria-live="polite"></p>
+  </div>
+
+  <div class="ma-body">
+    <div class="ma-fields">
+      <label class="ma-field ma-field--full">
+        <span>Annual income</span>
+        <div class="ma-control"><span class="ma-prefix">$</span><input type="number" id="pck-ma-income" value="85000" min="0" step="1000" inputmode="decimal"></div>
+      </label>
+      <label class="ma-field">
+        <span>Monthly debts</span>
+        <div class="ma-control"><span class="ma-prefix">$</span><input type="number" id="pck-ma-debts" value="450" min="0" step="50" inputmode="decimal"></div>
+      </label>
+      <label class="ma-field">
+        <span>Down payment</span>
+        <div class="ma-control"><span class="ma-prefix">$</span><input type="number" id="pck-ma-down" value="40000" min="0" step="1000" inputmode="decimal"></div>
+      </label>
+      <label class="ma-field">
+        <span>Interest rate</span>
+        <div class="ma-control"><input type="number" id="pck-ma-rate" value="6.5" min="0" max="30" step="0.125" inputmode="decimal"><span class="ma-suffix">%</span></div>
+      </label>
+      <label class="ma-field">
+        <span>Loan term</span>
+        <div class="ma-control ma-control--select">
+          <select id="pck-ma-term">
+            <option value="15">15 years</option>
+            <option value="20">20 years</option>
+            <option value="30" selected>30 years</option>
+          </select>
+          <span class="ma-chevron" aria-hidden="true"></span>
+        </div>
+      </label>
+    </div>
+    <details class="ma-more">
+      <summary><span class="ma-more-icon" aria-hidden="true"></span> Tax, insurance &amp; HOA</summary>
+      <div class="ma-fields ma-fields--stack">
+        <label class="ma-field ma-field--full">
+          <span>Property tax / year</span>
+          <div class="ma-control"><span class="ma-prefix">$</span><input type="number" id="pck-ma-tax" value="3600" min="0" step="100" inputmode="decimal"></div>
+        </label>
+        <label class="ma-field">
+          <span>Insurance / month</span>
+          <div class="ma-control"><span class="ma-prefix">$</span><input type="number" id="pck-ma-insurance" value="120" min="0" step="10" inputmode="decimal"></div>
+        </label>
+        <label class="ma-field">
+          <span>HOA / month</span>
+          <div class="ma-control"><span class="ma-prefix">$</span><input type="number" id="pck-ma-hoa" value="0" min="0" step="25" inputmode="decimal"></div>
+        </label>
+      </div>
+    </details>
+  </div>
+  <p class="ma-foot">Estimates only — not financial advice.</p>
+</div>
+
+<style>
+  .pck-mortgage-calc {
+    --w-bg: #ffffff; --w-surface: #f8fafc; --w-accent: #1e3a5f; --w-accent-light: #dbeafe;
+    --w-border: #e2e8f0; --w-border-focus: #93c5fd; --w-text: #0f172a; --w-muted: #64748b;
+    --w-ok: #047857; --w-ok-bg: #ecfdf5; --w-warn: #b45309; --w-warn-bg: #fffbeb;
+    --w-bad: #b91c1c; --w-bad-bg: #fef2f2; --w-radius: 12px;
+    --w-shadow: 0 4px 6px rgba(15,23,42,0.04), 0 12px 40px rgba(15,23,42,0.1);
+    width: 100%; max-width: 400px; border-radius: var(--w-radius); background: var(--w-bg);
+    box-shadow: var(--w-shadow); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px; line-height: 1.5; color: var(--w-text); overflow: hidden;
+  }
+  .pck-mortgage-calc *, .pck-mortgage-calc *::before, .pck-mortgage-calc *::after { box-sizing: border-box; }
+
+  @keyframes ma-flash { from { opacity: 0.4; transform: translateY(2px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes ma-fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .pck-mortgage-calc .ma-flash { animation: ma-flash 0.35s ease; }
+  @media (prefers-reduced-motion: reduce) { .pck-mortgage-calc .ma-flash { animation: none; } }
+
+  .pck-mortgage-calc .ma-result-zone {
+    position: relative; padding: 24px 22px 20px; color: #fff; overflow: hidden;
+    background: linear-gradient(145deg, #1e3a5f 0%, #2d4a6f 55%, #1e4976 100%);
+  }
+  .pck-mortgage-calc .ma-result-bg {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.4;
+    background: radial-gradient(circle at 90% 10%, rgba(147,197,253,0.35) 0%, transparent 45%),
+                radial-gradient(circle at 10% 90%, rgba(255,255,255,0.08) 0%, transparent 40%);
+  }
+  .pck-mortgage-calc .ma-result-zone > *:not(.ma-result-bg) { position: relative; z-index: 1; }
+
+  .pck-mortgage-calc .ma-headline { margin: 0 0 16px; animation: ma-fade-in 0.5s ease both; }
+  .pck-mortgage-calc .ma-headline-label {
+    display: block; font-size: 0.6875rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.12em; opacity: 0.75; margin-bottom: 6px;
+  }
+  .pck-mortgage-calc .ma-headline-value {
+    display: block; font-size: 2.25rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+
+  .pck-mortgage-calc .ma-stats {
+    list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 8px;
+    animation: ma-fade-in 0.5s 0.08s ease both;
+  }
+  .pck-mortgage-calc .ma-stats li {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    font-size: 0.8125rem; padding: 10px 14px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; backdrop-filter: blur(8px);
+  }
+  .pck-mortgage-calc .ma-stats span { opacity: 0.85; }
+  .pck-mortgage-calc .ma-stats strong { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  .pck-mortgage-calc .ma-dti { display: grid; gap: 12px; animation: ma-fade-in 0.5s 0.16s ease both; }
+  .pck-mortgage-calc .ma-dti-head { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 6px; }
+  .pck-mortgage-calc .ma-dti-head span { opacity: 0.8; }
+  .pck-mortgage-calc .ma-dti-head strong { font-variant-numeric: tabular-nums; }
+  .pck-mortgage-calc .ma-bar {
+    position: relative; height: 8px; background: rgba(0,0,0,0.25); border-radius: 999px; overflow: visible;
+  }
+  .pck-mortgage-calc .ma-bar-fill {
+    height: 100%; width: 0; border-radius: 999px; background: linear-gradient(90deg, #6ee7b7, #34d399);
+    transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
+  }
+  .pck-mortgage-calc .ma-bar-fill--warn { background: linear-gradient(90deg, #fcd34d, #f59e0b); }
+  .pck-mortgage-calc .ma-bar-fill--bad { background: linear-gradient(90deg, #fca5a5, #ef4444); }
+  .pck-mortgage-calc .ma-bar-cap {
+    position: absolute; top: -3px; width: 2px; height: 14px; background: rgba(255,255,255,0.7);
+    border-radius: 1px; transform: translateX(-50%);
+  }
+  .pck-mortgage-calc .ma-dti-cap { display: block; font-size: 0.625rem; opacity: 0.55; margin-top: 4px; }
+
+  .pck-mortgage-calc .ma-status {
+    margin: 14px 0 0; font-size: 0.75rem; font-weight: 500; padding: 8px 12px;
+    border-radius: 8px; transition: background 0.25s, color 0.25s;
+  }
+  .pck-mortgage-calc .ma-status:empty { display: none; }
+  .pck-mortgage-calc .ma-status--ok { background: var(--w-ok-bg); color: var(--w-ok); }
+  .pck-mortgage-calc .ma-status--warn { background: var(--w-warn-bg); color: var(--w-warn); }
+  .pck-mortgage-calc .ma-status--bad { background: var(--w-bad-bg); color: var(--w-bad); }
+
+  .pck-mortgage-calc .ma-body { padding: 22px 22px 10px; }
+  .pck-mortgage-calc .ma-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; }
+  .pck-mortgage-calc .ma-fields--stack { grid-template-columns: 1fr; }
+  .pck-mortgage-calc .ma-field { display: flex; flex-direction: column; gap: 6px; }
+  .pck-mortgage-calc .ma-field--full { grid-column: 1 / -1; }
+  .pck-mortgage-calc .ma-field > span { font-size: 0.75rem; font-weight: 500; color: var(--w-muted); }
+
+  .pck-mortgage-calc .ma-control {
+    display: flex; align-items: stretch; background: var(--w-surface); border: 1px solid var(--w-border);
+    border-radius: 8px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .pck-mortgage-calc .ma-control:focus-within {
+    border-color: var(--w-border-focus); box-shadow: 0 0 0 3px var(--w-accent-light); background: #fff;
+  }
+  .pck-mortgage-calc .ma-prefix, .pck-mortgage-calc .ma-suffix {
+    display: flex; align-items: center; padding: 0 11px; font-size: 0.875rem; font-weight: 500;
+    color: var(--w-muted); background: rgba(0,0,0,0.02); flex-shrink: 0;
+  }
+  .pck-mortgage-calc .ma-control input, .pck-mortgage-calc .ma-control select {
+    flex: 1; width: 100%; min-width: 0; border: 0; background: transparent;
+    padding: 11px 12px; font: inherit; font-size: 0.9375rem; font-weight: 500;
+    color: var(--w-text); outline: none; font-variant-numeric: tabular-nums;
+  }
+  .pck-mortgage-calc .ma-control--select { position: relative; }
+  .pck-mortgage-calc .ma-control--select select { cursor: pointer; padding-right: 32px; appearance: none; }
+  .pck-mortgage-calc .ma-chevron {
+    position: absolute; right: 12px; top: 50%; width: 8px; height: 8px; pointer-events: none;
+    border-right: 2px solid var(--w-muted); border-bottom: 2px solid var(--w-muted);
+    transform: translateY(-65%) rotate(45deg);
+  }
+
+  .pck-mortgage-calc .ma-more { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--w-border); }
+  .pck-mortgage-calc .ma-more summary {
+    cursor: pointer; list-style: none; user-select: none; font-size: 0.8125rem; font-weight: 600;
+    color: var(--w-accent); display: flex; align-items: center; gap: 8px; transition: color 0.15s;
+  }
+  .pck-mortgage-calc .ma-more summary:hover { color: #2d4a6f; }
+  .pck-mortgage-calc .ma-more summary::-webkit-details-marker { display: none; }
+  .pck-mortgage-calc .ma-more-icon {
+    width: 20px; height: 20px; border-radius: 50%; background: var(--w-accent-light);
+    position: relative; flex-shrink: 0; transition: transform 0.25s;
+  }
+  .pck-mortgage-calc .ma-more-icon::before, .pck-mortgage-calc .ma-more-icon::after {
+    content: ""; position: absolute; background: var(--w-accent); top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .pck-mortgage-calc .ma-more-icon::before { width: 8px; height: 2px; }
+  .pck-mortgage-calc .ma-more-icon::after { width: 2px; height: 8px; }
+  .pck-mortgage-calc .ma-more[open] .ma-more-icon { transform: rotate(45deg); }
+  .pck-mortgage-calc .ma-more[open] summary { margin-bottom: 14px; }
+
+  .pck-mortgage-calc .ma-foot {
+    margin: 0; padding: 12px 22px 18px; font-size: 0.6875rem; color: var(--w-muted);
+    text-align: center; border-top: 1px solid var(--w-border); background: var(--w-surface);
+  }
+  @media (max-width: 360px) { .pck-mortgage-calc .ma-fields { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+(function () {
+  "use strict";
+  var root = document.getElementById("pck-mortgage-calc");
+  if (!root) return;
+  var fmt = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+  var fmtDec = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
+  var pct = function (n) { return (n * 100).toFixed(1) + "%"; };
+  var ids = ["pck-ma-income","pck-ma-debts","pck-ma-down","pck-ma-rate","pck-ma-term","pck-ma-tax","pck-ma-insurance","pck-ma-hoa"];
+  var out = {
+    price: root.querySelector("#pck-ma-out-price"), loan: root.querySelector("#pck-ma-out-loan"),
+    total: root.querySelector("#pck-ma-out-total"), front: root.querySelector("#pck-ma-out-front"),
+    back: root.querySelector("#pck-ma-out-back"), barFront: root.querySelector("#pck-ma-bar-front"),
+    barBack: root.querySelector("#pck-ma-bar-back"), status: root.querySelector("#pck-ma-out-status")
+  };
+  function flash(el) { if (!el) return; el.classList.remove("ma-flash"); void el.offsetWidth; el.classList.add("ma-flash"); }
+  function num(id) { var v = parseFloat(root.querySelector("#" + id).value); return isNaN(v) || v < 0 ? 0 : v; }
+  function loanFromPayment(payment, annualRate, years) {
+    if (payment <= 0 || years <= 0) return 0;
+    var r = annualRate / 100 / 12, n = years * 12;
+    return r === 0 ? payment * n : payment * (Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n));
+  }
+  function setBar(el, ratio, cap) {
+    var pctW = Math.min(ratio / cap * 100, 100);
+    el.style.width = pctW + "%";
+    el.className = "ma-bar-fill" + (el.id.indexOf("back") > -1 ? " ma-bar-fill--back" : "");
+    if (ratio > cap) el.classList.add("ma-bar-fill--bad");
+    else if (ratio > cap * 0.9) el.classList.add("ma-bar-fill--warn");
+  }
+  function calculate() {
+    var income = num("pck-ma-income"), debts = num("pck-ma-debts"), down = num("pck-ma-down");
+    var rate = num("pck-ma-rate"), term = parseInt(root.querySelector("#pck-ma-term").value, 10) || 30;
+    var taxMo = num("pck-ma-tax") / 12, ins = num("pck-ma-insurance"), hoa = num("pck-ma-hoa");
+    var monthlyIncome = income / 12;
+    var maxHousing = Math.max(0, Math.min(monthlyIncome * 0.28, monthlyIncome * 0.36 - debts));
+    var maxPI = Math.max(0, maxHousing - taxMo - ins - hoa);
+    var maxLoan = loanFromPayment(maxPI, rate, term), homePrice = maxLoan + down;
+    var frontDTI = monthlyIncome > 0 ? maxHousing / monthlyIncome : 0;
+    var backDTI = monthlyIncome > 0 ? (maxHousing + debts) / monthlyIncome : 0;
+    out.price.textContent = fmt.format(homePrice);
+    out.loan.textContent = fmt.format(maxLoan);
+    out.total.textContent = fmtDec.format(maxHousing);
+    out.front.textContent = pct(frontDTI);
+    out.back.textContent = pct(backDTI);
+    setBar(out.barFront, frontDTI, 0.28);
+    setBar(out.barBack, backDTI, 0.36);
+    flash(out.price);
+    out.status.className = "ma-status";
+    if (backDTI <= 0.36 && frontDTI <= 0.28) {
+      out.status.classList.add("ma-status--ok");
+      out.status.textContent = "Within typical 28/36 lender guidelines";
+    } else if (backDTI <= 0.43) {
+      out.status.classList.add("ma-status--warn");
+      out.status.textContent = "Near upper limits — confirm with lender";
+    } else {
+      out.status.classList.add("ma-status--bad");
+      out.status.textContent = "May exceed typical lender limits";
+    }
+  }
+  ids.forEach(function (id) {
+    var el = root.querySelector("#" + id);
+    el.addEventListener("input", calculate);
+    el.addEventListener("change", calculate);
+  });
+  calculate();
+})();
+</script>
+
+</body>
+</html>

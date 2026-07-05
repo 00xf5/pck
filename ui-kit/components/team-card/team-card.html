@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body class="bg-pck-cream m-0 py-16 px-4">
+
+<div id="pck-team-card" class="font-sans max-w-xs mx-auto">
+  <article class="group bg-white rounded-2xl overflow-hidden border border-pck-line/60 shadow-pck hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
+    <div class="relative aspect-[3/4] overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=85" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+      <div class="absolute inset-0 bg-gradient-to-t from-pck-ink/80 via-pck-ink/20 to-transparent"></div>
+      <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+        <h3 class="font-serif text-2xl">Giulia Romano</h3>
+        <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-pck-gold mt-1">Host &amp; Concierge</p>
+      </div>
+    </div>
+    <div class="p-6">
+      <p class="text-sm text-pck-muted leading-relaxed">Born in Florence. Giulia curates every stay — from private cellar tastings to truffle hunts at dawn.</p>
+      <div class="mt-5 pt-5 border-t border-pck-line/60 flex justify-center gap-6">
+        <a href="#" class="text-xs font-semibold text-pck-accent hover:text-pck-ink transition-colors">Email</a>
+        <a href="#" class="text-xs font-semibold text-pck-accent hover:text-pck-ink transition-colors">Instagram</a>
+      </div>
+    </div>
+  </article>
+</div>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={important:"#pck-team-card",theme:{extend:{colors:{pck:{ink:"#0c0a09",muted:"#78716c",surface:"#fafaf9",cream:"#f5f0eb",accent:"#1e3a5f",gold:"#a6833d",line:"#e7e5e4"}},fontFamily:{serif:["Georgia","Cambria","Times New Roman","serif"],sans:["system-ui","-apple-system","Segoe UI","Roboto","sans-serif"]},boxShadow:{pck:"0 25px 50px -12px rgba(0,0,0,0.1)"}}}};</script>
+</body></html>

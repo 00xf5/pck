@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body class="m-0">
+
+<div id="pck-nav-header" class="font-sans">
+  <div class="hidden lg:block bg-pck-ink text-white/70 text-xs">
+    <div class="max-w-6xl mx-auto px-6 h-9 flex items-center justify-between">
+      <span>Tuscany, Italy · Check-in from 3pm</span>
+      <span class="flex gap-6"><a href="tel:+390551234567" class="hover:text-white transition-colors">+39 055 123 4567</a><a href="#" class="hover:text-white transition-colors">EN · IT</a></span>
+    </div>
+  </div>
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-pck-line/80 shadow-sm shadow-black/[0.03]">
+    <div class="max-w-6xl mx-auto px-6 h-[4.25rem] flex items-center justify-between">
+      <a href="#" class="group flex items-center gap-2.5">
+        <span class="w-9 h-9 rounded-full bg-pck-accent flex items-center justify-center text-white font-serif text-sm font-bold">M</span>
+        <span class="font-serif text-xl tracking-tight text-pck-ink">Maison<span class="text-pck-gold group-hover:text-pck-accent transition-colors">.</span></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-10 text-[13px] font-medium tracking-wide text-pck-muted">
+        <a href="#" class="relative py-1 hover:text-pck-ink transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-pck-gold hover:after:w-full after:transition-all">Suites</a>
+        <a href="#" class="relative py-1 hover:text-pck-ink transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-pck-gold hover:after:w-full after:transition-all">Experience</a>
+        <a href="#" class="relative py-1 hover:text-pck-ink transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-pck-gold hover:after:w-full after:transition-all">Gallery</a>
+        <a href="#" class="relative py-1 hover:text-pck-ink transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-pck-gold hover:after:w-full after:transition-all">Contact</a>
+      </nav>
+      <a href="#" class="hidden md:inline-flex items-center gap-2 px-6 py-2.5 bg-pck-accent text-white text-sm font-semibold rounded-full shadow-lg shadow-pck-accent/20 hover:bg-pck-ink hover:-translate-y-px transition-all duration-300">Book direct</a>
+      <button type="button" id="pck-nav-toggle" class="md:hidden w-10 h-10 flex items-center justify-center rounded-full border border-pck-line text-pck-ink" aria-label="Menu" aria-expanded="false">
+        <svg id="pck-nav-icon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+    <div id="pck-nav-drawer" class="hidden md:hidden border-t border-pck-line bg-white px-6 py-6 space-y-1">
+      <a href="#" class="block py-3 text-sm font-medium text-pck-ink border-b border-pck-line/50">Suites</a>
+      <a href="#" class="block py-3 text-sm font-medium text-pck-ink border-b border-pck-line/50">Experience</a>
+      <a href="#" class="block py-3 text-sm font-medium text-pck-ink border-b border-pck-line/50">Gallery</a>
+      <a href="#" class="block py-3 text-sm font-medium text-pck-ink">Contact</a>
+      <a href="#" class="mt-4 block text-center py-3.5 bg-pck-accent text-white text-sm font-semibold rounded-full">Book direct — best rate</a>
+    </div>
+  </header>
+</div>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={important:"#pck-nav-header",theme:{extend:{colors:{pck:{ink:"#0c0a09",muted:"#78716c",surface:"#fafaf9",cream:"#f5f0eb",accent:"#1e3a5f",gold:"#a6833d",line:"#e7e5e4"}},fontFamily:{serif:["Georgia","Cambria","Times New Roman","serif"],sans:["system-ui","-apple-system","Segoe UI","Roboto","sans-serif"]},boxShadow:{pck:"0 25px 50px -12px rgba(0,0,0,0.1)"}}}};</script>
+<script>(function(){var t=document.getElementById("pck-nav-toggle"),d=document.getElementById("pck-nav-drawer");if(!t||!d)return;t.addEventListener("click",function(){var open=!d.classList.toggle("hidden");t.setAttribute("aria-expanded",open);});})();</script>
+</body></html>
