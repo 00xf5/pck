@@ -7,7 +7,7 @@
 | Rule | Detail |
 |------|--------|
 | Format | One `.html` file per component — sold individually |
-| CSS | Tailwind Play CDN (`cdn.tailwindcss.com`) |
+| CSS | Tailwind Play CDN (`cdn.tailwindcss.com`) — load in `<head>`, config after markup |
 | Scope | `tailwind.config = { important: '#pck-component-id' }` |
 | Theme | Neutral luxury — `pck-*` color tokens |
 | JS | Only where needed (nav mobile toggle). FAQ uses native `<details>` |

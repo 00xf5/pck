@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>html:not(.pck-tw-ready){visibility:hidden}</style><script src="https://cdn.tailwindcss.com"></script></head>
 <body class="m-0">
 
 <div id="pck-nav-header" class="font-sans">
@@ -37,7 +37,7 @@
   </header>
 </div>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={important:"#pck-nav-header",theme:{extend:{colors:{pck:{ink:"#0c0a09",muted:"#78716c",surface:"#fafaf9",cream:"#f5f0eb",accent:"#1e3a5f",gold:"#a6833d",line:"#e7e5e4"}},fontFamily:{serif:["Georgia","Cambria","Times New Roman","serif"],sans:["system-ui","-apple-system","Segoe UI","Roboto","sans-serif"]},boxShadow:{pck:"0 25px 50px -12px rgba(0,0,0,0.1)"}}}};</script>
+
+<script>tailwind.config={important:"#pck-nav-header",theme:{extend:{colors:{pck:{ink:"#0c0a09",muted:"#78716c",surface:"#fafaf9",cream:"#f5f0eb",accent:"#1e3a5f",gold:"#a6833d",line:"#e7e5e4"}},fontFamily:{serif:["Georgia","Cambria","Times New Roman","serif"],sans:["system-ui","-apple-system","Segoe UI","Roboto","sans-serif"]},boxShadow:{pck:"0 25px 50px -12px rgba(0,0,0,0.1)"}}}};document.documentElement.classList.add('pck-tw-ready');</script>
 <script>(function(){var t=document.getElementById("pck-nav-toggle"),d=document.getElementById("pck-nav-drawer");if(!t||!d)return;function close(){d.classList.add("hidden");t.setAttribute("aria-expanded","false");}t.addEventListener("click",function(){var open=!d.classList.toggle("hidden");t.setAttribute("aria-expanded",String(open));});d.querySelectorAll("a").forEach(function(a){a.addEventListener("click",close);});})();</script>
 </body></html>
