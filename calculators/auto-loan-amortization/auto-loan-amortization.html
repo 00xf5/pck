@@ -7,7 +7,7 @@
   <style>
     body:has(> .pck-autoloan-calc) {
       margin: 0; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center;
-      padding: 48px 20px; background: linear-gradient(165deg, #fafafa 0%, #e4e4e7 100%);
+      padding: 2rem 1.25rem; background: #f5f0eb;
     }
   </style>
 </head>
@@ -15,233 +15,426 @@
 
 <div class="pck-autoloan-calc" id="pck-autoloan-calc">
 
-  <div class="al-hero">
-    <div class="al-hero-shine" aria-hidden="true"></div>
-    <span class="al-hero-label">Estimated payment</span>
-    <span class="al-hero-value" id="pck-al-out-payment">—</span>
-    <span class="al-hero-sub">per month</span>
-  </div>
-
-  <div class="al-kpis">
-    <div class="al-kpi"><span>Financed</span><strong id="pck-al-out-financed">—</strong></div>
-    <div class="al-kpi"><span>Interest</span><strong id="pck-al-out-interest">—</strong></div>
-    <div class="al-kpi"><span>Payoff</span><strong id="pck-al-out-payoff">—</strong></div>
-  </div>
-
-  <div class="al-split">
-    <div class="al-split-label"><span>Principal vs interest</span><span id="pck-al-split-pct">—</span></div>
-    <div class="al-split-bar" role="presentation">
-      <div class="al-split-prin" id="pck-al-bar-prin"></div>
-      <div class="al-split-int" id="pck-al-bar-int"></div>
-    </div>
-  </div>
-
-  <div class="al-body">
-    <div class="al-term-pills" role="group" aria-label="Loan term">
-      <button type="button" class="al-pill" data-term="36">36</button>
-      <button type="button" class="al-pill" data-term="48">48</button>
-      <button type="button" class="al-pill al-pill--on" data-term="60">60</button>
-      <button type="button" class="al-pill" data-term="72">72</button>
-      <span class="al-pill-unit">months</span>
-    </div>
-    <input type="hidden" id="pck-al-term" value="60">
-
-    <div class="al-fields">
-      <label class="al-field al-field--wide">
-        <span>Vehicle price</span>
-        <div class="al-control"><span class="al-prefix">$</span><input type="number" id="pck-al-price" value="32000" min="0" step="500"></div>
-      </label>
-      <label class="al-field">
-        <span>Down payment</span>
-        <div class="al-control"><span class="al-prefix">$</span><input type="number" id="pck-al-down" value="5000" min="0" step="500"></div>
-      </label>
-      <label class="al-field">
-        <span>APR</span>
-        <div class="al-control"><input type="number" id="pck-al-apr" value="5.9" min="0" max="30" step="0.1"><span class="al-suffix">%</span></div>
-      </label>
-      <label class="al-field al-field--wide">
-        <span>Sales tax</span>
-        <div class="al-control"><input type="number" id="pck-al-tax" value="8.25" min="0" max="20" step="0.25"><span class="al-suffix">%</span></div>
-      </label>
+  <div class="al-shell">
+    <div class="al-result">
+      <p class="al-kicker">Estimated payment</p>
+      <p class="al-payment" id="pck-al-out-payment">—</p>
+      <p class="al-per">per month</p>
+      <dl class="al-kpis">
+        <div><dt>Financed</dt><dd id="pck-al-out-financed">—</dd></div>
+        <div><dt>Total interest</dt><dd id="pck-al-out-interest">—</dd></div>
+        <div><dt>Payoff</dt><dd id="pck-al-out-payoff">—</dd></div>
+      </dl>
+      <div class="al-split">
+        <div class="al-split-top"><span>Principal vs interest</span><span id="pck-al-split-pct">—</span></div>
+        <div class="al-split-bar" role="presentation">
+          <div class="al-split-prin" id="pck-al-bar-prin"></div>
+          <div class="al-split-int" id="pck-al-bar-int"></div>
+        </div>
+      </div>
     </div>
 
-    <details class="al-more">
-      <summary>Trade-in &amp; extra payment</summary>
-      <div class="al-more-grid">
+    <div class="al-form">
+      <div class="al-currency">
+        <label for="pck-al-currency">Currency</label>
+        <div class="al-input al-input--select">
+          <select id="pck-al-currency" aria-label="Currency"></select>
+        </div>
+      </div>
+      <div class="al-terms" role="group" aria-label="Loan term">
+        <button type="button" class="al-term" data-term="36">36</button>
+        <button type="button" class="al-term" data-term="48">48</button>
+        <button type="button" class="al-term al-term--on" data-term="60">60</button>
+        <button type="button" class="al-term" data-term="72">72</button>
+        <span class="al-term-label">months</span>
+      </div>
+      <input type="hidden" id="pck-al-term" value="60">
+
+      <div class="al-fields">
         <label class="al-field al-field--wide">
-          <span>Trade-in value</span>
-          <div class="al-control"><span class="al-prefix">$</span><input type="number" id="pck-al-trade" value="0" min="0" step="500"></div>
+          <span>Vehicle price</span>
+          <div class="al-input"><span class="al-affix al-affix--cur"></span><input type="number" id="pck-al-price" value="32000" min="0" step="500"></div>
+        </label>
+        <label class="al-field">
+          <span>Down payment</span>
+          <div class="al-input"><span class="al-affix al-affix--cur"></span><input type="number" id="pck-al-down" value="5000" min="0" step="500"></div>
+        </label>
+        <label class="al-field">
+          <span>APR</span>
+          <div class="al-input"><input type="number" id="pck-al-apr" value="5.9" min="0" max="30" step="0.1"><span class="al-affix">%</span></div>
         </label>
         <label class="al-field al-field--wide">
-          <span>Extra payment / month</span>
-          <div class="al-control"><span class="al-prefix">$</span><input type="number" id="pck-al-extra" value="0" min="0" step="25"></div>
+          <span>Sales tax</span>
+          <div class="al-input"><input type="number" id="pck-al-tax" value="8.25" min="0" max="20" step="0.25"><span class="al-affix">%</span></div>
         </label>
       </div>
-      <p class="al-saved" id="pck-al-out-saved" hidden></p>
-    </details>
 
-    <details class="al-schedule-wrap">
-      <summary>View amortization schedule <span class="al-sched-count" id="pck-al-sched-count"></span></summary>
-      <div class="al-table-scroll">
-        <table class="al-table">
-          <thead><tr><th>#</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
-          <tbody id="pck-al-schedule"></tbody>
-        </table>
-      </div>
-    </details>
+      <details class="al-more">
+        <summary>Trade-in &amp; extra payment</summary>
+        <div class="al-fields al-fields--stack">
+          <label class="al-field al-field--wide">
+            <span>Trade-in value</span>
+            <div class="al-input"><span class="al-affix al-affix--cur"></span><input type="number" id="pck-al-trade" value="0" min="0" step="500"></div>
+          </label>
+          <label class="al-field al-field--wide">
+            <span>Extra payment / month</span>
+            <div class="al-input"><span class="al-affix al-affix--cur"></span><input type="number" id="pck-al-extra" value="0" min="0" step="25"></div>
+          </label>
+        </div>
+        <p class="al-saved" id="pck-al-out-saved" hidden></p>
+      </details>
+    </div>
   </div>
+
+  <details class="al-schedule">
+    <summary>Amortization schedule <span class="al-sched-count" id="pck-al-sched-count"></span></summary>
+    <div class="al-table-wrap">
+      <table class="al-table">
+        <thead><tr><th>#</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
+        <tbody id="pck-al-schedule"></tbody>
+      </table>
+    </div>
+  </details>
+
   <p class="al-foot">Estimates only — not financial advice.</p>
 </div>
 
 <style>
   .pck-autoloan-calc {
-    --w-bg: #fff; --w-surface: #fafafa; --w-accent: #18181b; --w-border: #e4e4e7;
-    --w-text: #18181b; --w-muted: #71717a; --w-prin: #3b82f6; --w-int: #f97316;
-    --w-save: #15803d; --w-save-bg: #f0fdf4; --w-radius: 14px;
-    --w-shadow: 0 8px 30px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.04);
-    width: 100%; max-width: 400px; border-radius: var(--w-radius); background: var(--w-bg);
-    box-shadow: var(--w-shadow); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    font-size: 15px; color: var(--w-text); overflow: hidden;
+    --w-bg: #fff;
+    --w-surface: #fafaf9;
+    --w-ink: #1c1917;
+    --w-muted: #78716c;
+    --w-accent: #18181b;
+    --w-line: #e7e5e4;
+    --w-prin: #2563eb;
+    --w-int: #ea580c;
+    --w-save: #166534;
+    --w-save-bg: #f0fdf4;
+    width: 100%;
+    max-width: 26rem;
+    border: 1px solid var(--w-line);
+    border-radius: 12px;
+    background: var(--w-bg);
+    box-shadow: 0 1px 3px rgba(28,25,23,0.06), 0 8px 24px rgba(28,25,23,0.06);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    color: var(--w-ink);
+    overflow: hidden;
   }
   .pck-autoloan-calc *, .pck-autoloan-calc *::before, .pck-autoloan-calc *::after { box-sizing: border-box; }
 
-  @keyframes al-flash { from { opacity: 0.45; } to { opacity: 1; } }
-  @keyframes al-shine { 0% { transform: translateX(-100%) skewX(-15deg); } 100% { transform: translateX(200%) skewX(-15deg); } }
-  .pck-autoloan-calc .al-flash { animation: al-flash 0.35s ease; }
-  @media (prefers-reduced-motion: reduce) { .pck-autoloan-calc .al-flash, .pck-autoloan-calc .al-hero-shine { animation: none; } }
+  .pck-autoloan-calc .al-shell { display: flex; flex-direction: column; }
 
-  .pck-autoloan-calc .al-hero {
-    position: relative; padding: 26px 22px 22px; background: var(--w-accent);
-    color: #fff; text-align: center; overflow: hidden;
+  .pck-autoloan-calc .al-result {
+    padding: 1.5rem 1.375rem;
+    background: var(--w-accent);
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
   }
-  .pck-autoloan-calc .al-hero-shine {
-    position: absolute; inset: 0; pointer-events: none;
-    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%);
-    animation: al-shine 5s ease-in-out infinite;
+  .pck-autoloan-calc .al-kicker {
+    margin: 0 0 0.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.65);
   }
-  .pck-autoloan-calc .al-hero-label {
-    position: relative; display: block; font-size: 0.6875rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.55; margin-bottom: 8px;
+  .pck-autoloan-calc .al-payment {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
   }
-  .pck-autoloan-calc .al-hero-value {
-    position: relative; display: block; font-size: 2.625rem; font-weight: 700;
-    letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums;
+  .pck-autoloan-calc .al-per {
+    margin: 0.25rem 0 1.125rem;
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.55);
   }
-  .pck-autoloan-calc .al-hero-sub { position: relative; display: block; font-size: 0.8125rem; opacity: 0.5; margin-top: 6px; }
 
   .pck-autoloan-calc .al-kpis {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-    background: var(--w-border); border-bottom: 1px solid var(--w-border);
+    margin: 0 0 1.125rem;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 0.875rem;
   }
-  .pck-autoloan-calc .al-kpi { background: var(--w-surface); padding: 14px 8px; text-align: center; }
-  .pck-autoloan-calc .al-kpi span {
-    display: block; font-size: 0.625rem; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--w-muted); margin-bottom: 4px;
+  .pck-autoloan-calc .al-kpis > div { text-align: center; }
+  .pck-autoloan-calc .al-kpis dt {
+    margin: 0 0 0.25rem;
+    font-size: 0.625rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
   }
-  .pck-autoloan-calc .al-kpi strong { font-size: 0.9375rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .pck-autoloan-calc .al-kpis dd {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
 
-  .pck-autoloan-calc .al-split { padding: 16px 22px; background: #fff; border-bottom: 1px solid var(--w-border); }
-  .pck-autoloan-calc .al-split-label {
-    display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 500;
-    color: var(--w-muted); margin-bottom: 8px;
+  .pck-autoloan-calc .al-split-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    color: rgba(255,255,255,0.75);
   }
   .pck-autoloan-calc .al-split-bar {
-    display: flex; height: 12px; border-radius: 999px; overflow: hidden; background: var(--w-border);
+    display: flex;
+    height: 8px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.25);
   }
-  .pck-autoloan-calc .al-split-prin, .pck-autoloan-calc .al-split-int {
-    height: 100%; transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+  .pck-autoloan-calc .al-split-prin,
+  .pck-autoloan-calc .al-split-int {
+    height: 100%;
+    transition: width 0.35s ease;
   }
-  .pck-autoloan-calc .al-split-prin { background: linear-gradient(90deg, #60a5fa, var(--w-prin)); }
-  .pck-autoloan-calc .al-split-int { background: linear-gradient(90deg, #fb923c, var(--w-int)); }
+  .pck-autoloan-calc .al-split-prin { background: var(--w-prin); }
+  .pck-autoloan-calc .al-split-int { background: var(--w-int); }
 
-  .pck-autoloan-calc .al-body { padding: 20px 22px 10px; }
+  .pck-autoloan-calc .al-form { padding: 1.375rem; }
+  .pck-autoloan-calc .al-currency { margin-bottom: 1rem; }
+  .pck-autoloan-calc .al-currency > label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--w-muted);
+    margin-bottom: 0.375rem;
+  }
+  .pck-autoloan-calc .al-input--select select {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    padding: 0.625rem 0.75rem;
+    font: inherit;
+    font-size: 0.875rem;
+    color: var(--w-ink);
+    outline: none;
+    cursor: pointer;
+  }
+  .pck-autoloan-calc .al-affix--cur {
+    min-width: 2.25rem;
+    justify-content: center;
+  }
+  .pck-autoloan-calc .al-input input[type="number"] { text-align: left; }
 
-  .pck-autoloan-calc .al-term-pills {
-    display: flex; align-items: center; gap: 6px; margin-bottom: 18px;
+  .pck-autoloan-calc .al-terms {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-bottom: 1.125rem;
   }
-  .pck-autoloan-calc .al-pill {
-    flex: 1; border: 1px solid var(--w-border); background: var(--w-surface);
-    font: inherit; font-size: 0.875rem; font-weight: 600; padding: 10px 0;
-    border-radius: 8px; cursor: pointer; color: var(--w-muted);
-    transition: all 0.2s; font-variant-numeric: tabular-nums;
+  .pck-autoloan-calc .al-term {
+    flex: 1;
+    border: 1px solid var(--w-line);
+    background: var(--w-surface);
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--w-muted);
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+    font-variant-numeric: tabular-nums;
   }
-  .pck-autoloan-calc .al-pill:hover { border-color: var(--w-accent); color: var(--w-text); }
-  .pck-autoloan-calc .al-pill--on {
-    background: var(--w-accent); border-color: var(--w-accent); color: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  .pck-autoloan-calc .al-term:hover { border-color: var(--w-accent); color: var(--w-ink); }
+  .pck-autoloan-calc .al-term--on {
+    background: var(--w-accent);
+    border-color: var(--w-accent);
+    color: #fff;
   }
-  .pck-autoloan-calc .al-pill-unit { font-size: 0.75rem; color: var(--w-muted); white-space: nowrap; padding-left: 4px; }
+  .pck-autoloan-calc .al-term-label {
+    font-size: 0.75rem;
+    color: var(--w-muted);
+    white-space: nowrap;
+    padding-left: 0.25rem;
+  }
 
-  .pck-autoloan-calc .al-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; }
-  .pck-autoloan-calc .al-field { display: flex; flex-direction: column; gap: 6px; }
+  .pck-autoloan-calc .al-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.875rem 0.75rem;
+  }
+  .pck-autoloan-calc .al-fields--stack { grid-template-columns: 1fr; }
+  .pck-autoloan-calc .al-field { display: flex; flex-direction: column; gap: 0.375rem; }
   .pck-autoloan-calc .al-field--wide { grid-column: 1 / -1; }
-  .pck-autoloan-calc .al-field > span { font-size: 0.75rem; font-weight: 500; color: var(--w-muted); }
+  .pck-autoloan-calc .al-field > span { font-size: 0.8125rem; font-weight: 500; color: var(--w-muted); }
 
-  .pck-autoloan-calc .al-control {
-    display: flex; align-items: stretch; border: 1px solid var(--w-border);
-    border-radius: 8px; background: var(--w-surface); overflow: hidden;
-    transition: border-color 0.2s, box-shadow 0.2s;
+  .pck-autoloan-calc .al-input {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--w-line);
+    border-radius: 8px;
+    background: var(--w-surface);
+    overflow: hidden;
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
-  .pck-autoloan-calc .al-control:focus-within {
-    border-color: var(--w-accent); box-shadow: 0 0 0 3px rgba(24,24,27,0.08); background: #fff;
+  .pck-autoloan-calc .al-input:focus-within {
+    border-color: var(--w-accent);
+    box-shadow: 0 0 0 3px rgba(24,24,27,0.08);
+    background: #fff;
   }
-  .pck-autoloan-calc .al-prefix, .pck-autoloan-calc .al-suffix {
-    display: flex; align-items: center; padding: 0 11px; font-size: 0.875rem;
-    font-weight: 500; color: var(--w-muted); flex-shrink: 0;
+  .pck-autoloan-calc .al-affix {
+    display: flex;
+    align-items: center;
+    padding: 0 0.625rem;
+    font-size: 0.875rem;
+    color: var(--w-muted);
+    flex-shrink: 0;
   }
-  .pck-autoloan-calc .al-control input {
-    flex: 1; min-width: 0; border: 0; background: transparent; padding: 11px 12px;
-    font: inherit; font-size: 0.9375rem; font-weight: 500; outline: none; font-variant-numeric: tabular-nums;
+  .pck-autoloan-calc .al-input input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    padding: 0.625rem 0.75rem;
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    outline: none;
+    font-variant-numeric: tabular-nums;
   }
 
-  .pck-autoloan-calc .al-more, .pck-autoloan-calc .al-schedule-wrap {
-    margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--w-border);
+  .pck-autoloan-calc .al-more {
+    margin-top: 1.125rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--w-line);
   }
-  .pck-autoloan-calc .al-more summary, .pck-autoloan-calc .al-schedule-wrap summary {
-    cursor: pointer; list-style: none; font-size: 0.8125rem; font-weight: 600;
-    color: var(--w-muted); user-select: none; display: flex; align-items: center; gap: 6px;
+  .pck-autoloan-calc .al-more summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--w-muted);
   }
-  .pck-autoloan-calc .al-more summary::-webkit-details-marker,
-  .pck-autoloan-calc .al-schedule-wrap summary::-webkit-details-marker { display: none; }
-  .pck-autoloan-calc details[open] summary { color: var(--w-accent); margin-bottom: 12px; }
-  .pck-autoloan-calc .al-sched-count {
-    font-size: 0.6875rem; font-weight: 500; color: var(--w-muted);
-    background: var(--w-surface); padding: 2px 8px; border-radius: 999px; margin-left: auto;
-  }
+  .pck-autoloan-calc .al-more summary::-webkit-details-marker { display: none; }
+  .pck-autoloan-calc .al-more[open] summary { margin-bottom: 0.875rem; color: var(--w-ink); }
 
-  .pck-autoloan-calc .al-more-grid { display: grid; gap: 12px; }
   .pck-autoloan-calc .al-saved {
-    margin: 10px 0 0; padding: 10px 14px; font-size: 0.8125rem; font-weight: 600;
-    color: var(--w-save); background: var(--w-save-bg); border-radius: 8px;
+    margin: 0.75rem 0 0;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--w-save);
+    background: var(--w-save-bg);
+    border-radius: 6px;
     border-left: 3px solid var(--w-save);
   }
   .pck-autoloan-calc .al-saved[hidden] { display: none; }
 
-  .pck-autoloan-calc .al-table-scroll {
-    overflow: auto; max-height: 260px; border: 1px solid var(--w-border); border-radius: 10px;
+  .pck-autoloan-calc .al-schedule {
+    padding: 0 1.375rem;
+    border-top: 1px solid var(--w-line);
+  }
+  .pck-autoloan-calc .al-schedule summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--w-muted);
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+  .pck-autoloan-calc .al-schedule summary::-webkit-details-marker { display: none; }
+  .pck-autoloan-calc .al-sched-count {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--w-muted);
+    background: var(--w-surface);
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;
+    margin-left: auto;
+  }
+  .pck-autoloan-calc .al-schedule[open] summary { color: var(--w-ink); padding-bottom: 0.75rem; }
+
+  .pck-autoloan-calc .al-table-wrap {
+    overflow: auto;
+    max-height: 280px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--w-line);
+    border-radius: 8px;
   }
   .pck-autoloan-calc .al-table {
-    width: 100%; border-collapse: collapse; font-size: 0.75rem; font-variant-numeric: tabular-nums;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
   }
   .pck-autoloan-calc .al-table th {
-    position: sticky; top: 0; background: var(--w-accent); color: #fff; font-weight: 600;
-    font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.06em;
-    padding: 10px 8px; text-align: right; white-space: nowrap; z-index: 1;
+    position: sticky;
+    top: 0;
+    background: var(--w-surface);
+    color: var(--w-muted);
+    font-weight: 600;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.625rem 0.5rem;
+    text-align: right;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--w-line);
+    z-index: 1;
   }
-  .pck-autoloan-calc .al-table th:first-child { text-align: left; padding-left: 12px; }
-  .pck-autoloan-calc .al-table td { padding: 9px 8px; text-align: right; border-bottom: 1px solid var(--w-border); }
-  .pck-autoloan-calc .al-table td:first-child { text-align: left; padding-left: 12px; color: var(--w-muted); font-weight: 600; }
+  .pck-autoloan-calc .al-table th:first-child { text-align: left; padding-left: 0.75rem; }
+  .pck-autoloan-calc .al-table td {
+    padding: 0.5rem;
+    text-align: right;
+    border-bottom: 1px solid var(--w-line);
+  }
+  .pck-autoloan-calc .al-table td:first-child {
+    text-align: left;
+    padding-left: 0.75rem;
+    color: var(--w-muted);
+    font-weight: 600;
+  }
   .pck-autoloan-calc .al-table tbody tr:nth-child(even) { background: var(--w-surface); }
-  .pck-autoloan-calc .al-table tbody tr.al-row--last td { background: #f0fdf4; color: var(--w-save); font-weight: 600; }
+  .pck-autoloan-calc .al-table tbody tr.al-row--last td {
+    background: var(--w-save-bg);
+    color: var(--w-save);
+    font-weight: 600;
+  }
   .pck-autoloan-calc .al-table tbody tr:last-child td { border-bottom: 0; }
 
   .pck-autoloan-calc .al-foot {
-    margin: 0; padding: 12px 22px 18px; font-size: 0.6875rem; color: var(--w-muted);
-    text-align: center; border-top: 1px solid var(--w-border); background: var(--w-surface);
+    margin: 0;
+    padding: 0.75rem 1.375rem 1rem;
+    font-size: 0.6875rem;
+    color: var(--w-muted);
+    text-align: center;
+    border-top: 1px solid var(--w-line);
+    background: var(--w-surface);
   }
-  @media (max-width: 360px) {
+
+  @media (max-width: 359px) {
     .pck-autoloan-calc .al-fields { grid-template-columns: 1fr; }
-    .pck-autoloan-calc .al-kpis { grid-template-columns: 1fr; }
+    .pck-autoloan-calc .al-kpis { grid-template-columns: 1fr; gap: 0.625rem; }
+    .pck-autoloan-calc .al-kpis > div { text-align: left; display: flex; justify-content: space-between; gap: 1rem; }
+  }
+
+  @media (min-width: 640px) {
+    .pck-autoloan-calc { max-width: 44rem; }
+    .pck-autoloan-calc .al-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 11fr) minmax(0, 13fr);
+    }
+    .pck-autoloan-calc .al-result {
+      border-bottom: 0;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      padding: 1.75rem 1.5rem;
+    }
+    .pck-autoloan-calc .al-payment { font-size: 2.25rem; }
+    .pck-autoloan-calc .al-form { padding: 1.75rem 1.5rem; }
+    .pck-autoloan-calc .al-schedule { padding: 0 1.5rem; }
+    .pck-autoloan-calc .al-table-wrap { max-height: 320px; }
   }
 </style>
 
@@ -250,18 +443,69 @@
   "use strict";
   var root = document.getElementById("pck-autoloan-calc");
   if (!root) return;
-  var fmtDec = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
+
+  var CUR_MAP = {
+    USD: { locale: "en-US" }, EUR: { locale: "de-DE" }, GBP: { locale: "en-GB" },
+    CHF: { locale: "de-CH" }, CAD: { locale: "en-CA" }, AUD: { locale: "en-AU" },
+    JPY: { locale: "ja-JP", frac: 0 }, SEK: { locale: "sv-SE" }, NOK: { locale: "nb-NO" },
+    DKK: { locale: "da-DK" }, PLN: { locale: "pl-PL" }, MXN: { locale: "es-MX" },
+    BRL: { locale: "pt-BR" }, INR: { locale: "en-IN" }, SGD: { locale: "en-SG" },
+    NZD: { locale: "en-NZ" }, AED: { locale: "en-AE" }, ZAR: { locale: "en-ZA" }
+  };
+  var curCode = "USD", fmtWhole, fmtPrec;
+  function setCurrency(code) {
+    var cfg = CUR_MAP[code] || CUR_MAP.USD;
+    curCode = CUR_MAP[code] ? code : "USD";
+    var frac = cfg.frac === 0 ? 0 : 2;
+    fmtWhole = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: curCode, maximumFractionDigits: 0, minimumFractionDigits: 0 });
+    fmtPrec = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: curCode, maximumFractionDigits: frac, minimumFractionDigits: frac });
+  }
+  function curSymbol(code) {
+    var c = code || curCode, cfg = CUR_MAP[c] || CUR_MAP.USD;
+    var part = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: CUR_MAP[c] ? c : "USD", currencyDisplay: "narrowSymbol" }).formatToParts(0);
+    for (var i = 0; i < part.length; i++) if (part[i].type === "currency") return part[i].value;
+    return c;
+  }
+  function curOptionLabel(code) {
+    var cfg = CUR_MAP[code];
+    return code + " — " + new Intl.NumberFormat(cfg.locale, { style: "currency", currency: code }).format(1234.56);
+  }
+  function syncAffixes() {
+    var sym = curSymbol();
+    root.querySelectorAll(".al-affix--cur").forEach(function (el) { el.textContent = sym; });
+  }
+
+  var currencySelect = root.querySelector("#pck-al-currency");
+  Object.keys(CUR_MAP).forEach(function (code) {
+    var opt = document.createElement("option");
+    opt.value = code;
+    opt.textContent = curOptionLabel(code);
+    currencySelect.appendChild(opt);
+  });
+  currencySelect.addEventListener("change", function () {
+    setCurrency(currencySelect.value);
+    syncAffixes();
+    calculate();
+  });
+
   var termInput = root.querySelector("#pck-al-term");
   var ids = ["pck-al-price","pck-al-down","pck-al-trade","pck-al-tax","pck-al-apr","pck-al-extra"];
   var out = {
-    payment: root.querySelector("#pck-al-out-payment"), financed: root.querySelector("#pck-al-out-financed"),
-    interest: root.querySelector("#pck-al-out-interest"), payoff: root.querySelector("#pck-al-out-payoff"),
-    saved: root.querySelector("#pck-al-out-saved"), schedule: root.querySelector("#pck-al-schedule"),
-    schedCount: root.querySelector("#pck-al-sched-count"), barPrin: root.querySelector("#pck-al-bar-prin"),
-    barInt: root.querySelector("#pck-al-bar-int"), splitPct: root.querySelector("#pck-al-split-pct")
+    payment: root.querySelector("#pck-al-out-payment"),
+    financed: root.querySelector("#pck-al-out-financed"),
+    interest: root.querySelector("#pck-al-out-interest"),
+    payoff: root.querySelector("#pck-al-out-payoff"),
+    saved: root.querySelector("#pck-al-out-saved"),
+    schedule: root.querySelector("#pck-al-schedule"),
+    schedCount: root.querySelector("#pck-al-sched-count"),
+    barPrin: root.querySelector("#pck-al-bar-prin"),
+    barInt: root.querySelector("#pck-al-bar-int"),
+    splitPct: root.querySelector("#pck-al-split-pct")
   };
-  function flash(el) { el.classList.remove("al-flash"); void el.offsetWidth; el.classList.add("al-flash"); }
-  function num(id) { var v = parseFloat(root.querySelector("#" + id).value); return isNaN(v) || v < 0 ? 0 : v; }
+  function num(id) {
+    var v = parseFloat(root.querySelector("#" + id).value);
+    return isNaN(v) || v < 0 ? 0 : v;
+  }
   function monthlyPayment(principal, apr, months) {
     if (principal <= 0 || months <= 0) return 0;
     var r = apr / 100 / 12;
@@ -276,7 +520,8 @@
       if (principalPaid > balance) principalPaid = balance;
       var actualPayment = interest + principalPaid;
       balance -= principalPaid;
-      totalInterest += interest; totalPaid += actualPayment;
+      totalInterest += interest;
+      totalPaid += actualPayment;
       rows.push({ month: month, payment: actualPayment, principal: principalPaid, interest: interest, balance: Math.max(0, balance) });
     }
     return { rows: rows, payment: payment, totalInterest: totalInterest, totalPaid: totalPaid, months: month };
@@ -293,19 +538,18 @@
     out.barPrin.style.width = prinPct + "%";
     out.barInt.style.width = (100 - prinPct) + "%";
     out.splitPct.textContent = Math.round(prinPct) + "% prin · " + Math.round(100 - prinPct) + "% int";
-    out.payment.textContent = fmtDec.format(result.payment);
-    out.financed.textContent = fmtDec.format(financed);
-    out.interest.textContent = fmtDec.format(result.totalInterest);
+    out.payment.textContent = fmtPrec.format(result.payment);
+    out.financed.textContent = fmtPrec.format(financed);
+    out.interest.textContent = fmtPrec.format(result.totalInterest);
     out.payoff.textContent = result.months + " mo";
     out.schedCount.textContent = result.months + " rows";
-    flash(out.payment);
     if (extra > 0 && baseline.totalInterest > result.totalInterest) {
       out.saved.hidden = false;
-      out.saved.textContent = "Extra payments save " + fmtDec.format(baseline.totalInterest - result.totalInterest) + " in interest";
+      out.saved.textContent = "Extra payments save " + fmtPrec.format(baseline.totalInterest - result.totalInterest) + " in interest";
     } else { out.saved.hidden = true; }
     out.schedule.innerHTML = result.rows.map(function (row, i) {
       var cls = i === result.rows.length - 1 ? ' class="al-row--last"' : "";
-      return "<tr" + cls + "><td>" + row.month + "</td><td>" + fmtDec.format(row.payment) + "</td><td>" + fmtDec.format(row.principal) + "</td><td>" + fmtDec.format(row.interest) + "</td><td>" + fmtDec.format(row.balance) + "</td></tr>";
+      return "<tr" + cls + "><td>" + row.month + "</td><td>" + fmtPrec.format(row.payment) + "</td><td>" + fmtPrec.format(row.principal) + "</td><td>" + fmtPrec.format(row.interest) + "</td><td>" + fmtPrec.format(row.balance) + "</td></tr>";
     }).join("");
   }
   ids.forEach(function (id) {
@@ -313,14 +557,17 @@
     el.addEventListener("input", calculate);
     el.addEventListener("change", calculate);
   });
-  root.querySelectorAll(".al-pill").forEach(function (pill) {
+  root.querySelectorAll(".al-term").forEach(function (pill) {
     pill.addEventListener("click", function () {
-      root.querySelectorAll(".al-pill").forEach(function (p) { p.classList.remove("al-pill--on"); });
-      pill.classList.add("al-pill--on");
+      root.querySelectorAll(".al-term").forEach(function (p) { p.classList.remove("al-term--on"); });
+      pill.classList.add("al-term--on");
       termInput.value = pill.getAttribute("data-term");
       calculate();
     });
   });
+  setCurrency("USD");
+  currencySelect.value = "USD";
+  syncAffixes();
   calculate();
 })();
 </script>

@@ -16,8 +16,9 @@ These are **embeddable widgets**, not standalone apps. The buyer's page supplies
 | **`max-width` ~400px** | Fits sidebars, blog columns, and property pages |
 | **Transparent background** | Works on light, dark, or image backgrounds (inputs stay white) |
 | **Distinct UI per product** | Each calculator looks different — not a shared template |
-| **Compact product shell** | Soft shadow + rounded card (~400px) — polished when pasted, themeable via CSS vars |
-| **Preview canvas** | Opening the `.html` file shows a gradient backdrop; omit the `body:has()` block when embedding |
+| **Compact product shell** | Border + soft shadow · ~26rem mobile, ~44rem desktop split |
+| **Preview canvas** | Neutral cream/stone backdrop when opening `.html`; omit `body:has()` when embedding |
+| **Desktop layout** | From 640px: results panel left, inputs right (stacks on mobile) |
 | **Collapsible = optional only** | `<details>` for advanced fields, not for core flow |
 | **One-line disclaimer** | Tiny footnote, not a centered banner |
 
@@ -31,22 +32,26 @@ Override CSS variables on the root class to match a host site:
 .pck-autoloan-calc { --w-accent: #your-brand; }
 ```
 
+Default currency is USD. Buyers can set the `<select>` default in HTML or pre-select via JS after embed. Supported codes: USD, EUR, GBP, CHF, CAD, AUD, JPY, SEK, NOK, DKK, PLN, MXN, BRL, INR, SGD, NZD, AED, ZAR.
+
 ### Distinct layouts
 
 | Calculator | Visual identity |
 |------------|-----------------|
-| **Mortgage** | Navy gradient result header · frosted stat rows · prefixed currency inputs |
-| **Airbnb** | Teal gradient hero · custom range sliders · pill toggle · stat chips |
-| **Auto-loan** | Black payment hero · KPI strip · dark table header · zebra schedule |
+| **Mortgage** | Navy result panel · serif headline · flat DTI bars |
+| **Airbnb** | Stone/cream panel · dark accent sliders · revenue stack bar |
+| **Auto-loan** | Black result panel · KPI row · light table header |
 
 ---
 
 ## Shared behavior
 
 - Live recalculation on input change
-- Currency via `Intl.NumberFormat`
+- **Currency selector** — user picks currency; all inputs and outputs use that currency (no FX conversion)
+- Formatting via `Intl.NumberFormat` with a locale matched to each currency (e.g. EUR → `de-DE`, GBP → `en-GB`, JPY → zero decimals)
 - Scoped CSS under unique root class; logic in IIFE, no globals
-- Mobile: single column below ~360–400px
+- Mobile: single column below ~360px; stacks below 640px
+- Desktop (640px+): two-column split — results left, inputs right
 
 ---
 

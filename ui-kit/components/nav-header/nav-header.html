@@ -27,6 +27,7 @@
       </button>
     </div>
     <div id="pck-nav-drawer" class="hidden md:hidden border-t border-pck-line bg-white px-6 py-6 space-y-1">
+      <p class="pb-4 mb-1 text-xs text-pck-muted border-b border-pck-line/50"><a href="tel:+390551234567" class="font-medium text-pck-accent hover:text-pck-ink transition-colors">+39 055 123 4567</a> · EN · IT</p>
       <a href="#" class="block py-3 text-sm font-medium text-pck-ink border-b border-pck-line/50">Suites</a>
       <a href="#" class="block py-3 text-sm font-medium text-pck-ink border-b border-pck-line/50">Experience</a>
       <a href="#" class="block py-3 text-sm font-medium text-pck-ink border-b border-pck-line/50">Gallery</a>
@@ -38,5 +39,5 @@
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={important:"#pck-nav-header",theme:{extend:{colors:{pck:{ink:"#0c0a09",muted:"#78716c",surface:"#fafaf9",cream:"#f5f0eb",accent:"#1e3a5f",gold:"#a6833d",line:"#e7e5e4"}},fontFamily:{serif:["Georgia","Cambria","Times New Roman","serif"],sans:["system-ui","-apple-system","Segoe UI","Roboto","sans-serif"]},boxShadow:{pck:"0 25px 50px -12px rgba(0,0,0,0.1)"}}}};</script>
-<script>(function(){var t=document.getElementById("pck-nav-toggle"),d=document.getElementById("pck-nav-drawer");if(!t||!d)return;t.addEventListener("click",function(){var open=!d.classList.toggle("hidden");t.setAttribute("aria-expanded",open);});})();</script>
+<script>(function(){var t=document.getElementById("pck-nav-toggle"),d=document.getElementById("pck-nav-drawer");if(!t||!d)return;function close(){d.classList.add("hidden");t.setAttribute("aria-expanded","false");}t.addEventListener("click",function(){var open=!d.classList.toggle("hidden");t.setAttribute("aria-expanded",String(open));});d.querySelectorAll("a").forEach(function(a){a.addEventListener("click",close);});})();</script>
 </body></html>

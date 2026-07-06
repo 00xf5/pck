@@ -7,7 +7,7 @@
   <style>
     body:has(> .pck-airbnb-calc) {
       margin: 0; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center;
-      padding: 48px 20px; background: linear-gradient(165deg, #f0fdfa 0%, #ccfbf1 40%, #99f6e4 100%);
+      padding: 2rem 1.25rem; background: #fafaf9;
     }
   </style>
 </head>
@@ -15,229 +15,380 @@
 
 <div class="pck-airbnb-calc" id="pck-airbnb-calc">
 
-  <div class="ab-hero">
-    <div class="ab-hero-glow" aria-hidden="true"></div>
-    <div class="ab-toggle" role="group" aria-label="Period">
-      <button type="button" class="ab-toggle-btn ab-toggle-btn--on" data-days="30">Monthly</button>
-      <button type="button" class="ab-toggle-btn" data-days="365">Annual</button>
+  <div class="ab-shell">
+    <div class="ab-result">
+      <div class="ab-period" role="group" aria-label="Period">
+        <button type="button" class="ab-period-btn ab-period-btn--on" data-days="30">Monthly</button>
+        <button type="button" class="ab-period-btn" data-days="365">Annual</button>
+      </div>
+      <p class="ab-kicker">Estimated net income</p>
+      <p class="ab-net">
+        <span class="ab-net-value" id="pck-ab-out-net">—</span>
+        <span class="ab-net-unit">/ <span id="pck-ab-period-label">month</span></span>
+      </p>
+      <dl class="ab-breakdown">
+        <div><dt>Gross revenue</dt><dd id="pck-ab-out-gross">—</dd></div>
+        <div><dt>Booked nights</dt><dd id="pck-ab-out-nights">—</dd></div>
+      </dl>
+      <div class="ab-stack" aria-label="Revenue breakdown">
+        <div class="ab-stack-bar">
+          <span class="ab-stack-seg ab-stack-seg--gross" id="pck-ab-wf-gross"></span>
+          <span class="ab-stack-seg ab-stack-seg--fees" id="pck-ab-wf-fees"></span>
+          <span class="ab-stack-seg ab-stack-seg--opex" id="pck-ab-wf-opex"></span>
+          <span class="ab-stack-seg ab-stack-seg--net" id="pck-ab-wf-net"></span>
+        </div>
+        <ul class="ab-stack-key">
+          <li><i class="ab-swatch ab-swatch--gross"></i>Gross</li>
+          <li><i class="ab-swatch ab-swatch--fees"></i>Platform fees</li>
+          <li><i class="ab-swatch ab-swatch--opex"></i>Fixed costs</li>
+          <li><i class="ab-swatch ab-swatch--net"></i>Net</li>
+        </ul>
+      </div>
     </div>
-    <p class="ab-net-label">Estimated net income</p>
-    <p class="ab-net-row">
-      <strong class="ab-net-value" id="pck-ab-out-net">—</strong>
-      <span class="ab-net-per">/ <span id="pck-ab-period-label">month</span></span>
-    </p>
-    <div class="ab-waterfall" aria-hidden="true" title="Revenue breakdown">
-      <div class="ab-wf-seg ab-wf-seg--gross" id="pck-ab-wf-gross"></div>
-      <div class="ab-wf-seg ab-wf-seg--fees" id="pck-ab-wf-fees"></div>
-      <div class="ab-wf-seg ab-wf-seg--opex" id="pck-ab-wf-opex"></div>
-      <div class="ab-wf-seg ab-wf-seg--net" id="pck-ab-wf-net"></div>
-    </div>
-    <div class="ab-wf-legend">
-      <span><i class="ab-dot ab-dot--gross"></i> Gross</span>
-      <span><i class="ab-dot ab-dot--fees"></i> Fees</span>
-      <span><i class="ab-dot ab-dot--opex"></i> Costs</span>
-      <span><i class="ab-dot ab-dot--net"></i> Net</span>
-    </div>
-    <div class="ab-chips">
-      <span class="ab-chip"><em id="pck-ab-out-nights">—</em> nights booked</span>
-      <span class="ab-chip">Gross <em id="pck-ab-out-gross">—</em></span>
+
+    <div class="ab-form">
+      <div class="ab-currency">
+        <label for="pck-ab-currency">Currency</label>
+        <div class="ab-input ab-input--select">
+          <select id="pck-ab-currency" aria-label="Currency"></select>
+        </div>
+      </div>
+      <label class="ab-range">
+        <span class="ab-range-head"><span>Nightly rate</span><output id="pck-ab-rate-out">$185</output></span>
+        <input type="range" id="pck-ab-rate" min="50" max="500" step="5" value="185">
+      </label>
+      <label class="ab-range">
+        <span class="ab-range-head"><span>Occupancy</span><output id="pck-ab-occ-out">72%</output></span>
+        <input type="range" id="pck-ab-occ" min="20" max="95" step="1" value="72">
+      </label>
+
+      <details class="ab-more">
+        <summary>Fees &amp; expenses</summary>
+        <div class="ab-presets" role="group" aria-label="Platform fee presets">
+          <button type="button" class="ab-preset ab-preset--on" data-fee="3">Direct 3%</button>
+          <button type="button" class="ab-preset" data-fee="15">OTA 15%</button>
+        </div>
+        <div class="ab-fields">
+          <label class="ab-field"><span>Avg. stay</span><div class="ab-input"><input type="number" id="pck-ab-stay" value="3" min="1" max="30"><span class="ab-affix">nights</span></div></label>
+          <label class="ab-field"><span>Cleaning fee</span><div class="ab-input"><span class="ab-affix ab-affix--cur"></span><input type="number" id="pck-ab-clean" value="75" min="0" step="5"></div></label>
+          <label class="ab-field"><span>Fixed costs</span><div class="ab-input"><span class="ab-affix ab-affix--cur"></span><input type="number" id="pck-ab-expense" value="350" min="0" step="25"><span class="ab-affix">/mo</span></div></label>
+          <label class="ab-field"><span>Platform fee</span><div class="ab-input"><input type="number" id="pck-ab-fee" value="3" min="0" max="50" step="0.5"><span class="ab-affix">%</span></div></label>
+          <label class="ab-field ab-field--wide"><span>Listings</span><div class="ab-input"><input type="number" id="pck-ab-units" value="1" min="1" max="99"></div></label>
+        </div>
+      </details>
     </div>
   </div>
 
-  <div class="ab-body">
-    <label class="ab-slider">
-      <span class="ab-slider-head"><span>Nightly rate</span><output id="pck-ab-rate-out">$185</output></span>
-      <input type="range" id="pck-ab-rate" min="50" max="500" step="5" value="185">
-    </label>
-    <label class="ab-slider">
-      <span class="ab-slider-head"><span>Occupancy</span><output id="pck-ab-occ-out">72%</output></span>
-      <input type="range" id="pck-ab-occ" min="20" max="95" step="1" value="72">
-      <div class="ab-cal" id="pck-ab-cal" aria-hidden="true"></div>
-    </label>
-
-    <details class="ab-more">
-      <summary><span class="ab-more-chevron" aria-hidden="true">›</span> Fees &amp; expenses</summary>
-      <div class="ab-presets" role="group" aria-label="Platform fee presets">
-        <button type="button" class="ab-preset" data-fee="3">Direct 3%</button>
-        <button type="button" class="ab-preset" data-fee="15">OTA 15%</button>
-      </div>
-      <div class="ab-more-grid">
-        <label class="ab-input"><span>Avg. stay</span><div class="ab-control"><input type="number" id="pck-ab-stay" value="3" min="1" max="30"><span class="ab-unit">nights</span></div></label>
-        <label class="ab-input"><span>Cleaning fee</span><div class="ab-control"><span class="ab-prefix">$</span><input type="number" id="pck-ab-clean" value="75" min="0" step="5"></div></label>
-        <label class="ab-input"><span>Fixed costs</span><div class="ab-control"><span class="ab-prefix">$</span><input type="number" id="pck-ab-expense" value="350" min="0" step="25"><span class="ab-unit">/mo</span></div></label>
-        <label class="ab-input"><span>Platform fee</span><div class="ab-control"><input type="number" id="pck-ab-fee" value="3" min="0" max="50" step="0.5"><span class="ab-unit">%</span></div></label>
-        <label class="ab-input"><span>Listings</span><div class="ab-control"><input type="number" id="pck-ab-units" value="1" min="1" max="99"></div></label>
-      </div>
-    </details>
-  </div>
-  <p class="ab-foot">Estimates only — varies by market &amp; season.</p>
+  <p class="ab-foot">Estimates only — varies by market and season.</p>
   <input type="hidden" id="pck-ab-period" value="30">
 </div>
 
 <style>
   .pck-airbnb-calc {
-    --w-bg: #fff; --w-accent: #0f766e; --w-accent-2: #14b8a6; --w-accent-glow: rgba(20,184,166,0.3);
-    --w-surface: #f0fdfa; --w-border: #ccfbf1; --w-text: #134e4a; --w-muted-text: #0d9488;
-    --w-radius: 14px; --w-shadow: 0 8px 32px rgba(15,118,110,0.14), 0 2px 8px rgba(15,118,110,0.06);
-    width: 100%; max-width: 380px; border-radius: var(--w-radius); background: var(--w-bg);
-    box-shadow: var(--w-shadow); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    font-size: 15px; color: var(--w-text); overflow: hidden;
+    --w-bg: #fff;
+    --w-surface: #fafaf9;
+    --w-ink: #1c1917;
+    --w-muted: #78716c;
+    --w-accent: #44403c;
+    --w-gold: #92690e;
+    --w-line: #e7e5e4;
+    width: 100%;
+    max-width: 26rem;
+    border: 1px solid var(--w-line);
+    border-radius: 12px;
+    background: var(--w-bg);
+    box-shadow: 0 1px 3px rgba(28,25,23,0.06), 0 8px 24px rgba(28,25,23,0.06);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    color: var(--w-ink);
+    overflow: hidden;
   }
   .pck-airbnb-calc *, .pck-airbnb-calc *::before, .pck-airbnb-calc *::after { box-sizing: border-box; }
 
-  @keyframes ab-flash { from { opacity: 0.5; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
-  @keyframes ab-glow { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.8; } }
-  .pck-airbnb-calc .ab-flash { animation: ab-flash 0.4s ease; }
-  @media (prefers-reduced-motion: reduce) { .pck-airbnb-calc .ab-flash, .pck-airbnb-calc .ab-hero-glow { animation: none; } }
+  .pck-airbnb-calc .ab-shell { display: flex; flex-direction: column; }
 
-  .pck-airbnb-calc .ab-hero {
-    position: relative; padding: 22px 22px 20px; color: #fff; overflow: hidden;
-    background: linear-gradient(135deg, #0f766e 0%, #0d9488 45%, #14b8a6 100%);
-  }
-  .pck-airbnb-calc .ab-hero-glow {
-    position: absolute; width: 200px; height: 200px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-    top: -60px; right: -40px; pointer-events: none; animation: ab-glow 4s ease infinite;
+  .pck-airbnb-calc .ab-result {
+    padding: 1.5rem 1.375rem;
+    background: var(--w-surface);
+    border-bottom: 1px solid var(--w-line);
   }
 
-  .pck-airbnb-calc .ab-toggle {
-    position: relative; display: inline-flex; padding: 3px; margin-bottom: 18px;
-    background: rgba(0,0,0,0.2); border-radius: 999px;
+  .pck-airbnb-calc .ab-period {
+    display: inline-flex;
+    padding: 2px;
+    margin-bottom: 1.125rem;
+    background: #fff;
+    border: 1px solid var(--w-line);
+    border-radius: 8px;
   }
-  .pck-airbnb-calc .ab-toggle-btn {
-    border: 0; background: transparent; color: rgba(255,255,255,0.75);
-    font: inherit; font-size: 0.75rem; font-weight: 600; padding: 7px 18px;
-    border-radius: 999px; cursor: pointer; transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+  .pck-airbnb-calc .ab-period-btn {
+    border: 0;
+    background: transparent;
+    color: var(--w-muted);
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.375rem 0.875rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
   }
-  .pck-airbnb-calc .ab-toggle-btn--on {
-    background: #fff; color: var(--w-accent); box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+  .pck-airbnb-calc .ab-period-btn--on {
+    background: var(--w-accent);
+    color: #fff;
   }
-  .pck-airbnb-calc .ab-toggle-btn:not(.ab-toggle-btn--on):hover { color: #fff; }
 
-  .pck-airbnb-calc .ab-net-label {
-    margin: 0 0 4px; font-size: 0.6875rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.85;
+  .pck-airbnb-calc .ab-kicker {
+    margin: 0 0 0.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--w-muted);
   }
-  .pck-airbnb-calc .ab-net-row { margin: 0 0 16px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .pck-airbnb-calc .ab-net {
+    margin: 0 0 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+  }
   .pck-airbnb-calc .ab-net-value {
-    font-size: 2.375rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1;
-    text-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--w-ink);
   }
-  .pck-airbnb-calc .ab-net-per { font-size: 1rem; opacity: 0.88; font-weight: 500; }
+  .pck-airbnb-calc .ab-net-unit { font-size: 0.9375rem; color: var(--w-muted); }
 
-  .pck-airbnb-calc .ab-waterfall {
-    display: flex; height: 10px; border-radius: 999px; overflow: hidden;
-    margin-bottom: 8px; background: rgba(0,0,0,0.15); gap: 2px;
+  .pck-airbnb-calc .ab-breakdown {
+    margin: 0 0 1rem;
+    padding: 0;
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--w-line);
   }
-  .pck-airbnb-calc .ab-wf-seg { flex: 0; min-width: 0; transition: flex 0.5s cubic-bezier(0.4,0,0.2,1); }
-  .pck-airbnb-calc .ab-wf-seg--gross { background: rgba(255,255,255,0.5); }
-  .pck-airbnb-calc .ab-wf-seg--fees { background: rgba(251,191,36,0.85); }
-  .pck-airbnb-calc .ab-wf-seg--opex { background: rgba(248,113,113,0.75); }
-  .pck-airbnb-calc .ab-wf-seg--net { background: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3); }
+  .pck-airbnb-calc .ab-breakdown > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--w-line);
+    font-size: 0.8125rem;
+  }
+  .pck-airbnb-calc .ab-breakdown dt { margin: 0; color: var(--w-muted); font-weight: 400; }
+  .pck-airbnb-calc .ab-breakdown dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
 
-  .pck-airbnb-calc .ab-wf-legend {
-    display: flex; flex-wrap: wrap; gap: 10px 14px; margin-bottom: 14px;
-    font-size: 0.625rem; opacity: 0.8;
+  .pck-airbnb-calc .ab-stack-bar {
+    display: flex;
+    height: 8px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: var(--w-line);
+    gap: 1px;
   }
-  .pck-airbnb-calc .ab-wf-legend span { display: flex; align-items: center; gap: 5px; }
-  .pck-airbnb-calc .ab-dot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
-  .pck-airbnb-calc .ab-dot--gross { background: rgba(255,255,255,0.6); }
-  .pck-airbnb-calc .ab-dot--fees { background: #fbbf24; }
-  .pck-airbnb-calc .ab-dot--opex { background: #f87171; }
-  .pck-airbnb-calc .ab-dot--net { background: #fff; }
+  .pck-airbnb-calc .ab-stack-seg {
+    flex: 0;
+    min-width: 0;
+    transition: flex 0.35s ease;
+  }
+  .pck-airbnb-calc .ab-stack-seg--gross { background: #d6d3d1; }
+  .pck-airbnb-calc .ab-stack-seg--fees { background: #fbbf24; }
+  .pck-airbnb-calc .ab-stack-seg--opex { background: #f87171; }
+  .pck-airbnb-calc .ab-stack-seg--net { background: var(--w-gold); }
 
-  .pck-airbnb-calc .ab-chips { display: flex; flex-wrap: wrap; gap: 8px; position: relative; }
-  .pck-airbnb-calc .ab-chip {
-    font-size: 0.6875rem; font-weight: 500; padding: 7px 12px;
-    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 8px; backdrop-filter: blur(6px);
+  .pck-airbnb-calc .ab-stack-key {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.875rem;
+    font-size: 0.6875rem;
+    color: var(--w-muted);
   }
-  .pck-airbnb-calc .ab-chip em { font-style: normal; font-weight: 700; }
+  .pck-airbnb-calc .ab-stack-key li { display: flex; align-items: center; gap: 0.375rem; }
+  .pck-airbnb-calc .ab-swatch {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .pck-airbnb-calc .ab-swatch--gross { background: #d6d3d1; }
+  .pck-airbnb-calc .ab-swatch--fees { background: #fbbf24; }
+  .pck-airbnb-calc .ab-swatch--opex { background: #f87171; }
+  .pck-airbnb-calc .ab-swatch--net { background: var(--w-gold); }
 
-  .pck-airbnb-calc .ab-body { padding: 24px 22px 12px; }
-  .pck-airbnb-calc .ab-slider { display: block; margin-bottom: 24px; }
-  .pck-airbnb-calc .ab-slider-head {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 12px; font-size: 0.8125rem; font-weight: 600; color: #115e59;
+  .pck-airbnb-calc .ab-form { padding: 1.375rem; }
+  .pck-airbnb-calc .ab-currency { margin-bottom: 1.125rem; }
+  .pck-airbnb-calc .ab-currency > label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--w-muted);
+    margin-bottom: 0.375rem;
   }
-  .pck-airbnb-calc .ab-slider-head output {
-    font-size: 1.0625rem; font-weight: 700; color: var(--w-accent);
-    background: var(--w-surface); padding: 5px 12px; border-radius: 8px;
-    border: 1px solid var(--w-border); font-variant-numeric: tabular-nums;
-    transition: transform 0.2s;
+  .pck-airbnb-calc .ab-input--select select {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    padding: 0.625rem 0.75rem;
+    font: inherit;
+    font-size: 0.875rem;
+    color: var(--w-ink);
+    outline: none;
+    cursor: pointer;
   }
-
-  .pck-airbnb-calc .ab-slider input[type="range"] {
-    -webkit-appearance: none; appearance: none; width: 100%; height: 10px;
-    border-radius: 999px; margin: 0; cursor: pointer;
-    background: linear-gradient(to right, var(--w-accent-2) var(--pct,50%), #e2e8f0 var(--pct,50%));
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);
+  .pck-airbnb-calc .ab-affix--cur {
+    min-width: 2.25rem;
+    justify-content: center;
   }
-  .pck-airbnb-calc .ab-slider input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%;
-    background: linear-gradient(145deg, #fff, #f0fdfa); border: 3px solid var(--w-accent);
-    box-shadow: 0 2px 10px var(--w-accent-glow), 0 1px 3px rgba(0,0,0,0.1);
-    cursor: grab; transition: transform 0.15s, box-shadow 0.15s;
+  .pck-airbnb-calc .ab-input input[type="number"] { text-align: left; }
+  .pck-airbnb-calc .ab-range { display: block; margin-bottom: 1.25rem; }
+  .pck-airbnb-calc .ab-range-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.625rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
   }
-  .pck-airbnb-calc .ab-slider input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.08); }
-  .pck-airbnb-calc .ab-slider input[type="range"]::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.12); }
-  .pck-airbnb-calc .ab-slider input[type="range"]::-moz-range-thumb {
-    width: 24px; height: 24px; border-radius: 50%; background: #fff;
-    border: 3px solid var(--w-accent); box-shadow: 0 2px 10px var(--w-accent-glow); cursor: grab;
-  }
-
-  .pck-airbnb-calc .ab-cal {
-    display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; margin-top: 12px;
-  }
-  .pck-airbnb-calc .ab-cal span {
-    aspect-ratio: 1; border-radius: 4px; background: #e2e8f0;
-    transition: background 0.3s, transform 0.2s;
-  }
-  .pck-airbnb-calc .ab-cal span.ab-cal--on {
-    background: linear-gradient(135deg, var(--w-accent-2), var(--w-accent));
-    box-shadow: 0 1px 4px var(--w-accent-glow);
+  .pck-airbnb-calc .ab-range-head output {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--w-ink);
   }
 
-  .pck-airbnb-calc .ab-more { border-top: 1px solid var(--w-border); padding-top: 18px; }
+  .pck-airbnb-calc .ab-range input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    margin: 0;
+    cursor: pointer;
+    background: linear-gradient(to right, var(--w-accent) var(--pct, 50%), var(--w-line) var(--pct, 50%));
+  }
+  .pck-airbnb-calc .ab-range input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--w-accent);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    cursor: grab;
+  }
+  .pck-airbnb-calc .ab-range input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--w-accent);
+    cursor: grab;
+  }
+
+  .pck-airbnb-calc .ab-more {
+    border-top: 1px solid var(--w-line);
+    padding-top: 1rem;
+  }
   .pck-airbnb-calc .ab-more summary {
-    cursor: pointer; list-style: none; font-size: 0.8125rem; font-weight: 600;
-    color: var(--w-muted-text); display: flex; align-items: center; gap: 6px;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--w-accent);
   }
   .pck-airbnb-calc .ab-more summary::-webkit-details-marker { display: none; }
-  .pck-airbnb-calc .ab-more-chevron { transition: transform 0.2s; font-size: 1.2rem; line-height: 1; }
-  .pck-airbnb-calc .ab-more[open] .ab-more-chevron { transform: rotate(90deg); }
+  .pck-airbnb-calc .ab-more[open] summary { margin-bottom: 0.875rem; }
 
-  .pck-airbnb-calc .ab-presets { display: flex; gap: 8px; margin: 14px 0 12px; }
+  .pck-airbnb-calc .ab-presets { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
   .pck-airbnb-calc .ab-preset {
-    flex: 1; border: 1px solid var(--w-border); background: var(--w-surface);
-    font: inherit; font-size: 0.75rem; font-weight: 600; color: var(--w-muted-text);
-    padding: 8px; border-radius: 8px; cursor: pointer; transition: all 0.15s;
+    flex: 1;
+    border: 1px solid var(--w-line);
+    background: var(--w-surface);
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--w-muted);
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
   }
-  .pck-airbnb-calc .ab-preset:hover { border-color: var(--w-accent-2); color: var(--w-accent); background: #fff; }
+  .pck-airbnb-calc .ab-preset:hover { border-color: var(--w-accent); color: var(--w-ink); }
   .pck-airbnb-calc .ab-preset--on { border-color: var(--w-accent); background: var(--w-accent); color: #fff; }
 
-  .pck-airbnb-calc .ab-more-grid { display: grid; gap: 12px; }
-  .pck-airbnb-calc .ab-input span { display: block; font-size: 0.75rem; font-weight: 500; color: #115e59; margin-bottom: 6px; }
-  .pck-airbnb-calc .ab-control {
-    display: flex; align-items: stretch; background: var(--w-surface);
-    border: 1px solid var(--w-border); border-radius: 8px; overflow: hidden;
-    transition: box-shadow 0.2s, border-color 0.2s;
+  .pck-airbnb-calc .ab-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .pck-airbnb-calc .ab-field { display: flex; flex-direction: column; gap: 0.375rem; }
+  .pck-airbnb-calc .ab-field--wide { grid-column: 1 / -1; }
+  .pck-airbnb-calc .ab-field > span { font-size: 0.8125rem; font-weight: 500; color: var(--w-muted); }
+
+  .pck-airbnb-calc .ab-input {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--w-line);
+    border-radius: 8px;
+    background: var(--w-surface);
+    overflow: hidden;
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
-  .pck-airbnb-calc .ab-control:focus-within {
-    border-color: var(--w-accent-2); box-shadow: 0 0 0 3px var(--w-accent-glow); background: #fff;
+  .pck-airbnb-calc .ab-input:focus-within {
+    border-color: var(--w-accent);
+    box-shadow: 0 0 0 3px rgba(68,64,60,0.1);
+    background: #fff;
   }
-  .pck-airbnb-calc .ab-prefix, .pck-airbnb-calc .ab-unit {
-    display: flex; align-items: center; padding: 0 10px; font-size: 0.8125rem;
-    font-weight: 500; color: var(--w-muted-text); flex-shrink: 0;
+  .pck-airbnb-calc .ab-affix {
+    display: flex;
+    align-items: center;
+    padding: 0 0.625rem;
+    font-size: 0.8125rem;
+    color: var(--w-muted);
+    flex-shrink: 0;
   }
-  .pck-airbnb-calc .ab-control input {
-    flex: 1; min-width: 0; border: 0; background: transparent; padding: 10px 12px;
-    font: inherit; font-size: 0.9375rem; font-weight: 500; color: var(--w-text); outline: none;
+  .pck-airbnb-calc .ab-input input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    padding: 0.625rem 0.75rem;
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--w-ink);
+    outline: none;
+    font-variant-numeric: tabular-nums;
   }
 
   .pck-airbnb-calc .ab-foot {
-    margin: 0; padding: 12px 22px 18px; font-size: 0.6875rem; color: var(--w-muted-text);
-    text-align: center; border-top: 1px solid var(--w-border); background: var(--w-surface);
+    margin: 0;
+    padding: 0.75rem 1.375rem 1rem;
+    font-size: 0.6875rem;
+    color: var(--w-muted);
+    text-align: center;
+    border-top: 1px solid var(--w-line);
+    background: var(--w-surface);
+  }
+
+  @media (max-width: 359px) {
+    .pck-airbnb-calc .ab-fields { grid-template-columns: 1fr; }
+  }
+
+  @media (min-width: 640px) {
+    .pck-airbnb-calc { max-width: 44rem; }
+    .pck-airbnb-calc .ab-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 11fr) minmax(0, 13fr);
+    }
+    .pck-airbnb-calc .ab-result {
+      border-bottom: 0;
+      border-right: 1px solid var(--w-line);
+      padding: 1.75rem 1.5rem;
+    }
+    .pck-airbnb-calc .ab-net-value { font-size: 2.25rem; }
+    .pck-airbnb-calc .ab-form { padding: 1.75rem 1.5rem; }
   }
 </style>
 
@@ -246,37 +397,79 @@
   "use strict";
   var root = document.getElementById("pck-airbnb-calc");
   if (!root) return;
-  var fmt = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+
+  var CUR_MAP = {
+    USD: { locale: "en-US" }, EUR: { locale: "de-DE" }, GBP: { locale: "en-GB" },
+    CHF: { locale: "de-CH" }, CAD: { locale: "en-CA" }, AUD: { locale: "en-AU" },
+    JPY: { locale: "ja-JP", frac: 0 }, SEK: { locale: "sv-SE" }, NOK: { locale: "nb-NO" },
+    DKK: { locale: "da-DK" }, PLN: { locale: "pl-PL" }, MXN: { locale: "es-MX" },
+    BRL: { locale: "pt-BR" }, INR: { locale: "en-IN" }, SGD: { locale: "en-SG" },
+    NZD: { locale: "en-NZ" }, AED: { locale: "en-AE" }, ZAR: { locale: "en-ZA" }
+  };
+  var curCode = "USD", fmtWhole, fmtPrec, fmtNum, curLocale = "en-US";
+  function setCurrency(code) {
+    var cfg = CUR_MAP[code] || CUR_MAP.USD;
+    curCode = CUR_MAP[code] ? code : "USD";
+    curLocale = cfg.locale;
+    var frac = cfg.frac === 0 ? 0 : 2;
+    fmtWhole = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: curCode, maximumFractionDigits: 0, minimumFractionDigits: 0 });
+    fmtPrec = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: curCode, maximumFractionDigits: frac, minimumFractionDigits: frac });
+    fmtNum = new Intl.NumberFormat(cfg.locale);
+  }
+  function curSymbol(code) {
+    var c = code || curCode, cfg = CUR_MAP[c] || CUR_MAP.USD;
+    var part = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: CUR_MAP[c] ? c : "USD", currencyDisplay: "narrowSymbol" }).formatToParts(0);
+    for (var i = 0; i < part.length; i++) if (part[i].type === "currency") return part[i].value;
+    return c;
+  }
+  function curOptionLabel(code) {
+    var cfg = CUR_MAP[code];
+    return code + " — " + new Intl.NumberFormat(cfg.locale, { style: "currency", currency: code }).format(1234.56);
+  }
+  function syncAffixes() {
+    var sym = curSymbol();
+    root.querySelectorAll(".ab-affix--cur").forEach(function (el) { el.textContent = sym; });
+  }
+
+  var currencySelect = root.querySelector("#pck-ab-currency");
+  Object.keys(CUR_MAP).forEach(function (code) {
+    var opt = document.createElement("option");
+    opt.value = code;
+    opt.textContent = curOptionLabel(code);
+    currencySelect.appendChild(opt);
+  });
+  currencySelect.addEventListener("change", function () {
+    setCurrency(currencySelect.value);
+    syncAffixes();
+    calculate();
+  });
+
   var periodInput = root.querySelector("#pck-ab-period");
   var rateSlider = root.querySelector("#pck-ab-rate");
   var occSlider = root.querySelector("#pck-ab-occ");
-  var calEl = root.querySelector("#pck-ab-cal");
-  var CAL_DOTS = 30;
-  for (var i = 0; i < CAL_DOTS; i++) { calEl.appendChild(document.createElement("span")); }
   var out = {
-    net: root.querySelector("#pck-ab-out-net"), periodLabel: root.querySelector("#pck-ab-period-label"),
-    rateOut: root.querySelector("#pck-ab-rate-out"), occOut: root.querySelector("#pck-ab-occ-out"),
-    nights: root.querySelector("#pck-ab-out-nights"), gross: root.querySelector("#pck-ab-out-gross"),
-    wfGross: root.querySelector("#pck-ab-wf-gross"), wfFees: root.querySelector("#pck-ab-wf-fees"),
-    wfOpex: root.querySelector("#pck-ab-wf-opex"), wfNet: root.querySelector("#pck-ab-wf-net")
+    net: root.querySelector("#pck-ab-out-net"),
+    periodLabel: root.querySelector("#pck-ab-period-label"),
+    rateOut: root.querySelector("#pck-ab-rate-out"),
+    occOut: root.querySelector("#pck-ab-occ-out"),
+    nights: root.querySelector("#pck-ab-out-nights"),
+    gross: root.querySelector("#pck-ab-out-gross"),
+    wfGross: root.querySelector("#pck-ab-wf-gross"),
+    wfFees: root.querySelector("#pck-ab-wf-fees"),
+    wfOpex: root.querySelector("#pck-ab-wf-opex"),
+    wfNet: root.querySelector("#pck-ab-wf-net")
   };
-  function flash(el) { el.classList.remove("ab-flash"); void el.offsetWidth; el.classList.add("ab-flash"); }
   function setSliderFill(el) {
     var min = +el.min, max = +el.max, val = +el.value;
     el.style.setProperty("--pct", ((val - min) / (max - min) * 100).toFixed(1) + "%");
   }
   function num(id) {
-    var el = root.querySelector("#" + id); if (!el) return 0;
-    var v = parseFloat(el.value); return isNaN(v) || v < 0 ? 0 : v;
+    var el = root.querySelector("#" + id);
+    if (!el) return 0;
+    var v = parseFloat(el.value);
+    return isNaN(v) || v < 0 ? 0 : v;
   }
-  function updateCal(occPct) {
-    var booked = Math.round(CAL_DOTS * occPct / 100);
-    calEl.querySelectorAll("span").forEach(function (dot, i) {
-      dot.classList.toggle("ab-cal--on", i < booked);
-    });
-  }
-  function setWaterfall(gross, fees, opex, net) {
-    var total = gross || 1;
+  function setStack(gross, fees, opex, net) {
     out.wfGross.style.flex = gross;
     out.wfFees.style.flex = fees;
     out.wfOpex.style.flex = opex;
@@ -288,9 +481,9 @@
     var stayLen = Math.max(1, num("pck-ab-stay")), clean = num("pck-ab-clean");
     var expenseMo = num("pck-ab-expense"), feePct = num("pck-ab-fee") / 100;
     var units = Math.max(1, Math.floor(num("pck-ab-units")));
-    setSliderFill(rateSlider); setSliderFill(occSlider);
-    updateCal(occ * 100);
-    out.rateOut.textContent = fmt.format(rate);
+    setSliderFill(rateSlider);
+    setSliderFill(occSlider);
+    out.rateOut.textContent = fmtPrec.format(rate);
     out.occOut.textContent = Math.round(occ * 100) + "%";
     out.periodLabel.textContent = days === 365 ? "year" : "month";
     var bookedNights = Math.round(days * occ) * units;
@@ -298,21 +491,20 @@
     var gross = bookedNights * rate + stays * clean;
     var fees = gross * feePct, opex = days === 365 ? expenseMo * 12 : expenseMo;
     var net = Math.max(0, gross - fees - opex);
-    out.net.textContent = fmt.format(net);
-    out.nights.textContent = bookedNights.toLocaleString();
-    out.gross.textContent = fmt.format(gross);
-    setWaterfall(gross, fees, opex, net);
-    flash(out.net);
+    out.net.textContent = fmtWhole.format(net);
+    out.nights.textContent = fmtNum.format(bookedNights);
+    out.gross.textContent = fmtWhole.format(gross);
+    setStack(gross, fees, opex, net);
   }
   ["pck-ab-stay","pck-ab-clean","pck-ab-expense","pck-ab-fee","pck-ab-units"].forEach(function (id) {
     root.querySelector("#" + id).addEventListener("input", calculate);
   });
   rateSlider.addEventListener("input", calculate);
   occSlider.addEventListener("input", calculate);
-  root.querySelectorAll(".ab-toggle-btn").forEach(function (btn) {
+  root.querySelectorAll(".ab-period-btn").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      root.querySelectorAll(".ab-toggle-btn").forEach(function (b) { b.classList.remove("ab-toggle-btn--on"); });
-      btn.classList.add("ab-toggle-btn--on");
+      root.querySelectorAll(".ab-period-btn").forEach(function (b) { b.classList.remove("ab-period-btn--on"); });
+      btn.classList.add("ab-period-btn--on");
       periodInput.value = btn.getAttribute("data-days");
       calculate();
     });
@@ -325,6 +517,9 @@
       calculate();
     });
   });
+  setCurrency("USD");
+  currencySelect.value = "USD";
+  syncAffixes();
   calculate();
 })();
 </script>
