@@ -1,6 +1,6 @@
 # Phase 1 — Calculators Specification
 
-Each calculator is a **single self-contained HTML file** — scoped CSS, no external dependencies, sold separately.
+Each calculator is a **single self-contained HTML file** — scoped CSS, no external dependencies.
 
 ---
 
@@ -38,7 +38,7 @@ Default currency is USD. Buyers can set the `<select>` default in HTML or pre-se
 
 | Calculator | Visual identity |
 |------------|-----------------|
-| **Mortgage** | Navy result panel · serif headline · flat DTI bars |
+| **Mortgage** | Navy result panel · bold sans headline · flat DTI bars |
 | **Airbnb** | Stone/cream panel · dark accent sliders · revenue stack bar |
 | **Auto-loan** | Black result panel · KPI row · light table header |
 

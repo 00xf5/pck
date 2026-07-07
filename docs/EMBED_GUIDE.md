@@ -106,6 +106,29 @@ Leave empty to hide the logo slot.
 
 ---
 
+## Booking slider
+
+Same pattern as calculators — copy `.pck-booking-slider` through `</script>`, omit preview `body:has()`.
+
+- Configure nights range via `PCK_BS_CONFIG = { maxNights: 7, minNights: 1 }`
+- Pricing rules in **Pricing rules** panel (base rate, max discount, OTA %)
+- **Night pills** + centered rate card — not the calculator split layout
+- State persists to URL + `localStorage`
+
+See [BOOKING_SLIDER_SPEC.md](BOOKING_SLIDER_SPEC.md).
+
+---
+
+## Email blocks
+
+1. Open the block `.html` in a browser.
+2. Copy between `<!-- PASTE START -->` and `<!-- PASTE END -->`.
+3. Paste into Mailchimp *Code* or Klaviyo HTML block.
+4. Host images on your ESP/CDN — replace Unsplash URLs.
+5. Swap `{{ unsubscribe_url }}` for your ESP merge tag (see [EMAIL_BLOCKS_SPEC.md](EMAIL_BLOCKS_SPEC.md)).
+
+---
+
 ## Checklist before go-live
 
 - [ ] Tailwind loaded once (UI kit only)
@@ -115,3 +138,4 @@ Leave empty to hide the logo slot.
 - [ ] Disclaimer line retained
 - [ ] Test mobile width + desktop split (calculators ≥640px)
 - [ ] Test currency switch + share URL
+- [ ] Email: test Gmail, Apple Mail, Outlook (blocks)

@@ -70,6 +70,14 @@
     .badge.planned { background: #fef9c3; color: var(--planned); }
     .sub { margin: 0.5rem 0 0; font-size: 0.8125rem; }
     .sub a { color: var(--accent); }
+    .status {
+      display: flex; flex-wrap: wrap; gap: 0.5rem 1rem;
+      margin: 0 0 2rem; padding: 0.875rem 1rem;
+      background: #fff; border: 1px solid var(--line); border-radius: 8px;
+      font-size: 0.8125rem; color: var(--muted);
+    }
+    .status strong { color: var(--ink); }
+    .status .dot { color: var(--ready); }
     .docs { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
     .docs ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
     .docs li { border: none; }
@@ -83,10 +91,12 @@
 <body>
   <div class="wrap">
     <h1>PCK — Premium Creative Kit</h1>
-    <p class="lead">Product index. Each item is a standalone file — open to preview or copy for sale/delivery.</p>
+    <p class="lead">Product index — 28 files ready (Phases 1–3 + slider). Open to preview or copy for delivery.</p>
+    <p class="status"><span class="dot">●</span> <strong>28 ready</strong> · 3 calculators · 18 UI components · 6 email blocks · 1 booking slider · <strong>3 planned</strong> (landing pages)</p>
 
     <section>
-      <h2>Phase 1 — Calculators</h2>
+      <h2>Phase 1 — Calculators (3)</h2>
+      <p class="sub"><a href="../calculators/README.md">Pack README</a> · <a href="../docs/CALCULATORS_SPEC.md">Spec</a></p>
       <ul>
         <li>
           <a class="row" href="../calculators/mortgage-affordability/mortgage-affordability.html">
@@ -138,19 +148,20 @@
     </section>
 
     <section>
-      <h2>Phase 3 — Email template blocks</h2>
+      <h2>Phase 3 — Email blocks (6)</h2>
+      <p class="sub"><a href="../email-templates/preview/index.html">Block preview hub</a> · <a href="../email-templates/README.md">Pack README</a> · <a href="../docs/EMAIL_BLOCKS_SPEC.md">Spec</a></p>
       <ul>
-        <li><a class="row" href="../email-templates/blocks/01-hero-property.html"><span class="name">01 — Hero property</span><span class="path">email-templates/blocks/</span><span class="badge planned">Planned</span></a></li>
-        <li><a class="row" href="../email-templates/blocks/02-two-column.html"><span class="name">02 — Two column</span><span class="path">email-templates/blocks/</span><span class="badge planned">Planned</span></a></li>
-        <li><a class="row" href="../email-templates/blocks/03-promo-cta.html"><span class="name">03 — Promo CTA</span><span class="path">email-templates/blocks/</span><span class="badge planned">Planned</span></a></li>
-        <li><a class="row" href="../email-templates/blocks/04-testimonial.html"><span class="name">04 — Testimonial</span><span class="path">email-templates/blocks/</span><span class="badge planned">Planned</span></a></li>
-        <li><a class="row" href="../email-templates/blocks/05-pre-arrival.html"><span class="name">05 — Pre-arrival</span><span class="path">email-templates/blocks/</span><span class="badge planned">Planned</span></a></li>
-        <li><a class="row" href="../email-templates/blocks/06-footer.html"><span class="name">06 — Footer</span><span class="path">email-templates/blocks/</span><span class="badge planned">Planned</span></a></li>
+        <li><a class="row" href="../email-templates/blocks/01-hero-property.html"><span class="name">01 — Hero property</span><span class="path">email-templates/blocks/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../email-templates/blocks/02-two-column.html"><span class="name">02 — Two column</span><span class="path">email-templates/blocks/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../email-templates/blocks/03-promo-cta.html"><span class="name">03 — Promo CTA</span><span class="path">email-templates/blocks/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../email-templates/blocks/04-testimonial.html"><span class="name">04 — Testimonial</span><span class="path">email-templates/blocks/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../email-templates/blocks/05-pre-arrival.html"><span class="name">05 — Pre-arrival</span><span class="path">email-templates/blocks/</span><span class="badge ready">Ready</span></a></li>
+        <li><a class="row" href="../email-templates/blocks/06-footer.html"><span class="name">06 — Footer</span><span class="path">email-templates/blocks/</span><span class="badge ready">Ready</span></a></li>
       </ul>
     </section>
 
     <section>
-      <h2>Phase 4 — Landing page templates</h2>
+      <h2>Phase 4 — Landing pages (3)</h2>
       <ul>
         <li><a class="row" href="../landing-pages/boutique-villa/index.html"><span class="name">Boutique villa</span><span class="path">landing-pages/boutique-villa/</span><span class="badge planned">Planned</span></a></li>
         <li><a class="row" href="../landing-pages/architecture-studio/index.html"><span class="name">Architecture studio</span><span class="path">landing-pages/architecture-studio/</span><span class="badge planned">Planned</span></a></li>
@@ -159,9 +170,10 @@
     </section>
 
     <section>
-      <h2>Phase 5 — Booking slider</h2>
+      <h2>Phase 5 — Booking slider (1)</h2>
+      <p class="sub"><a href="../booking-slider/README.md">README</a> · <a href="../docs/BOOKING_SLIDER_SPEC.md">Spec</a></p>
       <ul>
-        <li><a class="row" href="../booking-slider/booking-discount-slider.html"><span class="name">Direct booking discount slider</span><span class="path">booking-slider/</span><span class="badge planned">Planned</span></a></li>
+        <li><a class="row" href="../booking-slider/booking-discount-slider.html"><span class="name">Direct booking discount slider</span><span class="path">booking-slider/</span><span class="badge ready">Ready</span></a></li>
       </ul>
     </section>
 
@@ -169,6 +181,8 @@
       <h2>Docs</h2>
       <ul>
         <li><a href="../docs/EMBED_GUIDE.md">Embed guide</a></li>
+        <li><a href="../docs/EMAIL_BLOCKS_SPEC.md">Email blocks spec</a></li>
+        <li><a href="../docs/BOOKING_SLIDER_SPEC.md">Booking slider spec</a></li>
         <li><a href="../docs/PRODUCT_BUNDLE.md">Product bundle</a></li>
         <li><a href="../docs/CALCULATORS_SPEC.md">Calculators spec</a></li>
         <li><a href="../docs/UI_KIT_SPEC.md">UI kit spec</a></li>

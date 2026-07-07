@@ -56,7 +56,7 @@ A bundle of **3 clean, flat calculation blocks** — standalone widgets embeddab
 
 ### Delivery format (decided)
 
-Each calculator is sold **separately** as **one self-contained HTML file**:
+Each calculator ships as **one self-contained HTML file**:
 
 - Copy-paste into any page (WordPress, Webflow, Squarespace, raw HTML) — works immediately
 - **No external** CSS, JS, fonts, or CDN links
@@ -95,7 +95,7 @@ mortgage-affordability/
 └── README.md
 ```
 
-If using a `src/` split during development, the **only file sold** is still the single inlined HTML.
+If using a `src/` split during development, the **deliverable** is still the single inlined HTML.
 
 ### Single-file anatomy
 
@@ -121,7 +121,7 @@ If using a `src/` split during development, the **only file sold** is still the 
 ### Open decisions (Phase 1)
 
 - [x] Vanilla JS only — single HTML file per calculator
-- [x] No shared assets — sold separately
+- [x] No shared assets — each product is independent
 - [x] Scoped CSS under unique root class per calculator
 - [ ] Optional dev-time `src/` split + inline build step, or edit the HTML directly
 - [ ] Formula sources and disclaimer copy for financial outputs
@@ -132,7 +132,7 @@ If using a `src/` split during development, the **only file sold** is still the 
 
 **Status:** Ready (18 HTML components)
 
-HTML-only paste blocks · Tailwind CDN · neutral luxury theme · sold individually. JSX pack planned later.
+HTML-only paste blocks · Tailwind CDN · neutral luxury theme. JSX pack planned later.
 
 See [UI_KIT_SPEC.md](UI_KIT_SPEC.md) and [../ui-kit/README.md](../ui-kit/README.md).
 
@@ -149,9 +149,11 @@ See [UI_KIT_SPEC.md](UI_KIT_SPEC.md) and [../ui-kit/README.md](../ui-kit/README.
 
 ## Phase 3 — Email Template Pack / Newsletter Templates
 
-**Status:** Planned
+**Status:** Ready (6 HTML blocks)
 
-**6 or more** ultra-clean, **raw responsive HTML email blocks** that hospitality brands can copy and paste directly into **Mailchimp** or **Klaviyo** to send luxury updates to guests.
+**6** ultra-clean, **raw responsive HTML email blocks** that hospitality brands can copy and paste directly into **Mailchimp** or **Klaviyo** to send luxury updates to guests.
+
+See [EMAIL_BLOCKS_SPEC.md](EMAIL_BLOCKS_SPEC.md) and [../email-templates/README.md](../email-templates/README.md).
 
 ### Requirements
 
@@ -208,31 +210,22 @@ Distinct, highly aesthetic **website landing layouts** shipped as **flat static 
 
 ## Phase 5 — Direct Booking Discount Slider Tool
 
-**Status:** Planned
+**Status:** Ready
 
 **The Multi-Night Booking Discounter Slider** — an interactive visual widget for boutique hotels and Airbnb hosts.
 
+See [BOOKING_SLIDER_SPEC.md](BOOKING_SLIDER_SPEC.md) and [../booking-slider/README.md](../booking-slider/README.md).
+
 ### Behavior
 
-1. Website guest drags a slider from **1 night** to **7 nights** (or configurable max).
-2. The **daily room rate** on screen **ticks down** as nights increase.
-3. Communicates **direct-booking savings** vs. shorter stays or OTA booking.
+1. Guest picks **1–7 nights** via pill buttons (configurable max).
+2. **List rate** struck through; **nightly rate steps down** with discount badge and ladder bar.
+3. Communicates **direct-booking savings** vs. list rate and optional OTA comparison.
 
-### Purpose
+### Delivery
 
-Conversion tool on a booking or property page — visual proof of "book direct and save more the longer you stay." Not a full booking engine.
-
-### Likely delivery format
-
-- HTML/CSS/JS embeddable widget
-- Configurable base rate, discount curve, currency, copy
-
-### Open decisions (Phase 5)
-
-- [ ] Linear vs. tiered discount model
-- [ ] Show total price, nightly rate, or both
-- [ ] Animation style for "ticking" rate
-- [ ] Tie-in with Phase 1 Airbnb calculator theming
+- Single HTML file: `booking-slider/booking-discount-slider.html`
+- Configurable base rate, max discount %, currency, OTA compare
 
 ---
 
@@ -271,4 +264,4 @@ Order can shift; this doc preserves **what** each phase is regardless of **when*
 
 ---
 
-*Last updated: July 2026 — Phase 1 active.*
+*Last updated: July 2026 — Phases 1–3 and 5 ready.*

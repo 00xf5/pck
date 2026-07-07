@@ -1,6 +1,6 @@
 # Calculators Pack (Phase 1)
 
-Three self-contained HTML calculators — each sold separately. Copy-paste one file into any site; no external dependencies.
+Three self-contained HTML calculators — one file per product. Copy-paste into any site; no external dependencies.
 
 | Product | File | Status |
 |---------|------|--------|

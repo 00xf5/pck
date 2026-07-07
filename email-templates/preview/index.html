@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PCK — Email Blocks Preview</title>
+  <style>
+    :root { --ink: #1c1917; --muted: #78716c; --line: #e7e5e4; --surface: #fafaf9; --accent: #1e3a5f; --cream: #f5f0eb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 14px/1.5 system-ui, sans-serif; color: var(--ink); background: var(--surface); }
+    .wrap { max-width: 40rem; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+    h1 { font-size: 1.125rem; font-weight: 600; margin: 0 0 0.25rem; }
+    .lead { color: var(--muted); font-size: 0.875rem; margin: 0 0 1.5rem; }
+    .back { font-size: 0.8125rem; margin-bottom: 1.5rem; }
+    .back a { color: var(--accent); }
+    .flow { font-size: 0.8125rem; color: var(--muted); background: var(--cream); border: 1px solid var(--line); border-radius: 8px; padding: 0.875rem 1rem; margin-bottom: 1.5rem; }
+    .flow strong { color: var(--ink); }
+    ul { list-style: none; margin: 0; padding: 0; }
+    li { border: 1px solid var(--line); border-radius: 8px; margin-bottom: 0.75rem; overflow: hidden; background: #fff; }
+    a.block { display: block; padding: 0.875rem 1rem; color: inherit; text-decoration: none; }
+    a.block:hover { background: var(--cream); }
+    .block-top { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.25rem; }
+    .num { font-size: 0.6875rem; font-weight: 600; color: var(--muted); }
+    .title { font-weight: 600; flex: 1; }
+    .desc { font-size: 0.8125rem; color: var(--muted); margin: 0; }
+    .foot { margin-top: 1.5rem; font-size: 0.8125rem; color: var(--muted); }
+    .foot a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="back"><a href="../../index/index.html">← Product index</a></p>
+    <h1>Email blocks — preview</h1>
+    <p class="lead">Six standalone blocks. Open each to preview, or stack in this order for a guest campaign.</p>
+    <p class="flow"><strong>Suggested flow:</strong> 01 Hero → 02 Feature → 03 Offer → 04 Testimonial → 05 Pre-arrival → 06 Footer</p>
+    <ul>
+      <li><a class="block" href="../blocks/01-hero-property.html"><div class="block-top"><span class="num">01</span><span class="title">Hero property</span></div><p class="desc">Image, headline, primary CTA</p></a></li>
+      <li><a class="block" href="../blocks/02-two-column.html"><div class="block-top"><span class="num">02</span><span class="title">Two column</span></div><p class="desc">Suite image + story</p></a></li>
+      <li><a class="block" href="../blocks/03-promo-cta.html"><div class="block-top"><span class="num">03</span><span class="title">Promo CTA</span></div><p class="desc">Direct-booking offer panel</p></a></li>
+      <li><a class="block" href="../blocks/04-testimonial.html"><div class="block-top"><span class="num">04</span><span class="title">Testimonial</span></div><p class="desc">Guest quote + photo</p></a></li>
+      <li><a class="block" href="../blocks/05-pre-arrival.html"><div class="block-top"><span class="num">05</span><span class="title">Pre-arrival</span></div><p class="desc">Check-in essentials</p></a></li>
+      <li><a class="block" href="../blocks/06-footer.html"><div class="block-top"><span class="num">06</span><span class="title">Footer</span></div><p class="desc">Social, address, unsubscribe</p></a></li>
+    </ul>
+    <p class="foot">Spec: <a href="../../docs/EMAIL_BLOCKS_SPEC.md">EMAIL_BLOCKS_SPEC.md</a> · <a href="../README.md">Pack README</a></p>
+  </div>
+</body>
+</html>

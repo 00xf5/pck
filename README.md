@@ -4,11 +4,11 @@ A multi-part digital product bundle for **hospitality, boutique travel, and prem
 
 ## Product index
 
-**[index/index.html](index/index.html)** — directory of every product file (calculators, UI kit, planned phases). Not a landing page.
+**[index/index.html](index/index.html)** — directory of every product file. Phases 1–3 + booking slider ready (28 files).
 
 ## Current focus
 
-**Phase 2 — UI Kit** — 18 HTML components ready. Phase 1 calculators also complete.
+**Phase 5 — Booking slider** ready. Phases 1–3 also complete (28 files total).
 
 ### Calculators (Phase 1)
 - [Mortgage Affordability](calculators/mortgage-affordability/mortgage-affordability.html)
@@ -19,7 +19,15 @@ A multi-part digital product bundle for **hospitality, boutique travel, and prem
 - [Component gallery](ui-kit/demo/index.html)
 - [Full inventory](ui-kit/README.md)
 
-Specs: [docs/CALCULATORS_SPEC.md](docs/CALCULATORS_SPEC.md) · [docs/UI_KIT_SPEC.md](docs/UI_KIT_SPEC.md) · [docs/EMBED_GUIDE.md](docs/EMBED_GUIDE.md) · [docs/PRODUCT_BUNDLE.md](docs/PRODUCT_BUNDLE.md)
+### Email blocks (Phase 3)
+- [Pack overview](email-templates/README.md)
+- [Block preview hub](email-templates/preview/index.html)
+
+### Booking slider (Phase 5)
+- [Direct booking discount slider](booking-slider/booking-discount-slider.html)
+- [README](booking-slider/README.md)
+
+Specs: [docs/CALCULATORS_SPEC.md](docs/CALCULATORS_SPEC.md) · [docs/UI_KIT_SPEC.md](docs/UI_KIT_SPEC.md) · [docs/EMAIL_BLOCKS_SPEC.md](docs/EMAIL_BLOCKS_SPEC.md) · [docs/BOOKING_SLIDER_SPEC.md](docs/BOOKING_SLIDER_SPEC.md) · [docs/EMBED_GUIDE.md](docs/EMBED_GUIDE.md) · [docs/PRODUCT_BUNDLE.md](docs/PRODUCT_BUNDLE.md)
 
 ## Bundle status
 
@@ -27,9 +35,9 @@ Specs: [docs/CALCULATORS_SPEC.md](docs/CALCULATORS_SPEC.md) · [docs/UI_KIT_SPEC
 |---|-------------|--------|
 | 1 | Interactive Financial & ROI Calculators | **Ready** |
 | 2 | Tailwind UI Kit (HTML components) | **Ready** |
-| 3 | Email Template Pack | Planned |
+| 3 | Email Template Pack | **Ready** |
 | 4 | Landing Page Templates | Planned |
-| 5 | Direct Booking Discount Slider | Planned |
+| 5 | Direct Booking Discount Slider | **Ready** |
 
 ## Repo structure
 

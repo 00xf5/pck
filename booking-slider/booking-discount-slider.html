@@ -3,10 +3,598 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multi-Night Booking Discounter Slider (Placeholder)</title>
+  <title>Direct Booking Discount Slider</title>
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      .pck-booking-slider *, .pck-booking-slider *::before, .pck-booking-slider *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    body:has(> .pck-booking-slider) {
+      margin: 0; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center;
+      padding: 2rem 1.25rem; background: #ebe4dc;
+    }
+  </style>
 </head>
 <body>
-  <!-- Phase 5 — not yet built. See README.md -->
-  <p style="font-family: system-ui, sans-serif; padding: 2rem; color: #6b7280;">Booking discount slider — coming soon.</p>
+
+<div class="pck-booking-slider" id="pck-booking-slider">
+
+  <div class="bk-card">
+    <div class="bk-top">
+      <span class="bk-tag">Book direct</span>
+      <label class="bk-cur">
+        <span class="bk-sr">Currency</span>
+        <select id="pck-bs-currency" aria-label="Currency"></select>
+      </label>
+    </div>
+
+    <div class="bk-hero" aria-live="polite">
+      <p class="bk-was" id="pck-bs-out-was">—</p>
+      <p class="bk-now" id="pck-bs-out-nightly">—</p>
+      <p class="bk-unit">per night</p>
+      <span class="bk-badge" id="pck-bs-out-badge">—</span>
+    </div>
+
+    <div class="bk-pills" role="group" aria-label="Length of stay">
+      <button type="button" class="bk-pill" data-nights="1">1</button>
+      <button type="button" class="bk-pill" data-nights="2">2</button>
+      <button type="button" class="bk-pill" data-nights="3">3</button>
+      <button type="button" class="bk-pill bk-pill--on" data-nights="4">4</button>
+      <button type="button" class="bk-pill" data-nights="5">5</button>
+      <button type="button" class="bk-pill" data-nights="6">6</button>
+      <button type="button" class="bk-pill" data-nights="7">7</button>
+    </div>
+    <p class="bk-pills-hint">nights — longer stays unlock a lower nightly rate</p>
+
+    <div class="bk-ladder" aria-hidden="true">
+      <div class="bk-ladder-track" id="pck-bs-ladder"></div>
+    </div>
+
+    <div class="bk-stats">
+      <div class="bk-stat">
+        <span class="bk-stat-label">Total stay</span>
+        <strong class="bk-stat-val" id="pck-bs-out-total">—</strong>
+      </div>
+      <div class="bk-stat bk-stat--save">
+        <span class="bk-stat-label">You save</span>
+        <strong class="bk-stat-val" id="pck-bs-out-save">—</strong>
+      </div>
+      <div class="bk-stat">
+        <span class="bk-stat-label">Stay length</span>
+        <strong class="bk-stat-val" id="pck-bs-out-nights-label">—</strong>
+      </div>
+    </div>
+
+    <p class="bk-ota" id="pck-bs-out-compare" hidden></p>
+
+    <details class="bk-advanced">
+      <summary>Pricing rules</summary>
+      <div class="bk-adv-grid">
+        <label class="bk-adv">
+          <span>List rate / night</span>
+          <div class="bk-field"><span class="bk-affix bk-affix--cur"></span><input type="number" id="pck-bs-base" value="285" min="1" step="5"></div>
+        </label>
+        <label class="bk-adv">
+          <span>Max stay discount</span>
+          <div class="bk-field"><input type="number" id="pck-bs-max-disc" value="20" min="0" max="50" step="1"><span class="bk-affix">%</span></div>
+        </label>
+        <label class="bk-adv">
+          <span>OTA markup</span>
+          <div class="bk-field"><input type="number" id="pck-bs-ota" value="15" min="0" max="30" step="1"><span class="bk-affix">%</span></div>
+        </label>
+      </div>
+      <label class="bk-toggle">
+        <input type="checkbox" id="pck-bs-show-ota" checked>
+        Compare against OTA listing price
+      </label>
+    </details>
+  </div>
+
+  <p class="bk-foot">Illustrative pricing — configure your own rules above.</p>
+  <input type="hidden" id="pck-bs-nights" value="4">
+</div>
+
+<style>
+  .pck-booking-slider {
+    --bk-bg: #fffdf9;
+    --bk-ink: #2c2420;
+    --bk-muted: #8a7d75;
+    --bk-accent: #9a4e2a;
+    --bk-accent-soft: #f3ebe4;
+    --bk-save: #2d6a4f;
+    --bk-line: #e8dfd6;
+    --bk-was: #b5a89e;
+    width: 100%;
+    max-width: 22rem;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--bk-ink);
+  }
+  .pck-booking-slider *, .pck-booking-slider *::before, .pck-booking-slider *::after { box-sizing: border-box; }
+  .pck-booking-slider .bk-sr {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); border: 0;
+  }
+
+  .pck-booking-slider .bk-card {
+    background: var(--bk-bg);
+    border: 1px solid var(--bk-line);
+    border-radius: 20px;
+    padding: 1.25rem 1.25rem 1rem;
+    box-shadow: 0 2px 0 #f0e6dc, 0 12px 40px rgba(44,36,32,0.07);
+  }
+
+  .pck-booking-slider .bk-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .pck-booking-slider .bk-tag {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bk-accent);
+    padding: 0.25rem 0.5rem;
+    background: var(--bk-accent-soft);
+    border-radius: 4px;
+  }
+  .pck-booking-slider .bk-cur select {
+    border: 0;
+    background: transparent;
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--bk-muted);
+    cursor: pointer;
+    padding: 0.25rem 0;
+    max-width: 7.5rem;
+    text-align: right;
+  }
+
+  .pck-booking-slider .bk-hero {
+    text-align: center;
+    padding: 0.5rem 0 1.25rem;
+    border-bottom: 1px dashed var(--bk-line);
+    margin-bottom: 1.25rem;
+  }
+  .pck-booking-slider .bk-was {
+    margin: 0 0 0.125rem;
+    font-size: 0.9375rem;
+    color: var(--bk-was);
+    text-decoration: line-through;
+    font-variant-numeric: tabular-nums;
+  }
+  .pck-booking-slider .bk-now {
+    margin: 0;
+    font-size: 2.75rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--bk-ink);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .pck-booking-slider .bk-now.bk-pop {
+    transform: scale(0.97);
+    opacity: 0.7;
+  }
+  .pck-booking-slider .bk-unit {
+    margin: 0.25rem 0 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--bk-muted);
+  }
+  .pck-booking-slider .bk-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--bk-save);
+    background: #eaf4ee;
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+  }
+
+  .pck-booking-slider .bk-pills {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.375rem;
+  }
+  .pck-booking-slider .bk-pill {
+    border: 1px solid var(--bk-line);
+    background: #fff;
+    border-radius: 10px;
+    padding: 0.625rem 0;
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--bk-muted);
+    cursor: pointer;
+    font-variant-numeric: tabular-nums;
+    transition: border-color 0.15s, background 0.15s, color 0.15s, transform 0.15s;
+  }
+  .pck-booking-slider .bk-pill:hover {
+    border-color: var(--bk-accent);
+    color: var(--bk-ink);
+  }
+  .pck-booking-slider .bk-pill--on {
+    background: var(--bk-accent);
+    border-color: var(--bk-accent);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(154,78,42,0.25);
+  }
+  .pck-booking-slider .bk-pills-hint {
+    margin: 0.5rem 0 1rem;
+    font-size: 0.6875rem;
+    text-align: center;
+    color: var(--bk-muted);
+  }
+
+  .pck-booking-slider .bk-ladder {
+    margin-bottom: 1.125rem;
+    padding: 0 0.125rem;
+  }
+  .pck-booking-slider .bk-ladder-track {
+    display: flex;
+    gap: 3px;
+    height: 4px;
+  }
+  .pck-booking-slider .bk-step {
+    flex: 1;
+    border-radius: 2px;
+    background: var(--bk-line);
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .pck-booking-slider .bk-step--on {
+    background: var(--bk-accent);
+  }
+  .pck-booking-slider .bk-step--peak {
+    background: var(--bk-save);
+    transform: scaleY(1.4);
+  }
+
+  .pck-booking-slider .bk-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 0.875rem;
+  }
+  .pck-booking-slider .bk-stat {
+    text-align: center;
+    padding: 0.625rem 0.375rem;
+    background: #faf6f1;
+    border-radius: 10px;
+    border: 1px solid var(--bk-line);
+  }
+  .pck-booking-slider .bk-stat--save {
+    background: #f0faf4;
+    border-color: #d8ebe0;
+  }
+  .pck-booking-slider .bk-stat-label {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--bk-muted);
+    margin-bottom: 0.25rem;
+  }
+  .pck-booking-slider .bk-stat-val {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--bk-ink);
+  }
+  .pck-booking-slider .bk-stat--save .bk-stat-val { color: var(--bk-save); }
+
+  .pck-booking-slider .bk-ota {
+    margin: 0 0 0.875rem;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.75rem;
+    line-height: 1.45;
+    text-align: center;
+    color: var(--bk-muted);
+    background: var(--bk-accent-soft);
+    border-radius: 8px;
+  }
+  .pck-booking-slider .bk-ota[hidden] { display: none; }
+
+  .pck-booking-slider .bk-advanced {
+    border-top: 1px solid var(--bk-line);
+    padding-top: 0.75rem;
+  }
+  .pck-booking-slider .bk-advanced summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--bk-muted);
+    text-align: center;
+  }
+  .pck-booking-slider .bk-advanced summary::-webkit-details-marker { display: none; }
+  .pck-booking-slider .bk-advanced[open] summary { margin-bottom: 0.75rem; }
+  .pck-booking-slider .bk-adv-grid {
+    display: grid;
+    gap: 0.625rem;
+    margin-bottom: 0.625rem;
+  }
+  .pck-booking-slider .bk-adv > span {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--bk-muted);
+    margin-bottom: 0.25rem;
+  }
+  .pck-booking-slider .bk-field {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--bk-line);
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+  }
+  .pck-booking-slider .bk-field:focus-within {
+    border-color: var(--bk-accent);
+    box-shadow: 0 0 0 2px rgba(154,78,42,0.15);
+  }
+  .pck-booking-slider .bk-affix {
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--bk-muted);
+    background: #faf6f1;
+    flex-shrink: 0;
+  }
+  .pck-booking-slider .bk-affix--cur { min-width: 2rem; justify-content: center; }
+  .pck-booking-slider .bk-field input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    padding: 0.5rem 0.625rem;
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    outline: none;
+    font-variant-numeric: tabular-nums;
+  }
+  .pck-booking-slider .bk-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--bk-muted);
+    cursor: pointer;
+  }
+  .pck-booking-slider .bk-toggle input { accent-color: var(--bk-accent); }
+
+  .pck-booking-slider .bk-foot {
+    margin: 0.75rem 0 0;
+    font-size: 0.6875rem;
+    color: var(--bk-muted);
+    text-align: center;
+  }
+
+  @media (min-width: 520px) {
+    .pck-booking-slider { max-width: 32rem; }
+    .pck-booking-slider .bk-card { padding: 1.5rem 1.75rem 1.25rem; }
+    .pck-booking-slider .bk-now { font-size: 3.25rem; }
+    .pck-booking-slider .bk-adv-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+
+<script>
+(function () {
+  "use strict";
+  var PCK_BS_CONFIG = { maxNights: 7, minNights: 1 };
+  var root = document.getElementById("pck-booking-slider");
+  if (!root) return;
+
+  var minN = PCK_BS_CONFIG.minNights || 1;
+  var maxN = PCK_BS_CONFIG.maxNights || 7;
+  var nightsInput = root.querySelector("#pck-bs-nights");
+  var pillsWrap = root.querySelector(".bk-pills");
+  var ladderEl = root.querySelector("#pck-bs-ladder");
+
+  var CUR_MAP = {
+    USD: { locale: "en-US" }, EUR: { locale: "en-US" }, GBP: { locale: "en-GB" },
+    CHF: { locale: "de-CH" }, CAD: { locale: "en-CA" }, AUD: { locale: "en-AU" },
+    JPY: { locale: "ja-JP", frac: 0 }, SEK: { locale: "en-US", narrow: true },
+    NOK: { locale: "en-US", narrow: true }, DKK: { locale: "en-US", narrow: true },
+    PLN: { locale: "pl-PL" }, MXN: { locale: "es-MX" },
+    BRL: { locale: "pt-BR" }, INR: { locale: "en-IN" }, SGD: { locale: "en-SG" },
+    NZD: { locale: "en-NZ" }, AED: { locale: "en-AE" }, ZAR: { locale: "en-ZA" }
+  };
+  var curCode = "USD", fmtPrec;
+  function setCurrency(code) {
+    var cfg = CUR_MAP[code] || CUR_MAP.USD;
+    curCode = CUR_MAP[code] ? code : "USD";
+    var frac = cfg.frac === 0 ? 0 : 2;
+    var opts = { style: "currency", currency: curCode, maximumFractionDigits: frac, minimumFractionDigits: frac };
+    if (cfg.narrow) opts.currencyDisplay = "narrowSymbol";
+    fmtPrec = new Intl.NumberFormat(cfg.locale, opts);
+  }
+  function curSymbol(code) {
+    var c = code || curCode, cfg = CUR_MAP[c] || CUR_MAP.USD;
+    var part = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: CUR_MAP[c] ? c : "USD", currencyDisplay: "narrowSymbol" }).formatToParts(0);
+    for (var i = 0; i < part.length; i++) if (part[i].type === "currency") return part[i].value;
+    return c;
+  }
+  function curOptionLabel(code) {
+    var cfg = CUR_MAP[code];
+    var opts = { style: "currency", currency: code };
+    if (cfg.narrow) opts.currencyDisplay = "narrowSymbol";
+    return code + " — " + new Intl.NumberFormat(cfg.locale, opts).format(1234.56);
+  }
+  function syncAffixes() {
+    var sym = curSymbol();
+    root.querySelectorAll(".bk-affix--cur").forEach(function (el) { el.textContent = sym; });
+  }
+
+  var currencySelect = root.querySelector("#pck-bs-currency");
+  Object.keys(CUR_MAP).forEach(function (code) {
+    var opt = document.createElement("option");
+    opt.value = code;
+    opt.textContent = curOptionLabel(code);
+    currencySelect.appendChild(opt);
+  });
+  currencySelect.addEventListener("change", function () {
+    setCurrency(currencySelect.value);
+    syncAffixes();
+    calculate();
+  });
+
+  function buildPills() {
+    pillsWrap.innerHTML = "";
+    ladderEl.innerHTML = "";
+    for (var n = minN; n <= maxN; n++) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "bk-pill";
+      btn.setAttribute("data-nights", String(n));
+      btn.textContent = String(n);
+      pillsWrap.appendChild(btn);
+      var step = document.createElement("span");
+      step.className = "bk-step";
+      step.setAttribute("data-step", String(n));
+      ladderEl.appendChild(step);
+    }
+    pillsWrap.querySelectorAll(".bk-pill").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        setNights(parseInt(btn.getAttribute("data-nights"), 10));
+        calculate();
+      });
+    });
+  }
+  buildPills();
+
+  function setNights(n) {
+    nightsInput.value = String(n);
+    pillsWrap.querySelectorAll(".bk-pill").forEach(function (btn) {
+      btn.classList.toggle("bk-pill--on", btn.getAttribute("data-nights") === String(n));
+    });
+    ladderEl.querySelectorAll(".bk-step").forEach(function (step) {
+      var sn = parseInt(step.getAttribute("data-step"), 10);
+      step.classList.toggle("bk-step--on", sn <= n);
+      step.classList.toggle("bk-step--peak", sn === n);
+    });
+  }
+
+  var fieldIds = ["pck-bs-base", "pck-bs-max-disc", "pck-bs-ota"];
+  var STORE = "pck-booking-slider";
+  function saveState() {
+    var d = {
+      currency: currencySelect.value,
+      "pck-bs-nights": nightsInput.value,
+      "pck-bs-show-ota": root.querySelector("#pck-bs-show-ota").checked ? "1" : "0"
+    };
+    fieldIds.forEach(function (id) { d[id] = root.querySelector("#" + id).value; });
+    try { localStorage.setItem(STORE, JSON.stringify(d)); } catch (e) {}
+    if (history.replaceState) {
+      try {
+        var q = new URLSearchParams(d).toString();
+        history.replaceState(null, "", location.pathname + (q ? "?" + q : ""));
+      } catch (e) {}
+    }
+  }
+  function loadState() {
+    var fromUrl = new URLSearchParams(location.search);
+    var fromStore = null;
+    try { fromStore = JSON.parse(localStorage.getItem(STORE) || "null"); } catch (e) {}
+    function pick(key) {
+      var u = fromUrl.get(key);
+      if (u !== null && u !== "") return u;
+      if (fromStore && fromStore[key] != null) return fromStore[key];
+      return null;
+    }
+    fieldIds.forEach(function (id) {
+      var v = pick(id);
+      if (v !== null) root.querySelector("#" + id).value = v;
+    });
+    var nights = pick("pck-bs-nights");
+    if (nights !== null) setNights(parseInt(nights, 10) || minN);
+    var otaShow = pick("pck-bs-show-ota");
+    if (otaShow !== null) root.querySelector("#pck-bs-show-ota").checked = otaShow === "1";
+    var cur = pick("currency");
+    if (cur && CUR_MAP[cur]) { currencySelect.value = cur; setCurrency(cur); syncAffixes(); }
+  }
+
+  var out = {
+    was: root.querySelector("#pck-bs-out-was"),
+    nightly: root.querySelector("#pck-bs-out-nightly"),
+    badge: root.querySelector("#pck-bs-out-badge"),
+    total: root.querySelector("#pck-bs-out-total"),
+    save: root.querySelector("#pck-bs-out-save"),
+    nightsLabel: root.querySelector("#pck-bs-out-nights-label"),
+    compare: root.querySelector("#pck-bs-out-compare")
+  };
+
+  function num(id) {
+    var v = parseFloat(root.querySelector("#" + id).value);
+    return isNaN(v) || v < 0 ? 0 : v;
+  }
+  function discountPct(nights, maxDisc) {
+    if (maxN <= minN) return 0;
+    var n = Math.max(minN, Math.min(maxN, nights));
+    return ((n - minN) / (maxN - minN)) * maxDisc;
+  }
+  function popRate() {
+    out.nightly.classList.add("bk-pop");
+    window.setTimeout(function () { out.nightly.classList.remove("bk-pop"); }, 140);
+  }
+  function calculate() {
+    var nights = parseInt(nightsInput.value, 10) || minN;
+    var base = Math.max(1, num("pck-bs-base"));
+    var maxDisc = Math.min(50, num("pck-bs-max-disc"));
+    var otaPct = num("pck-bs-ota") / 100;
+    var showOta = root.querySelector("#pck-bs-show-ota").checked;
+    setNights(nights);
+    var disc = discountPct(nights, maxDisc) / 100;
+    var nightly = base * (1 - disc);
+    var total = nightly * nights;
+    var saved = (base * nights) - total;
+    var nightWord = nights === 1 ? "1 night" : nights + " nights";
+    popRate();
+    out.was.textContent = fmtPrec.format(base);
+    out.nightly.textContent = fmtPrec.format(nightly);
+    out.badge.textContent = disc > 0 ? "−" + (disc * 100).toFixed(0) + "% longer stay" : "Standard rate";
+    out.total.textContent = fmtPrec.format(total);
+    out.save.textContent = saved > 0 ? fmtPrec.format(saved) : fmtPrec.format(0);
+    out.nightsLabel.textContent = nightWord;
+    if (showOta && otaPct > 0) {
+      var vsOta = base * (1 + otaPct) * nights - total;
+      out.compare.hidden = false;
+      out.compare.textContent = vsOta > 0
+        ? fmtPrec.format(vsOta) + " below a typical " + Math.round(otaPct * 100) + "% OTA listing"
+        : "Direct rate beats the OTA comparison at this length of stay";
+    } else {
+      out.compare.hidden = true;
+    }
+    saveState();
+  }
+
+  fieldIds.forEach(function (id) {
+    root.querySelector("#" + id).addEventListener("input", calculate);
+  });
+  root.querySelector("#pck-bs-show-ota").addEventListener("change", calculate);
+  setCurrency("USD");
+  currencySelect.value = "USD";
+  syncAffixes();
+  setNights(parseInt(nightsInput.value, 10) || 4);
+  loadState();
+  calculate();
+})();
+</script>
+
 </body>
 </html>
