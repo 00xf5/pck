@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Airbnb Revenue Estimator</title>
   <style>
+    @media (prefers-reduced-motion: reduce) {
+      .pck-airbnb-calc *, .pck-airbnb-calc *::before, .pck-airbnb-calc *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
     body:has(> .pck-airbnb-calc) {
       margin: 0; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center;
       padding: 2rem 1.25rem; background: #fafaf9;
@@ -17,9 +24,12 @@
 
   <div class="ab-shell">
     <div class="ab-result">
-      <div class="ab-period" role="group" aria-label="Period">
-        <button type="button" class="ab-period-btn ab-period-btn--on" data-days="30">Monthly</button>
-        <button type="button" class="ab-period-btn" data-days="365">Annual</button>
+      <div class="ab-result-bar">
+        <div class="ab-period" role="group" aria-label="Period">
+          <button type="button" class="ab-period-btn ab-period-btn--on" data-days="30">Monthly</button>
+          <button type="button" class="ab-period-btn" data-days="365">Annual</button>
+        </div>
+        <img id="pck-ab-logo" class="ab-logo" alt="" width="40" height="40" hidden>
       </div>
       <p class="ab-kicker">Estimated net income</p>
       <p class="ab-net">
@@ -55,11 +65,11 @@
       </div>
       <label class="ab-range">
         <span class="ab-range-head"><span>Nightly rate</span><output id="pck-ab-rate-out">$185</output></span>
-        <input type="range" id="pck-ab-rate" min="50" max="500" step="5" value="185">
+        <input type="range" id="pck-ab-rate" min="50" max="500" step="5" value="185" aria-valuemin="50" aria-valuemax="500" aria-valuenow="185" aria-label="Nightly rate">
       </label>
       <label class="ab-range">
         <span class="ab-range-head"><span>Occupancy</span><output id="pck-ab-occ-out">72%</output></span>
-        <input type="range" id="pck-ab-occ" min="20" max="95" step="1" value="72">
+        <input type="range" id="pck-ab-occ" min="20" max="95" step="1" value="72" aria-valuemin="20" aria-valuemax="95" aria-valuenow="72" aria-label="Occupancy rate">
       </label>
 
       <details class="ab-more">
@@ -112,6 +122,24 @@
     background: var(--w-surface);
     border-bottom: 1px solid var(--w-line);
   }
+
+  .pck-airbnb-calc .ab-result-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.125rem;
+  }
+  .pck-airbnb-calc .ab-result-bar .ab-period { margin-bottom: 0; }
+  .pck-airbnb-calc .ab-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--w-line);
+    flex-shrink: 0;
+  }
+  .pck-airbnb-calc .ab-logo[hidden] { display: none; }
 
   .pck-airbnb-calc .ab-period {
     display: inline-flex;
@@ -395,14 +423,23 @@
 <script>
 (function () {
   "use strict";
+  var PCK_AB_CONFIG = { logoSrc: "" };
   var root = document.getElementById("pck-airbnb-calc");
   if (!root) return;
 
+  var logoEl = root.querySelector("#pck-ab-logo");
+  if (PCK_AB_CONFIG.logoSrc) {
+    logoEl.src = PCK_AB_CONFIG.logoSrc;
+    logoEl.alt = "Brand";
+    logoEl.hidden = false;
+  }
+
   var CUR_MAP = {
-    USD: { locale: "en-US" }, EUR: { locale: "de-DE" }, GBP: { locale: "en-GB" },
+    USD: { locale: "en-US" }, EUR: { locale: "en-US" }, GBP: { locale: "en-GB" },
     CHF: { locale: "de-CH" }, CAD: { locale: "en-CA" }, AUD: { locale: "en-AU" },
-    JPY: { locale: "ja-JP", frac: 0 }, SEK: { locale: "sv-SE" }, NOK: { locale: "nb-NO" },
-    DKK: { locale: "da-DK" }, PLN: { locale: "pl-PL" }, MXN: { locale: "es-MX" },
+    JPY: { locale: "ja-JP", frac: 0 }, SEK: { locale: "en-US", narrow: true },
+    NOK: { locale: "en-US", narrow: true }, DKK: { locale: "en-US", narrow: true },
+    PLN: { locale: "pl-PL" }, MXN: { locale: "es-MX" },
     BRL: { locale: "pt-BR" }, INR: { locale: "en-IN" }, SGD: { locale: "en-SG" },
     NZD: { locale: "en-NZ" }, AED: { locale: "en-AE" }, ZAR: { locale: "en-ZA" }
   };
@@ -412,8 +449,13 @@
     curCode = CUR_MAP[code] ? code : "USD";
     curLocale = cfg.locale;
     var frac = cfg.frac === 0 ? 0 : 2;
-    fmtWhole = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: curCode, maximumFractionDigits: 0, minimumFractionDigits: 0 });
-    fmtPrec = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: curCode, maximumFractionDigits: frac, minimumFractionDigits: frac });
+    function fmtOpts(digits) {
+      var opts = { style: "currency", currency: curCode, maximumFractionDigits: digits, minimumFractionDigits: digits };
+      if (cfg.narrow) opts.currencyDisplay = "narrowSymbol";
+      return opts;
+    }
+    fmtWhole = new Intl.NumberFormat(cfg.locale, fmtOpts(0));
+    fmtPrec = new Intl.NumberFormat(cfg.locale, fmtOpts(frac));
     fmtNum = new Intl.NumberFormat(cfg.locale);
   }
   function curSymbol(code) {
@@ -424,7 +466,9 @@
   }
   function curOptionLabel(code) {
     var cfg = CUR_MAP[code];
-    return code + " — " + new Intl.NumberFormat(cfg.locale, { style: "currency", currency: code }).format(1234.56);
+    var opts = { style: "currency", currency: code };
+    if (cfg.narrow) opts.currencyDisplay = "narrowSymbol";
+    return code + " — " + new Intl.NumberFormat(cfg.locale, opts).format(1234.56);
   }
   function syncAffixes() {
     var sym = curSymbol();
@@ -447,6 +491,48 @@
   var periodInput = root.querySelector("#pck-ab-period");
   var rateSlider = root.querySelector("#pck-ab-rate");
   var occSlider = root.querySelector("#pck-ab-occ");
+  var fieldIds = ["pck-ab-stay","pck-ab-clean","pck-ab-expense","pck-ab-fee","pck-ab-units"];
+  var STORE = "pck-airbnb";
+  function saveState() {
+    var d = { currency: currencySelect.value, "pck-ab-rate": rateSlider.value, "pck-ab-occ": occSlider.value, "pck-ab-period": periodInput.value };
+    fieldIds.forEach(function (id) { d[id] = root.querySelector("#" + id).value; });
+    try { localStorage.setItem(STORE, JSON.stringify(d)); } catch (e) {}
+    if (history.replaceState) {
+      try {
+        var q = new URLSearchParams(d).toString();
+        history.replaceState(null, "", location.pathname + (q ? "?" + q : ""));
+      } catch (e) {}
+    }
+  }
+  function setPeriod(days) {
+    periodInput.value = String(days);
+    root.querySelectorAll(".ab-period-btn").forEach(function (b) {
+      b.classList.toggle("ab-period-btn--on", b.getAttribute("data-days") === String(days));
+    });
+  }
+  function loadState() {
+    var fromUrl = new URLSearchParams(location.search);
+    var fromStore = null;
+    try { fromStore = JSON.parse(localStorage.getItem(STORE) || "null"); } catch (e) {}
+    function pick(key) {
+      var u = fromUrl.get(key);
+      if (u !== null && u !== "") return u;
+      if (fromStore && fromStore[key] != null) return fromStore[key];
+      return null;
+    }
+    fieldIds.forEach(function (id) {
+      var v = pick(id);
+      if (v !== null) root.querySelector("#" + id).value = v;
+    });
+    var rate = pick("pck-ab-rate");
+    if (rate !== null) rateSlider.value = rate;
+    var occ = pick("pck-ab-occ");
+    if (occ !== null) occSlider.value = occ;
+    var period = pick("pck-ab-period");
+    if (period !== null) setPeriod(parseInt(period, 10) || 30);
+    var cur = pick("currency");
+    if (cur && CUR_MAP[cur]) { currencySelect.value = cur; setCurrency(cur); syncAffixes(); }
+  }
   var out = {
     net: root.querySelector("#pck-ab-out-net"),
     periodLabel: root.querySelector("#pck-ab-period-label"),
@@ -483,6 +569,8 @@
     var units = Math.max(1, Math.floor(num("pck-ab-units")));
     setSliderFill(rateSlider);
     setSliderFill(occSlider);
+    rateSlider.setAttribute("aria-valuenow", rateSlider.value);
+    occSlider.setAttribute("aria-valuenow", occSlider.value);
     out.rateOut.textContent = fmtPrec.format(rate);
     out.occOut.textContent = Math.round(occ * 100) + "%";
     out.periodLabel.textContent = days === 365 ? "year" : "month";
@@ -495,8 +583,9 @@
     out.nights.textContent = fmtNum.format(bookedNights);
     out.gross.textContent = fmtWhole.format(gross);
     setStack(gross, fees, opex, net);
+    saveState();
   }
-  ["pck-ab-stay","pck-ab-clean","pck-ab-expense","pck-ab-fee","pck-ab-units"].forEach(function (id) {
+  fieldIds.forEach(function (id) {
     root.querySelector("#" + id).addEventListener("input", calculate);
   });
   rateSlider.addEventListener("input", calculate);
@@ -520,6 +609,7 @@
   setCurrency("USD");
   currencySelect.value = "USD";
   syncAffixes();
+  loadState();
   calculate();
 })();
 </script>

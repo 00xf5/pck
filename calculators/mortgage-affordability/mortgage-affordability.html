@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mortgage Affordability Calculator</title>
   <style>
+    @media (prefers-reduced-motion: reduce) {
+      .pck-mortgage-calc *, .pck-mortgage-calc *::before, .pck-mortgage-calc *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
     body:has(> .pck-mortgage-calc) {
       margin: 0; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center;
       padding: 2rem 1.25rem; background: #f5f0eb;
@@ -74,7 +81,7 @@
         </label>
       </div>
       <details class="ma-more">
-        <summary>Tax, insurance &amp; HOA</summary>
+        <summary>Tax, insurance &amp; service fees</summary>
         <div class="ma-fields ma-fields--stack">
           <label class="ma-field ma-field--wide">
             <span>Property tax (annual)</span>
@@ -85,7 +92,7 @@
             <div class="ma-input"><span class="ma-affix ma-affix--cur"></span><input type="number" id="pck-ma-insurance" value="120" min="0" step="10" inputmode="decimal"></div>
           </label>
           <label class="ma-field">
-            <span>HOA (monthly)</span>
+            <span>Service fees (monthly)</span>
             <div class="ma-input"><span class="ma-affix ma-affix--cur"></span><input type="number" id="pck-ma-hoa" value="0" min="0" step="25" inputmode="decimal"></div>
           </label>
         </div>
@@ -336,10 +343,11 @@
   if (!root) return;
 
   var CUR_MAP = {
-    USD: { locale: "en-US" }, EUR: { locale: "de-DE" }, GBP: { locale: "en-GB" },
+    USD: { locale: "en-US" }, EUR: { locale: "en-US" }, GBP: { locale: "en-GB" },
     CHF: { locale: "de-CH" }, CAD: { locale: "en-CA" }, AUD: { locale: "en-AU" },
-    JPY: { locale: "ja-JP", frac: 0 }, SEK: { locale: "sv-SE" }, NOK: { locale: "nb-NO" },
-    DKK: { locale: "da-DK" }, PLN: { locale: "pl-PL" }, MXN: { locale: "es-MX" },
+    JPY: { locale: "ja-JP", frac: 0 }, SEK: { locale: "en-US", narrow: true },
+    NOK: { locale: "en-US", narrow: true }, DKK: { locale: "en-US", narrow: true },
+    PLN: { locale: "pl-PL" }, MXN: { locale: "es-MX" },
     BRL: { locale: "pt-BR" }, INR: { locale: "en-IN" }, SGD: { locale: "en-SG" },
     NZD: { locale: "en-NZ" }, AED: { locale: "en-AE" }, ZAR: { locale: "en-ZA" }
   };
@@ -348,8 +356,13 @@
     var cfg = CUR_MAP[code] || CUR_MAP.USD;
     curCode = CUR_MAP[code] ? code : "USD";
     var frac = cfg.frac === 0 ? 0 : 2;
-    fmtWhole = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: curCode, maximumFractionDigits: 0, minimumFractionDigits: 0 });
-    fmtPrec = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: curCode, maximumFractionDigits: frac, minimumFractionDigits: frac });
+    function fmtOpts(digits) {
+      var opts = { style: "currency", currency: curCode, maximumFractionDigits: digits, minimumFractionDigits: digits };
+      if (cfg.narrow) opts.currencyDisplay = "narrowSymbol";
+      return opts;
+    }
+    fmtWhole = new Intl.NumberFormat(cfg.locale, fmtOpts(0));
+    fmtPrec = new Intl.NumberFormat(cfg.locale, fmtOpts(frac));
   }
   function curSymbol(code) {
     var c = code || curCode, cfg = CUR_MAP[c] || CUR_MAP.USD;
@@ -359,7 +372,9 @@
   }
   function curOptionLabel(code) {
     var cfg = CUR_MAP[code];
-    var sample = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: code }).format(1234.56);
+    var opts = { style: "currency", currency: code };
+    if (cfg.narrow) opts.currencyDisplay = "narrowSymbol";
+    var sample = new Intl.NumberFormat(cfg.locale, opts).format(1234.56);
     return code + " — " + sample;
   }
   function syncAffixes() {
@@ -382,6 +397,35 @@
 
   var pct = function (n) { return (n * 100).toFixed(1) + "%"; };
   var ids = ["pck-ma-income","pck-ma-debts","pck-ma-down","pck-ma-rate","pck-ma-term","pck-ma-tax","pck-ma-insurance","pck-ma-hoa"];
+  var STORE = "pck-mortgage";
+  function saveState() {
+    var d = { currency: currencySelect.value };
+    ids.forEach(function (id) { d[id] = root.querySelector("#" + id).value; });
+    try { localStorage.setItem(STORE, JSON.stringify(d)); } catch (e) {}
+    if (history.replaceState) {
+      try {
+        var q = new URLSearchParams(d).toString();
+        history.replaceState(null, "", location.pathname + (q ? "?" + q : ""));
+      } catch (e) {}
+    }
+  }
+  function loadState() {
+    var fromUrl = new URLSearchParams(location.search);
+    var fromStore = null;
+    try { fromStore = JSON.parse(localStorage.getItem(STORE) || "null"); } catch (e) {}
+    function pick(key) {
+      var u = fromUrl.get(key);
+      if (u !== null && u !== "") return u;
+      if (fromStore && fromStore[key] != null) return fromStore[key];
+      return null;
+    }
+    ids.forEach(function (id) {
+      var v = pick(id);
+      if (v !== null) root.querySelector("#" + id).value = v;
+    });
+    var cur = pick("currency");
+    if (cur && CUR_MAP[cur]) { currencySelect.value = cur; setCurrency(cur); syncAffixes(); }
+  }
   var out = {
     price: root.querySelector("#pck-ma-out-price"),
     loan: root.querySelector("#pck-ma-out-loan"),
@@ -435,6 +479,7 @@
       out.status.classList.add("ma-note--bad");
       out.status.textContent = "May exceed typical lender limits";
     }
+    saveState();
   }
   ids.forEach(function (id) {
     var el = root.querySelector("#" + id);
@@ -444,6 +489,7 @@
   setCurrency("USD");
   currencySelect.value = "USD";
   syncAffixes();
+  loadState();
   calculate();
 })();
 </script>

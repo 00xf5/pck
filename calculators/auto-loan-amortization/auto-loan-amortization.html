@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Auto-Loan Amortization Calculator</title>
   <style>
+    @media (prefers-reduced-motion: reduce) {
+      .pck-autoloan-calc *, .pck-autoloan-calc *::before, .pck-autoloan-calc *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
     body:has(> .pck-autoloan-calc) {
       margin: 0; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center;
       padding: 2rem 1.25rem; background: #f5f0eb;
@@ -52,7 +59,7 @@
 
       <div class="al-fields">
         <label class="al-field al-field--wide">
-          <span>Vehicle price</span>
+          <span>Asset price</span>
           <div class="al-input"><span class="al-affix al-affix--cur"></span><input type="number" id="pck-al-price" value="32000" min="0" step="500"></div>
         </label>
         <label class="al-field">
@@ -445,10 +452,11 @@
   if (!root) return;
 
   var CUR_MAP = {
-    USD: { locale: "en-US" }, EUR: { locale: "de-DE" }, GBP: { locale: "en-GB" },
+    USD: { locale: "en-US" }, EUR: { locale: "en-US" }, GBP: { locale: "en-GB" },
     CHF: { locale: "de-CH" }, CAD: { locale: "en-CA" }, AUD: { locale: "en-AU" },
-    JPY: { locale: "ja-JP", frac: 0 }, SEK: { locale: "sv-SE" }, NOK: { locale: "nb-NO" },
-    DKK: { locale: "da-DK" }, PLN: { locale: "pl-PL" }, MXN: { locale: "es-MX" },
+    JPY: { locale: "ja-JP", frac: 0 }, SEK: { locale: "en-US", narrow: true },
+    NOK: { locale: "en-US", narrow: true }, DKK: { locale: "en-US", narrow: true },
+    PLN: { locale: "pl-PL" }, MXN: { locale: "es-MX" },
     BRL: { locale: "pt-BR" }, INR: { locale: "en-IN" }, SGD: { locale: "en-SG" },
     NZD: { locale: "en-NZ" }, AED: { locale: "en-AE" }, ZAR: { locale: "en-ZA" }
   };
@@ -457,8 +465,13 @@
     var cfg = CUR_MAP[code] || CUR_MAP.USD;
     curCode = CUR_MAP[code] ? code : "USD";
     var frac = cfg.frac === 0 ? 0 : 2;
-    fmtWhole = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: curCode, maximumFractionDigits: 0, minimumFractionDigits: 0 });
-    fmtPrec = new Intl.NumberFormat(cfg.locale, { style: "currency", currency: curCode, maximumFractionDigits: frac, minimumFractionDigits: frac });
+    function fmtOpts(digits) {
+      var opts = { style: "currency", currency: curCode, maximumFractionDigits: digits, minimumFractionDigits: digits };
+      if (cfg.narrow) opts.currencyDisplay = "narrowSymbol";
+      return opts;
+    }
+    fmtWhole = new Intl.NumberFormat(cfg.locale, fmtOpts(0));
+    fmtPrec = new Intl.NumberFormat(cfg.locale, fmtOpts(frac));
   }
   function curSymbol(code) {
     var c = code || curCode, cfg = CUR_MAP[c] || CUR_MAP.USD;
@@ -468,7 +481,9 @@
   }
   function curOptionLabel(code) {
     var cfg = CUR_MAP[code];
-    return code + " — " + new Intl.NumberFormat(cfg.locale, { style: "currency", currency: code }).format(1234.56);
+    var opts = { style: "currency", currency: code };
+    if (cfg.narrow) opts.currencyDisplay = "narrowSymbol";
+    return code + " — " + new Intl.NumberFormat(cfg.locale, opts).format(1234.56);
   }
   function syncAffixes() {
     var sym = curSymbol();
@@ -490,6 +505,43 @@
 
   var termInput = root.querySelector("#pck-al-term");
   var ids = ["pck-al-price","pck-al-down","pck-al-trade","pck-al-tax","pck-al-apr","pck-al-extra"];
+  var STORE = "pck-autoloan";
+  function setTerm(months) {
+    termInput.value = String(months);
+    root.querySelectorAll(".al-term").forEach(function (p) {
+      p.classList.toggle("al-term--on", p.getAttribute("data-term") === String(months));
+    });
+  }
+  function saveState() {
+    var d = { currency: currencySelect.value, "pck-al-term": termInput.value };
+    ids.forEach(function (id) { d[id] = root.querySelector("#" + id).value; });
+    try { localStorage.setItem(STORE, JSON.stringify(d)); } catch (e) {}
+    if (history.replaceState) {
+      try {
+        var q = new URLSearchParams(d).toString();
+        history.replaceState(null, "", location.pathname + (q ? "?" + q : ""));
+      } catch (e) {}
+    }
+  }
+  function loadState() {
+    var fromUrl = new URLSearchParams(location.search);
+    var fromStore = null;
+    try { fromStore = JSON.parse(localStorage.getItem(STORE) || "null"); } catch (e) {}
+    function pick(key) {
+      var u = fromUrl.get(key);
+      if (u !== null && u !== "") return u;
+      if (fromStore && fromStore[key] != null) return fromStore[key];
+      return null;
+    }
+    ids.forEach(function (id) {
+      var v = pick(id);
+      if (v !== null) root.querySelector("#" + id).value = v;
+    });
+    var term = pick("pck-al-term");
+    if (term !== null) setTerm(parseInt(term, 10) || 60);
+    var cur = pick("currency");
+    if (cur && CUR_MAP[cur]) { currencySelect.value = cur; setCurrency(cur); syncAffixes(); }
+  }
   var out = {
     payment: root.querySelector("#pck-al-out-payment"),
     financed: root.querySelector("#pck-al-out-financed"),
@@ -551,6 +603,7 @@
       var cls = i === result.rows.length - 1 ? ' class="al-row--last"' : "";
       return "<tr" + cls + "><td>" + row.month + "</td><td>" + fmtPrec.format(row.payment) + "</td><td>" + fmtPrec.format(row.principal) + "</td><td>" + fmtPrec.format(row.interest) + "</td><td>" + fmtPrec.format(row.balance) + "</td></tr>";
     }).join("");
+    saveState();
   }
   ids.forEach(function (id) {
     var el = root.querySelector("#" + id);
@@ -568,6 +621,7 @@
   setCurrency("USD");
   currencySelect.value = "USD";
   syncAffixes();
+  loadState();
   calculate();
 })();
 </script>

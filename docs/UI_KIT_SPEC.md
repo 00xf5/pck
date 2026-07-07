@@ -11,6 +11,7 @@
 | Scope | `tailwind.config = { important: '#pck-component-id' }` |
 | Theme | Neutral luxury — `pck-*` color tokens |
 | JS | Only where needed (nav mobile toggle). FAQ uses native `<details>` |
+| Preview load | Tailwind in `<head>` + `pck-tw-ready` after config; `prefers-reduced-motion` respected |
 | JSX pack | Planned later |
 
 ## Components (18)

@@ -19,7 +19,7 @@ A multi-part digital product bundle for **hospitality, boutique travel, and prem
 - [Component gallery](ui-kit/demo/index.html)
 - [Full inventory](ui-kit/README.md)
 
-Specs: [docs/CALCULATORS_SPEC.md](docs/CALCULATORS_SPEC.md) · [docs/UI_KIT_SPEC.md](docs/UI_KIT_SPEC.md) · [docs/PRODUCT_BUNDLE.md](docs/PRODUCT_BUNDLE.md)
+Specs: [docs/CALCULATORS_SPEC.md](docs/CALCULATORS_SPEC.md) · [docs/UI_KIT_SPEC.md](docs/UI_KIT_SPEC.md) · [docs/EMBED_GUIDE.md](docs/EMBED_GUIDE.md) · [docs/PRODUCT_BUNDLE.md](docs/PRODUCT_BUNDLE.md)
 
 ## Bundle status
 

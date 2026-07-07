@@ -48,7 +48,9 @@ Default currency is USD. Buyers can set the `<select>` default in HTML or pre-se
 
 - Live recalculation on input change
 - **Currency selector** — user picks currency; all inputs and outputs use that currency (no FX conversion)
-- Formatting via `Intl.NumberFormat` with a locale matched to each currency (e.g. EUR → `de-DE`, GBP → `en-GB`, JPY → zero decimals)
+- Formatting via `Intl.NumberFormat` with a locale matched to each currency (e.g. GBP → `en-GB`, JPY → zero decimals). EUR, SEK, NOK, and DKK use prefix symbol placement like USD (e.g. `€1,234`, `kr 1,234`)
+- **Shareable state** — inputs sync to URL query params + `localStorage` on change (URL wins on load); safe on `file://` via try/catch
+- `prefers-reduced-motion` respected (bar/slider transitions disabled)
 - Scoped CSS under unique root class; logic in IIFE, no globals
 - Mobile: single column below ~360px; stacks below 640px
 - Desktop (640px+): two-column split — results left, inputs right
@@ -70,7 +72,7 @@ Default currency is USD. Buyers can set the `<select>` default in HTML or pre-se
 | Loan term | select | 30 years | 15 / 20 / 30 |
 | Property tax (annual) | currency | $3,600 | Optional; ÷12 for monthly |
 | Home insurance (monthly) | currency | $120 | Optional |
-| HOA (monthly) | currency | $0 | Optional |
+| Service fees (monthly) | currency | $0 | Optional; HOA, condo fees, etc. |
 
 ### Outputs
 
@@ -81,13 +83,13 @@ Default currency is USD. Buyers can set the `<select>` default in HTML or pre-se
 | Front / back DTI | Combined stat row |
 | Guideline status | One-line text (color-coded) |
 
-Tax, insurance, HOA are **collapsed by default** — most users skip them initially.
+Tax, insurance, and service fees are **collapsed by default** — most users skip them initially.
 
 ### Logic
 
 - 28% front-end cap: max housing ≤ 28% of gross monthly income  
 - 36% back-end cap: housing ≤ (36% of gross monthly) − existing debts  
-- Affordable P&I = min(28% housing, 36% housing room) − tax − insurance − HOA  
+- Affordable P&I = min(28% housing, 36% housing room) − tax − insurance − service fees  
 - Loan amount from payment: standard amortization inverse  
 - Home price = loan amount + down payment  
 
@@ -96,6 +98,8 @@ Tax, insurance, HOA are **collapsed by default** — most users skip them initia
 ## 2. Airbnb Revenue Estimator
 
 **File:** `calculators/airbnb-revenue/airbnb-revenue.html`
+
+Optional white-label logo: set `PCK_AB_CONFIG.logoSrc` to an image URL before the script runs (see [EMBED_GUIDE.md](EMBED_GUIDE.md)).
 
 ### Inputs (visible by default)
 
@@ -139,7 +143,7 @@ Tax, insurance, HOA are **collapsed by default** — most users skip them initia
 
 | Field | Type | Default | Notes |
 |-------|------|---------|-------|
-| Vehicle price | currency | $32,000 | Sticker / sale price |
+| Asset price | currency | $32,000 | Sticker / sale price |
 | Down payment | currency | $5,000 | Cash down |
 | Trade-in value | currency | $0 | Optional |
 | Sales tax | % | 8.25 | Applied to taxable amount |
