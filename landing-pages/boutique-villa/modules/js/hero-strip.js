@@ -3,48 +3,49 @@ function BVHeroStrip(stripRoot, heroRoot) {
 
   var tracks = stripRoot.querySelectorAll(".bv-strip-track");
   var thumbs = heroRoot ? heroRoot.querySelectorAll("[data-hero-thumb]") : [];
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var raf = 0;
-  var last = 0;
+  var timer = null;
   var offsets = [];
   var speeds = [];
 
   tracks.forEach(function (track, i) {
-    var reverse = track.closest(".bv-strip-row--alt");
-    speeds[i] = reverse ? 0.028 : -0.035;
-    offsets[i] = reverse ? -(track.scrollWidth / 2) : 0;
-    track.style.willChange = "transform";
+    var reverse = !!track.closest(".bv-strip-row--alt");
+    speeds[i] = reverse ? 1.2 : -1.5;
+    offsets[i] = 0;
   });
 
-  function tick(now) {
-    if (!last) last = now;
-    var dt = Math.min(32, now - last);
-    last = now;
-
+  function step() {
     tracks.forEach(function (track, i) {
       var half = track.scrollWidth / 2;
-      if (half < 1) return;
-      offsets[i] += speeds[i] * dt;
+      if (half < 40) return;
+      offsets[i] += speeds[i];
       if (offsets[i] <= -half) offsets[i] += half;
       if (offsets[i] >= 0) offsets[i] -= half;
       track.style.transform = "translate3d(" + offsets[i] + "px,0,0)";
     });
-
-    raf = requestAnimationFrame(tick);
   }
 
   function start() {
-    if (reduced || raf) return;
-    last = 0;
+    if (timer) return;
     tracks.forEach(function (track, i) {
-      if (speeds[i] > 0) offsets[i] = -(track.scrollWidth / 2);
+      var half = track.scrollWidth / 2;
+      offsets[i] = speeds[i] > 0 && half > 40 ? -half : 0;
     });
-    raf = requestAnimationFrame(tick);
+    timer = setInterval(step, 16);
   }
 
-  function stop() {
-    if (raf) cancelAnimationFrame(raf);
-    raf = 0;
+  function boot() {
+    var tries = 0;
+    (function wait() {
+      var ready = true;
+      tracks.forEach(function (track) {
+        if (track.scrollWidth < 80) ready = false;
+      });
+      if (ready || tries > 40) start();
+      else {
+        tries += 1;
+        setTimeout(wait, 100);
+      }
+    })();
   }
 
   stripRoot.addEventListener("click", function (e) {
@@ -56,12 +57,9 @@ function BVHeroStrip(stripRoot, heroRoot) {
     thumbs[idx].click();
   });
 
-  document.addEventListener("visibilitychange", function () {
-    if (document.hidden) stop();
-    else start();
-  });
-
-  start();
+  if (document.readyState === "complete") boot();
+  else window.addEventListener("load", boot);
+  boot();
 }
 
 window.BVHeroStrip = BVHeroStrip;
