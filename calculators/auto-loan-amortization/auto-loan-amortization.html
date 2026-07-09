@@ -131,7 +131,7 @@
   }
   .pck-autoloan-calc *, .pck-autoloan-calc *::before, .pck-autoloan-calc *::after { box-sizing: border-box; }
 
-  .pck-autoloan-calc .al-shell { display: flex; flex-direction: column; }
+  .pck-autoloan-calc .al-shell { display: flex; flex-direction: column; min-width: 0; }
 
   .pck-autoloan-calc .al-result {
     padding: 1.5rem 1.375rem;
@@ -205,7 +205,7 @@
   .pck-autoloan-calc .al-split-prin { background: var(--w-prin); }
   .pck-autoloan-calc .al-split-int { background: var(--w-int); }
 
-  .pck-autoloan-calc .al-form { padding: 1.375rem; }
+  .pck-autoloan-calc .al-form { padding: 1.375rem; min-width: 0; }
   .pck-autoloan-calc .al-currency { margin-bottom: 1rem; }
   .pck-autoloan-calc .al-currency > label {
     display: block;
@@ -234,6 +234,7 @@
   .pck-autoloan-calc .al-terms {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 0.375rem;
     margin-bottom: 1.125rem;
   }
@@ -268,9 +269,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.875rem 0.75rem;
+    min-width: 0;
   }
   .pck-autoloan-calc .al-fields--stack { grid-template-columns: 1fr; }
-  .pck-autoloan-calc .al-field { display: flex; flex-direction: column; gap: 0.375rem; }
+  .pck-autoloan-calc .al-field { display: flex; flex-direction: column; gap: 0.375rem; min-width: 0; }
   .pck-autoloan-calc .al-field--wide { grid-column: 1 / -1; }
   .pck-autoloan-calc .al-field > span { font-size: 0.8125rem; font-weight: 500; color: var(--w-muted); }
 
@@ -421,8 +423,9 @@
     background: var(--w-surface);
   }
 
-  @media (max-width: 359px) {
+  @media (max-width: 479px) {
     .pck-autoloan-calc .al-fields { grid-template-columns: 1fr; }
+    .pck-autoloan-calc .al-form { padding: 1.125rem 1rem; }
     .pck-autoloan-calc .al-kpis { grid-template-columns: 1fr; gap: 0.625rem; }
     .pck-autoloan-calc .al-kpis > div { text-align: left; display: flex; justify-content: space-between; gap: 1rem; }
   }
@@ -433,6 +436,7 @@
       display: grid;
       grid-template-columns: minmax(0, 11fr) minmax(0, 13fr);
     }
+    .pck-autoloan-calc .al-fields { grid-template-columns: 1fr; }
     .pck-autoloan-calc .al-result {
       border-bottom: 0;
       border-right: 1px solid rgba(255,255,255,0.1);

@@ -7,10 +7,12 @@
   <meta name="x-apple-disable-message-reformatting">
   <title>PCK — Email Block 06: Footer</title>
   <style>
-    body { margin: 0; padding: 0; background-color: #f5f0eb; }
+    body { margin: 0; padding: 0; width: 100% !important; background-color: #f5f0eb; -webkit-text-size-adjust: 100%; }
+    .pck-email-fluid { width: 100% !important; max-width: 600px !important; }
     @media only screen and (max-width: 620px) {
-      .pck-pad { padding: 28px 20px !important; }
-      .pck-social td { padding: 0 10px !important; }
+      .pck-outer { padding-left: 8px !important; padding-right: 8px !important; }
+      .pck-pad { padding: 28px 16px !important; }
+      .pck-social td { padding: 0 8px !important; }
     }
   </style>
 </head>
@@ -19,8 +21,8 @@
 <!-- PASTE START — Block 06: Footer (social + legal) -->
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f5f0eb;">
   <tr>
-    <td align="center" style="padding:24px 12px;">
-      <table role="presentation" class="pck-email-footer" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;">
+    <td align="center" class="pck-outer" style="padding:24px 8px;">
+      <table role="presentation" class="pck-email-footer pck-email-fluid" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;">
 
         <tr>
           <td class="pck-pad" align="center" style="padding:32px 40px 20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;text-align:center;border-top:1px solid #e7e5e4;">
