@@ -6,6 +6,15 @@
   overflow: hidden;
 }
 
+.bv-carousel-viewport--snap {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bv-carousel-viewport--snap::-webkit-scrollbar { display: none; }
+
 .bv-carousel-track {
   display: flex;
   transition: transform 0.55s var(--bv-ease);
@@ -13,14 +22,8 @@
 }
 
 .bv-carousel-track--snap {
-  scroll-snap-type: x mandatory;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
   transition: none;
 }
-
-.bv-carousel-track--snap::-webkit-scrollbar { display: none; }
 
 .bv-carousel-slide {
   flex: 0 0 100%;

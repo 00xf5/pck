@@ -72,19 +72,24 @@ button {
 }
 
 .bv-reveal {
+  opacity: 1;
+  transform: none;
+}
+
+html.bv-js .bv-reveal {
   opacity: 0;
   transform: translateY(2rem);
   transition: opacity 0.75s var(--bv-ease), transform 0.75s var(--bv-ease);
 }
 
-.bv-reveal.is-visible {
+html.bv-js .bv-reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .bv-reveal {
+  html.bv-js .bv-reveal {
     opacity: 1;
     transform: none;
     transition: none;

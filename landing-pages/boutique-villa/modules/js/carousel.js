@@ -13,6 +13,7 @@ function BVCarousel(root) {
   var interval = parseInt(root.dataset.interval, 10) || 5000;
   var timer = null;
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   if (!track || total === 0) return;
 
@@ -74,8 +75,10 @@ function BVCarousel(root) {
     });
   });
 
-  root.addEventListener("mouseenter", stopAutoplay);
-  root.addEventListener("mouseleave", startAutoplay);
+  if (canHover) {
+    root.addEventListener("mouseenter", stopAutoplay);
+    root.addEventListener("mouseleave", startAutoplay);
+  }
 
   if (isSnap) {
     var scrollTimer;
