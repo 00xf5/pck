@@ -1,0 +1,121 @@
+@media (max-width: 960px) {
+  .bv-header {
+    grid-template-columns: 1fr auto;
+  }
+
+  .bv-nav-tab {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-top: 0;
+    padding: 0.75rem 1.25rem;
+    gap: 1.25rem;
+    border-radius: 999px;
+  }
+
+  .bv-hero-arrows { display: none; }
+
+  .bv-glass {
+    top: 0.75rem;
+    left: 0.75rem;
+    width: min(20rem, calc(100% - 1.5rem));
+  }
+
+  .bv-strip-item {
+    width: 4rem;
+    height: 2.6rem;
+  }
+
+  .bv-hero-progress {
+    left: 0.85rem;
+    bottom: 4.1rem;
+  }
+
+  .bv-cta-headline {
+    right: 0.85rem;
+    bottom: 4.75rem;
+    font-size: 1.35rem;
+    max-width: 11rem;
+  }
+
+  .bv-cta-tab {
+    padding: 0.9rem 1rem 0.9rem 1.65rem;
+    border-radius: 1.25rem 0 1.5rem 0;
+  }
+
+  .bv-thumbs { bottom: 3.85rem; }
+
+  .bv-split {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .bv-split-float {
+    right: 1rem;
+    width: 38%;
+  }
+
+  .bv-amenities {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bv-booking {
+    grid-template-columns: 1fr;
+    margin: 0 0.5rem;
+    padding: 2rem 1.35rem;
+  }
+
+  .bv-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .bv-footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 600px) {
+  .bv-page { padding: 0.5rem; }
+
+  .bv-frame {
+    padding: 0.75rem;
+    border-radius: 2rem;
+    min-height: auto;
+  }
+
+  .bv-hero {
+    min-height: 78vh;
+    border-radius: 1.35rem;
+  }
+
+  .bv-strip-item {
+    width: 3.5rem;
+    height: 2.35rem;
+  }
+
+  .bv-hero-progress {
+    bottom: 3.65rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .bv-thumb {
+    width: 3.75rem;
+    height: 2.35rem;
+  }
+
+  .bv-thumbs {
+    left: 0.65rem;
+    gap: 0.35rem;
+  }
+
+  .bv-section { padding: 3rem 0; }
+
+  .bv-amenities { grid-template-columns: 1fr 1fr; }
+
+  .bv-footer-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bv-hero-slide img,
+  .bv-carousel-track,
+  .bv-autoplay-fill,
+  .bv-strip-track { animation: none !important; transition: none !important; }
+}

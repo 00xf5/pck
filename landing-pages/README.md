@@ -1,15 +1,15 @@
 # Landing Page Templates (Phase 4)
 
-**Status:** Planned
+**Status:** 1 ready · 2 planned
 
-Distinct, highly aesthetic **static HTML/CSS** landing pages — one file (or self-contained folder) per template, no build step.
+Self-contained static folders — one template per directory, no build step.
 
 ## Templates
 
-| Template | Folder | Audience |
-|----------|--------|----------|
-| Boutique villa | [boutique-villa/](boutique-villa/) | Property showcase, direct booking |
-| Architecture studio | [architecture-studio/](architecture-studio/) | Portfolio, projects |
-| Premium agency | [premium-agency/](premium-agency/) | Services, case studies |
+| Template | Folder | Status |
+|----------|--------|--------|
+| Boutique villa | [boutique-villa/](boutique-villa/) | Ready |
+| Architecture studio | [architecture-studio/](architecture-studio/) | Planned |
+| Premium agency | [premium-agency/](premium-agency/) | Planned |
 
-See [../docs/PRODUCT_BUNDLE.md](../docs/PRODUCT_BUNDLE.md#phase-4--landing-page--portfolio-templates).
+See [../docs/LANDING_PAGE_SPEC.md](../docs/LANDING_PAGE_SPEC.md) and [../docs/PRODUCT_BUNDLE.md](../docs/PRODUCT_BUNDLE.md#phase-4--landing-page--portfolio-templates).

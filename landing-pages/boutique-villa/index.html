@@ -3,10 +3,432 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boutique Villa — Landing Page (Placeholder)</title>
+  <meta name="description" content="Maison Colline — curated boutique villa rentals in Tuscany and the Mediterranean.">
+  <title>Maison Colline — Boutique Villa Rentals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="modules/css/tokens.css">
+  <link rel="stylesheet" href="modules/css/base.css">
+  <link rel="stylesheet" href="modules/css/frame.css">
+  <link rel="stylesheet" href="modules/css/carousel.css">
+  <link rel="stylesheet" href="modules/css/sections.css">
+  <link rel="stylesheet" href="modules/css/responsive.css">
 </head>
 <body>
-  <!-- Phase 4 — not yet built. See README.md -->
-  <p style="font-family: system-ui, sans-serif; padding: 2rem; color: #6b7280;">Boutique villa landing page — coming soon.</p>
+
+  <div class="bv-page">
+    <div class="bv-frame">
+
+      <header class="bv-header">
+        <a href="#" class="bv-logo" aria-label="Maison Colline">
+          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <path d="M14 24C14 16.5 19.5 10 27 10C34.5 10 40 16.5 40 24C40 31.5 34.5 38 27 38C19.5 38 14 31.5 14 24Z" stroke="#0a0a0a" stroke-width="2.2"/>
+            <path d="M8 24C8 13.5 16.5 5 27 5C37.5 5 46 13.5 46 24" stroke="#0a0a0a" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M20 24C20 20 23 17 27 17C31 17 34 20 34 24" stroke="#0a0a0a" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <nav class="bv-nav-tab" aria-label="Primary">
+          <a href="#suites" class="bv-nav-link is-active"><span class="bv-nav-diamond" aria-hidden="true">◆</span> Villas</a>
+          <a href="#architecture" class="bv-nav-link">
+            Estates
+            <svg class="bv-nav-chevron" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </nav>
+        <a href="#contact" class="bv-contact">Contact Us</a>
+      </header>
+
+      <div class="bv-hero" data-hero>
+        <div class="bv-hero-carousel" aria-live="polite">
+          <div class="bv-hero-slide is-active" data-hero-slide>
+            <img src="assets/img/hero.jpg" alt="Villa lounge and pool at dusk" width="1920" height="1080" fetchpriority="high">
+          </div>
+          <div class="bv-hero-slide" data-hero-slide>
+            <img src="assets/img/01-exterior.jpg" alt="Villa exterior at golden hour" loading="lazy" width="1600" height="900">
+          </div>
+          <div class="bv-hero-slide" data-hero-slide>
+            <img src="assets/img/02-pool.jpg" alt="Pool terrace and glass facade" loading="lazy" width="1600" height="900">
+          </div>
+          <div class="bv-hero-slide" data-hero-slide>
+            <img src="assets/img/03-architecture.jpg" alt="Hillside villa architecture" loading="lazy" width="1600" height="900">
+          </div>
+          <div class="bv-hero-slide" data-hero-slide>
+            <img src="assets/img/04-interior.jpg" alt="Suite interior with natural light" loading="lazy" width="1600" height="900">
+          </div>
+        </div>
+        <div class="bv-hero-overlay" aria-hidden="true"></div>
+
+        <div class="bv-glass" data-hero-strip aria-label="Villa collection preview">
+          <p class="bv-strip-label">The collection</p>
+          <div class="bv-strip-row">
+            <div class="bv-strip-track" data-strip-track>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="0"><img src="assets/img/hero.jpg" alt="Casa delle Colline" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="1"><img src="assets/img/01-exterior.jpg" alt="Villa Aria" loading="lazy" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="2"><img src="assets/img/02-pool.jpg" alt="Limonaia Estate" loading="lazy" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="3"><img src="assets/img/03-architecture.jpg" alt="Masseria Bianca" loading="lazy" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="4"><img src="assets/img/05-stone.jpg" alt="Coastal retreat" loading="lazy" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="0"><img src="assets/img/06-courtyard.jpg" alt="Courtyard manor" loading="lazy" width="96" height="64"></a>
+            </div>
+          </div>
+          <div class="bv-strip-row bv-strip-row--alt">
+            <div class="bv-strip-track" data-strip-track>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="4"><img src="assets/img/04-interior.jpg" alt="Suite interior" loading="lazy" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="1"><img src="assets/img/05-stone.jpg" alt="Stone villa" loading="lazy" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="2"><img src="assets/img/06-courtyard.jpg" alt="Courtyard" loading="lazy" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="3"><img src="assets/img/02-pool.jpg" alt="Pool view" loading="lazy" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="0"><img src="assets/img/01-exterior.jpg" alt="Exterior" loading="lazy" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="1"><img src="assets/img/03-architecture.jpg" alt="Architecture" loading="lazy" width="96" height="64"></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bv-hero-progress" aria-label="Hero gallery position">
+          <div class="bv-hero-track"><span class="bv-hero-thumb" data-hero-thumb-dot></span></div>
+          <span class="bv-hero-counter" data-hero-counter>01  &gt;</span>
+        </div>
+
+        <div class="bv-thumbs" aria-label="Hero gallery previews">
+          <button type="button" class="bv-thumb is-active" data-hero-thumb aria-label="Slide 1">
+            <img src="assets/img/hero.jpg" alt="" width="120" height="80">
+          </button>
+          <button type="button" class="bv-thumb" data-hero-thumb aria-label="Slide 2">
+            <img src="assets/img/01-exterior.jpg" alt="" loading="lazy" width="120" height="80">
+          </button>
+          <button type="button" class="bv-thumb" data-hero-thumb aria-label="Slide 3">
+            <img src="assets/img/02-pool.jpg" alt="" loading="lazy" width="120" height="80">
+          </button>
+          <button type="button" class="bv-thumb" data-hero-thumb aria-label="Slide 4">
+            <img src="assets/img/03-architecture.jpg" alt="" loading="lazy" width="120" height="80">
+          </button>
+          <button type="button" class="bv-thumb" data-hero-thumb aria-label="Slide 5">
+            <img src="assets/img/04-interior.jpg" alt="" loading="lazy" width="120" height="80">
+          </button>
+        </div>
+
+        <div class="bv-hero-arrows">
+          <button type="button" class="bv-hero-arrow" data-hero-prev aria-label="Previous slide">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="bv-hero-arrow" data-hero-next aria-label="Next slide">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+        <h2 class="bv-cta-headline">Plan Your Private Stay</h2>
+        <div class="bv-cta-tab">
+          <a href="#reserve" class="bv-cta-btn">
+            Reserve
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <main class="bv-main">
+
+    <section class="bv-section" id="suites">
+      <div class="bv-wrap">
+        <div class="bv-section-head bv-reveal">
+          <div>
+            <span class="bv-tag">Collections</span>
+            <h2 class="bv-title">Boutique villas, hand-picked</h2>
+            <p class="bv-lead">Architectural stays with private pools, vineyard access, and direct rates.</p>
+          </div>
+        </div>
+
+        <div class="bv-carousel bv-suites" data-carousel data-autoplay="false">
+          <div class="bv-carousel-viewport">
+            <div class="bv-carousel-track bv-carousel-track--snap" data-carousel-track>
+              <article class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-suite-card">
+                  <div class="bv-suite-img">
+                    <img src="assets/img/01-exterior.jpg" alt="Casa delle Colline exterior" loading="lazy" width="800" height="600">
+                    <span class="bv-suite-badge">Editor's pick</span>
+                  </div>
+                  <div class="bv-suite-body">
+                    <h3>Casa delle Colline</h3>
+                    <p class="bv-suite-meta">Montepulciano · 6 suites · Pool &amp; vineyard</p>
+                    <div class="bv-suite-price"><strong>€285</strong><span>per night · direct rate</span></div>
+                  </div>
+                </div>
+              </article>
+              <article class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-suite-card">
+                  <div class="bv-suite-img">
+                    <img src="assets/img/02-pool.jpg" alt="Villa Aria pool terrace" loading="lazy" width="800" height="600">
+                    <span class="bv-suite-badge">New</span>
+                  </div>
+                  <div class="bv-suite-body">
+                    <h3>Villa Aria</h3>
+                    <p class="bv-suite-meta">Amalfi Coast · 4 bedrooms · Sea view</p>
+                    <div class="bv-suite-price"><strong>€420</strong><span>per night · direct rate</span></div>
+                  </div>
+                </div>
+              </article>
+              <article class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-suite-card">
+                  <div class="bv-suite-img">
+                    <img src="assets/img/05-stone.jpg" alt="Limonaia Estate" loading="lazy" width="800" height="600">
+                  </div>
+                  <div class="bv-suite-body">
+                    <h3>Limonaia Estate</h3>
+                    <p class="bv-suite-meta">Lake Como · 5 bedrooms · Private dock</p>
+                    <div class="bv-suite-price"><strong>€510</strong><span>per night · direct rate</span></div>
+                  </div>
+                </div>
+              </article>
+              <article class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-suite-card">
+                  <div class="bv-suite-img">
+                    <img src="assets/img/06-courtyard.jpg" alt="Masseria Bianca courtyard" loading="lazy" width="800" height="600">
+                  </div>
+                  <div class="bv-suite-body">
+                    <h3>Masseria Bianca</h3>
+                    <p class="bv-suite-meta">Puglia · 8 suites · Olive grove</p>
+                    <div class="bv-suite-price"><strong>€340</strong><span>per night · direct rate</span></div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="bv-carousel-controls">
+            <div class="bv-carousel-dots" role="tablist" aria-label="Villa slides">
+              <button type="button" class="bv-dot is-active" data-carousel-dot role="tab" aria-selected="true" aria-label="Slide 1"></button>
+              <button type="button" class="bv-dot" data-carousel-dot role="tab" aria-selected="false" aria-label="Slide 2"></button>
+              <button type="button" class="bv-dot" data-carousel-dot role="tab" aria-selected="false" aria-label="Slide 3"></button>
+              <button type="button" class="bv-dot" data-carousel-dot role="tab" aria-selected="false" aria-label="Slide 4"></button>
+            </div>
+            <div class="bv-carousel-btns">
+              <button type="button" class="bv-carousel-btn" data-carousel-prev aria-label="Previous villa"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button type="button" class="bv-carousel-btn" data-carousel-next aria-label="Next villa"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bv-section bv-section--sand" id="architecture">
+      <div class="bv-wrap">
+        <div class="bv-split">
+          <div class="bv-split-visual bv-reveal">
+            <img src="assets/img/03-architecture.jpg" alt="Contemporary villa architecture" loading="lazy" width="900" height="1125">
+            <div class="bv-split-float">
+              <img src="assets/img/04-interior.jpg" alt="Suite interior" loading="lazy" width="500" height="667">
+            </div>
+          </div>
+          <div class="bv-reveal">
+            <span class="bv-tag">Architecture</span>
+            <h2 class="bv-title">Design-led spaces you live in</h2>
+            <p class="bv-lead">Each property is selected for material quality — stone, oak, glass — and how daylight moves through the rooms.</p>
+            <ul class="bv-feature-list">
+              <li>Floor-to-ceiling glazing with vineyard or sea aspect</li>
+              <li>Locally sourced stone and hand-finished plaster</li>
+              <li>Furnished for stays, not staged for photographs</li>
+              <li>Pools integrated into the landscape</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bv-section" id="gallery">
+      <div class="bv-wrap">
+        <div class="bv-section-head bv-reveal">
+          <div>
+            <span class="bv-tag">Gallery</span>
+            <h2 class="bv-title">Inside the collection</h2>
+          </div>
+        </div>
+        <div class="bv-carousel bv-gallery-strip" data-carousel data-autoplay="true" data-interval="4500" data-loop="true">
+          <div class="bv-carousel-viewport">
+            <div class="bv-carousel-track bv-carousel-track--snap" data-carousel-track>
+              <figure class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-gallery-card">
+                  <img src="assets/img/02-pool.jpg" alt="Pool at sunset" loading="lazy" width="900" height="563">
+                  <figcaption>Pool terrace · Casa delle Colline</figcaption>
+                </div>
+              </figure>
+              <figure class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-gallery-card">
+                  <img src="assets/img/04-interior.jpg" alt="Living area" loading="lazy" width="900" height="563">
+                  <figcaption>Living room · Villa Aria</figcaption>
+                </div>
+              </figure>
+              <figure class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-gallery-card">
+                  <img src="assets/img/05-stone.jpg" alt="Stone villa facade" loading="lazy" width="900" height="563">
+                  <figcaption>Facade · Limonaia Estate</figcaption>
+                </div>
+              </figure>
+              <figure class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-gallery-card">
+                  <img src="assets/img/06-courtyard.jpg" alt="Courtyard dining" loading="lazy" width="900" height="563">
+                  <figcaption>Courtyard · Masseria Bianca</figcaption>
+                </div>
+              </figure>
+            </div>
+          </div>
+          <div class="bv-carousel-controls">
+            <div class="bv-autoplay-bar"><div class="bv-autoplay-fill" data-carousel-progress></div></div>
+            <div class="bv-carousel-dots" role="tablist">
+              <button type="button" class="bv-dot is-active" data-carousel-dot aria-label="Gallery 1"></button>
+              <button type="button" class="bv-dot" data-carousel-dot aria-label="Gallery 2"></button>
+              <button type="button" class="bv-dot" data-carousel-dot aria-label="Gallery 3"></button>
+              <button type="button" class="bv-dot" data-carousel-dot aria-label="Gallery 4"></button>
+            </div>
+            <div class="bv-carousel-btns">
+              <button type="button" class="bv-carousel-btn" data-carousel-prev aria-label="Previous"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button type="button" class="bv-carousel-btn" data-carousel-next aria-label="Next"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bv-section bv-section--sand">
+      <div class="bv-wrap">
+        <div class="bv-section-head bv-reveal">
+          <div>
+            <span class="bv-tag">Experience</span>
+            <h2 class="bv-title">On-site amenities</h2>
+            <p class="bv-lead">Pools, kitchens, cellars, and quiet corners — set up for week-long stays.</p>
+          </div>
+        </div>
+        <div class="bv-amenities bv-reveal">
+          <div class="bv-amenity">
+            <img src="assets/img/02-pool.jpg" alt="Private pool" loading="lazy" width="600" height="800">
+            <span>Private pool</span>
+          </div>
+          <div class="bv-amenity">
+            <img src="assets/img/04-interior.jpg" alt="Kitchen and dining" loading="lazy" width="600" height="800">
+            <span>Chef's kitchen</span>
+          </div>
+          <div class="bv-amenity">
+            <img src="assets/img/06-courtyard.jpg" alt="Courtyard and wine terrace" loading="lazy" width="600" height="800">
+            <span>Wine terrace</span>
+          </div>
+          <div class="bv-amenity">
+            <img src="assets/img/03-architecture.jpg" alt="Garden and terrace" loading="lazy" width="600" height="800">
+            <span>Garden terrace</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bv-section" id="reviews">
+      <div class="bv-wrap">
+        <div class="bv-section-head bv-reveal">
+          <div>
+            <span class="bv-tag">Guest reviews</span>
+            <h2 class="bv-title">From recent stays</h2>
+          </div>
+        </div>
+        <div class="bv-carousel bv-testimonials" data-carousel data-autoplay="true" data-interval="6000" data-loop="true">
+          <div class="bv-carousel-viewport">
+            <div class="bv-carousel-track" data-carousel-track>
+              <blockquote class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-quote">
+                  <p>Quiet rooms, good light, and a kitchen we actually cooked in. The pool was private enough that we never shared it with another group.</p>
+                  <footer><strong>Elena Marchetti</strong>June 2025 · Casa delle Colline</footer>
+                </div>
+              </blockquote>
+              <blockquote class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-quote">
+                  <p>Booking on the villa site was straightforward. Rate was lower than the platform listing, and check-in instructions arrived the night before.</p>
+                  <footer><strong>James &amp; Sarah Cole</strong>August 2025 · Villa Aria</footer>
+                </div>
+              </blockquote>
+              <blockquote class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-quote">
+                  <p>Stone exterior, warm interior. We added two nights after arriving — the dock and morning coffee on the terrace were hard to leave.</p>
+                  <footer><strong>Marco De Luca</strong>September 2025 · Limonaia Estate</footer>
+                </div>
+              </blockquote>
+            </div>
+          </div>
+          <div class="bv-carousel-controls">
+            <div class="bv-carousel-dots" role="tablist">
+              <button type="button" class="bv-dot is-active" data-carousel-dot aria-label="Review 1"></button>
+              <button type="button" class="bv-dot" data-carousel-dot aria-label="Review 2"></button>
+              <button type="button" class="bv-dot" data-carousel-dot aria-label="Review 3"></button>
+            </div>
+            <div class="bv-carousel-btns">
+              <button type="button" class="bv-carousel-btn" data-carousel-prev aria-label="Previous review"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button type="button" class="bv-carousel-btn" data-carousel-next aria-label="Next review"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bv-section" id="reserve">
+      <div class="bv-wrap">
+        <div class="bv-booking bv-reveal">
+          <div>
+            <h2>Book direct. Stay longer, pay less.</h2>
+            <p>No platform fees. Flexible arrival windows and late checkout on stays of three nights or more.</p>
+          </div>
+          <div class="bv-booking-actions">
+            <a href="#" class="bv-btn-light">Check availability</a>
+            <a href="#" class="bv-btn-ghost">Download guide</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bv-footer" id="contact">
+    <div class="bv-wrap">
+      <div class="bv-footer-grid bv-reveal">
+        <div class="bv-footer-brand">
+          <a href="#" class="bv-logo" aria-label="Maison Colline">
+            <svg viewBox="0 0 48 48" fill="none" width="36" height="36" aria-hidden="true">
+              <path d="M14 24C14 16.5 19.5 10 27 10C34.5 10 40 16.5 40 24C40 31.5 34.5 38 27 38C19.5 38 14 31.5 14 24Z" stroke="#0a0a0a" stroke-width="2.2"/>
+              <path d="M8 24C8 13.5 16.5 5 27 5C37.5 5 46 13.5 46 24" stroke="#0a0a0a" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <p>Boutique villa rentals across Italy and the Mediterranean. Direct booking, on-site concierge.</p>
+        </div>
+        <div class="bv-footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#suites">Villas</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+          </ul>
+        </div>
+        <div class="bv-footer-col">
+          <h4>Guest info</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Policies</a></li>
+            <li><a href="#">Concierge</a></li>
+          </ul>
+        </div>
+        <div class="bv-footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@maison.example">hello@maison.example</a></li>
+            <li><a href="tel:+390551234567">+39 055 123 4567</a></li>
+            <li><a href="#">Montepulciano SI</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bv-footer-bottom">
+        <span>© 2026 Maison Colline. All rights reserved.</span>
+        <span>Privacy · Terms · Cookies</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="modules/js/carousel.js"></script>
+  <script src="modules/js/hero.js"></script>
+  <script src="modules/js/hero-strip.js"></script>
+  <script src="modules/js/reveal.js"></script>
+  <script src="modules/js/main.js"></script>
 </body>
 </html>

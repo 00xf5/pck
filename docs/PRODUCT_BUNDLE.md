@@ -181,30 +181,29 @@ See [EMAIL_BLOCKS_SPEC.md](EMAIL_BLOCKS_SPEC.md) and [../email-templates/README.
 
 ## Phase 4 — Landing Page / Portfolio Templates
 
-**Status:** Planned
+**Status:** In progress (1 of 3 ready)
 
-Distinct, highly aesthetic **website landing layouts** shipped as **flat static HTML/CSS files** (no build step, no CMS required).
+Self-contained static folders per template. See [LANDING_PAGE_SPEC.md](LANDING_PAGE_SPEC.md).
 
-### Templates (from brief)
+| Template | Folder | Status |
+|----------|--------|--------|
+| Boutique villa | `landing-pages/boutique-villa/` | **Ready** |
+| Architecture studio | `landing-pages/architecture-studio/` | Planned |
+| Premium agency | `landing-pages/premium-agency/` | Planned |
 
-| Template | Audience |
-|----------|----------|
-| **Boutique villa** | Property showcase, direct booking positioning |
-| **Modern architecture studio** | Portfolio, projects, studio credibility |
-| **Premium digital service agency** | Services, case studies, premium positioning |
+### Boutique villa (ready)
 
-### Requirements
-
-- Static `index.html` + CSS (+ assets folder)
-- Strong typography, imagery, spacing — sell the *look*, not just structure
-- Responsive
-- Unbranded / easy to customize
+- `index.html` + `modules/css/` + `modules/js/` + `assets/img/`
+- Bundled local images (no remote URLs in deliverable)
+- Hero slider, collection strip, suite/gallery/review carousels
+- Responsive, reduced-motion support
 
 ### Open decisions (Phase 4)
 
-- [ ] Shared asset pipeline vs. fully self-contained folders per template
-- [ ] Include calculator/slider embed hooks in villa template
-- [ ] Font licensing (Google Fonts vs. system stack)
+- [x] Self-contained folder per template
+- [x] Modular CSS/JS under `modules/`
+- [ ] Booking slider embed slot in villa template
+- [ ] Font licensing note in README (Google Fonts vs system stack)
 
 ---
 
@@ -264,4 +263,4 @@ Order can shift; this doc preserves **what** each phase is regardless of **when*
 
 ---
 
-*Last updated: July 2026 — Phases 1–3 and 5 ready.*
+*Last updated: July 2026 — Phases 1–3, 5 ready; Phase 4 boutique villa ready.*
