@@ -116,7 +116,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bv-strip-track,
   .bv-autoplay-fill {
     animation: none !important;
   }

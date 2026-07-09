@@ -154,26 +154,11 @@
   gap: 0.4rem;
   width: max-content;
   padding: 0 0.85rem;
-  animation: bv-strip-scroll 28s linear infinite;
-  will-change: transform;
-  -webkit-animation: bv-strip-scroll 28s linear infinite;
+  transform: translate3d(0, 0, 0);
 }
 
 .bv-strip-row--alt .bv-strip-track {
-  animation-duration: 34s;
-  animation-direction: reverse;
-  -webkit-animation-duration: 34s;
-  -webkit-animation-direction: reverse;
-}
-
-@keyframes bv-strip-scroll {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-50%, 0, 0); }
-}
-
-@-webkit-keyframes bv-strip-scroll {
-  from { -webkit-transform: translate3d(0, 0, 0); }
-  to { -webkit-transform: translate3d(-50%, 0, 0); }
+  /* direction handled in JS */
 }
 
 .bv-strip-item {
