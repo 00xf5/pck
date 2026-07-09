@@ -1,16 +1,15 @@
 function BVHeroStrip(stripRoot, heroRoot) {
-  if (!stripRoot) return;
+  if (!stripRoot || !heroRoot) return;
 
-  var heroThumbs = heroRoot ? heroRoot.querySelectorAll("[data-hero-thumb]") : [];
+  var thumbs = heroRoot.querySelectorAll("[data-hero-thumb]");
 
   stripRoot.addEventListener("click", function (e) {
     var item = e.target.closest("[data-strip-item]");
-    if (!item || !heroRoot) return;
-    var idx = parseInt(item.dataset.heroIndex, 10);
-    if (isNaN(idx)) return;
+    if (!item) return;
+    var idx = parseInt(item.getAttribute("data-hero-index"), 10);
+    if (isNaN(idx) || !thumbs[idx]) return;
     e.preventDefault();
-    var thumb = heroThumbs[idx];
-    if (thumb) thumb.click();
+    thumbs[idx].click();
   });
 }
 

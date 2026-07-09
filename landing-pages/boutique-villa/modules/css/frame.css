@@ -87,31 +87,11 @@
   inset: 0;
   opacity: 0;
   z-index: 0;
-  animation: bv-hero-fade 25s infinite;
+  transition: opacity 0.8s ease;
   pointer-events: none;
 }
 
-.bv-hero-slide:nth-child(1) { animation-delay: 0s; }
-.bv-hero-slide:nth-child(2) { animation-delay: 5s; }
-.bv-hero-slide:nth-child(3) { animation-delay: 10s; }
-.bv-hero-slide:nth-child(4) { animation-delay: 15s; }
-.bv-hero-slide:nth-child(5) { animation-delay: 20s; }
-
-@keyframes bv-hero-fade {
-  0% { opacity: 0; z-index: 1; }
-  4% { opacity: 1; z-index: 1; }
-  20% { opacity: 1; z-index: 1; }
-  24% { opacity: 0; z-index: 0; }
-  100% { opacity: 0; z-index: 0; }
-}
-
-.bv-hero.is-paused .bv-hero-slide {
-  animation: none;
-  opacity: 0;
-  z-index: 0;
-}
-
-.bv-hero.is-paused .bv-hero-slide.is-active {
+.bv-hero-slide.is-active {
   opacity: 1;
   z-index: 1;
 }
@@ -120,7 +100,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.04);
 }
 
 .bv-hero-overlay {
@@ -205,19 +184,11 @@
   overflow: hidden;
   border: 1.5px solid rgba(255,255,255,0.2);
   opacity: 0.88;
-  transition: opacity 0.2s, border-color 0.2s;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .bv-strip-item:hover {
-    opacity: 1;
-    border-color: rgba(255,255,255,0.75);
-  }
-
-  .bv-glass:hover .bv-strip-track {
-    animation-play-state: paused;
-    -webkit-animation-play-state: paused;
-  }
+.bv-strip-item:hover {
+  opacity: 1;
+  border-color: rgba(255,255,255,0.75);
 }
 
 .bv-strip-item img {
