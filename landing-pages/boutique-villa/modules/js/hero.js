@@ -7,15 +7,13 @@ function BVHero(root) {
   var thumbDot = root.querySelector("[data-hero-thumb-dot]");
   var prevBtn = root.querySelector("[data-hero-prev]");
   var nextBtn = root.querySelector("[data-hero-next]");
-  var index = 0;
   var total = slides.length;
-  var interval = 5000;
-  var timer = null;
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  var touchStartX = 0;
-  var touchStartY = 0;
-  var swiping = false;
+  var index = 0;
+  var cycleMs = 25000;
+  var stepMs = 5000;
+  var syncTimer = null;
+  var resumeTimer = null;
+  var paused = false;
 
   if (total === 0) return;
 
@@ -23,89 +21,95 @@ function BVHero(root) {
     return n < 10 ? "0" + n : String(n);
   }
 
-  function stop() {
-    if (timer) {
-      clearInterval(timer);
-      timer = null;
-    }
-  }
-
-  function start() {
-    stop();
-    if (reduced || total < 2) return;
-    timer = setInterval(next, interval);
-  }
-
-  function goTo(i) {
+  function paintChrome(i) {
     index = ((i % total) + total) % total;
-    slides.forEach(function (s, n) {
-      s.classList.toggle("is-active", n === index);
-    });
     thumbs.forEach(function (t, n) {
       t.classList.toggle("is-active", n === index);
+    });
+    slides.forEach(function (s, n) {
+      s.classList.toggle("is-active", n === index);
     });
     if (counter) counter.textContent = pad(index + 1) + "  >";
     if (thumbDot && total > 1) {
       thumbDot.style.left = (index / (total - 1)) * 100 + "%";
     }
-    start();
   }
 
-  function next() { goTo(index + 1); }
-  function prev() { goTo(index - 1); }
+  function syncFromClock() {
+    if (paused) return;
+    var i = Math.floor((Date.now() / stepMs) % total);
+    paintChrome(i);
+  }
+
+  function startSync() {
+    stopSync();
+    syncFromClock();
+    syncTimer = setInterval(syncFromClock, 250);
+  }
+
+  function stopSync() {
+    if (syncTimer) clearInterval(syncTimer);
+    syncTimer = null;
+  }
+
+  function pauseCss() {
+    paused = true;
+    root.classList.add("is-paused");
+    stopSync();
+    if (resumeTimer) clearTimeout(resumeTimer);
+  }
+
+  function resumeCss() {
+    paused = false;
+    root.classList.remove("is-paused");
+    startSync();
+  }
+
+  function jump(i) {
+    pauseCss();
+    paintChrome(i);
+    resumeTimer = setTimeout(resumeCss, 8000);
+  }
 
   thumbs.forEach(function (thumb, i) {
     thumb.addEventListener("click", function (e) {
-      e.stopPropagation();
-      goTo(i);
+      e.preventDefault();
+      jump(i);
     });
   });
 
   if (prevBtn) {
     prevBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      prev();
+      e.preventDefault();
+      jump(index - 1);
     });
   }
   if (nextBtn) {
     nextBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      next();
+      e.preventDefault();
+      jump(index + 1);
     });
   }
 
-  if (canHover) {
-    root.addEventListener("mouseenter", stop);
-    root.addEventListener("mouseleave", start);
-  }
-
+  var tx = 0;
+  var ty = 0;
   root.addEventListener("touchstart", function (e) {
     if (!e.changedTouches || !e.changedTouches[0]) return;
     if (e.target.closest("a, button, [data-hero-strip]")) return;
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-    swiping = true;
+    tx = e.changedTouches[0].screenX;
+    ty = e.changedTouches[0].screenY;
   }, { passive: true });
 
   root.addEventListener("touchend", function (e) {
-    if (!swiping || !e.changedTouches || !e.changedTouches[0]) return;
-    swiping = false;
-    var dx = e.changedTouches[0].screenX - touchStartX;
-    var dy = e.changedTouches[0].screenY - touchStartY;
-    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) {
-      start();
-      return;
-    }
-    if (dx > 0) prev();
-    else next();
+    if (!e.changedTouches || !e.changedTouches[0]) return;
+    if (e.target.closest("a, button, [data-hero-strip]")) return;
+    var dx = e.changedTouches[0].screenX - tx;
+    var dy = e.changedTouches[0].screenY - ty;
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+    jump(dx > 0 ? index - 1 : index + 1);
   }, { passive: true });
 
-  document.addEventListener("visibilitychange", function () {
-    if (document.hidden) stop();
-    else start();
-  });
-
-  goTo(0);
+  startSync();
 }
 
 window.BVHero = BVHero;

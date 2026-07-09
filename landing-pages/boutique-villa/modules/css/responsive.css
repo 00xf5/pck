@@ -141,9 +141,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bv-hero-slide.is-active img,
   .bv-carousel-track,
   .bv-autoplay-fill,
   .bv-strip-track { animation: none !important; transition: none !important; }
-  .bv-hero-slide.is-active img { transform: scale(1.04); }
+  .bv-hero-slide {
+    animation: none !important;
+    opacity: 0;
+  }
+  .bv-hero-slide.is-active {
+    opacity: 1;
+    z-index: 1;
+  }
 }
