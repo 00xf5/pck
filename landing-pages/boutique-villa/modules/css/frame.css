@@ -175,18 +175,26 @@
   gap: 0.4rem;
   width: max-content;
   padding: 0 0.85rem;
-  animation: bv-strip-scroll 32s linear infinite;
+  animation: bv-strip-scroll 28s linear infinite;
   will-change: transform;
+  -webkit-animation: bv-strip-scroll 28s linear infinite;
 }
 
 .bv-strip-row--alt .bv-strip-track {
-  animation-duration: 38s;
+  animation-duration: 34s;
   animation-direction: reverse;
+  -webkit-animation-duration: 34s;
+  -webkit-animation-direction: reverse;
 }
 
 @keyframes bv-strip-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+@-webkit-keyframes bv-strip-scroll {
+  from { -webkit-transform: translate3d(0, 0, 0); }
+  to { -webkit-transform: translate3d(-50%, 0, 0); }
 }
 
 .bv-strip-item {
@@ -197,13 +205,19 @@
   overflow: hidden;
   border: 1.5px solid rgba(255,255,255,0.2);
   opacity: 0.88;
-  transition: opacity 0.2s, transform 0.2s, border-color 0.2s;
+  transition: opacity 0.2s, border-color 0.2s;
 }
 
-.bv-strip-item:hover {
-  opacity: 1;
-  transform: scale(1.04);
-  border-color: rgba(255,255,255,0.75);
+@media (hover: hover) and (pointer: fine) {
+  .bv-strip-item:hover {
+    opacity: 1;
+    border-color: rgba(255,255,255,0.75);
+  }
+
+  .bv-glass:hover .bv-strip-track {
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+  }
 }
 
 .bv-strip-item img {
