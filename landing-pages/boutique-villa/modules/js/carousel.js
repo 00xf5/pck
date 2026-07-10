@@ -7,14 +7,17 @@ function BVCarousel(root) {
   var prevBtn = root.querySelector("[data-carousel-prev]");
   var nextBtn = root.querySelector("[data-carousel-next]");
   var progress = root.querySelector("[data-carousel-progress]");
+  var viewport = root.querySelector(".bv-carousel-viewport");
   var index = 0;
   var total = slides.length;
   var autoplay = root.dataset.autoplay === "true";
   var interval = parseInt(root.dataset.interval, 10) || 5000;
   var timer = null;
   var isSnap = track && track.classList.contains("bv-carousel-track--snap");
+  var scroller = isSnap ? viewport : null;
 
   if (!track || total === 0) return;
+  if (isSnap && !scroller) return;
 
   function goTo(i) {
     var loop = root.dataset.loop === "true";
@@ -24,10 +27,14 @@ function BVCarousel(root) {
 
     if (isSnap) {
       var slide = slides[index];
-      if (slide) track.scrollTo({ left: slide.offsetLeft, behavior: "smooth" });
-    } else {
-      var view = root.querySelector(".bv-carousel-viewport");
-      if (view) track.style.transform = "translateX(-" + index * view.offsetWidth + "px)";
+      if (slide) {
+        scroller.scrollTo({
+          left: slide.offsetLeft - track.offsetLeft,
+          behavior: "smooth"
+        });
+      }
+    } else if (viewport) {
+      track.style.transform = "translateX(-" + index * viewport.offsetWidth + "px)";
     }
 
     dots.forEach(function (dot, n) {
@@ -70,14 +77,14 @@ function BVCarousel(root) {
 
   if (isSnap) {
     var scrollTimer;
-    track.addEventListener("scroll", function () {
+    scroller.addEventListener("scroll", function () {
       clearTimeout(scrollTimer);
       scrollTimer = setTimeout(function () {
-        var left = track.scrollLeft;
+        var left = scroller.scrollLeft;
         var closest = 0;
         var min = Infinity;
         slides.forEach(function (slide, i) {
-          var dist = Math.abs(slide.offsetLeft - left);
+          var dist = Math.abs((slide.offsetLeft - track.offsetLeft) - left);
           if (dist < min) { min = dist; closest = i; }
         });
         if (closest !== index) {
