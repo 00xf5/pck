@@ -32,11 +32,7 @@
 | Badge pills           | [components/badge-pills/badge-pills.html](components/badge-pills/badge-pills.html)         |
 
 
-Tokens: [tokens/DESIGN_TOKENS.md](tokens/DESIGN_TOKENS.md)
-
 ## Embed
-
-See **[docs/EMBED_GUIDE.md](../docs/EMBED_GUIDE.md)** for load order, multi-component pages, and production tips.
 
 Paste the `#pck-*` block into your page. Load Tailwind CDN **once** in `<head>`. Merge `tailwind.config` when combining components.
 

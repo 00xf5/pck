@@ -3,10 +3,290 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Architecture Studio — Landing Page (Placeholder)</title>
+  <meta name="description" content="HALDEN — architecture and interiors. Selected works across residential, cultural, and hospitality.">
+  <title>HALDEN — Architecture Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="modules/css/tokens.css">
+  <link rel="stylesheet" href="modules/css/base.css">
+  <link rel="stylesheet" href="modules/css/header-hero.css">
+  <link rel="stylesheet" href="modules/css/works.css">
+  <link rel="stylesheet" href="modules/css/sections.css">
+  <link rel="stylesheet" href="modules/css/responsive.css">
 </head>
 <body>
-  <!-- Phase 4 — not yet built. See README.md -->
-  <p style="font-family: system-ui, sans-serif; padding: 2rem; color: #6b7280;">Architecture studio landing page — coming soon.</p>
+  <header class="as-header" data-as-header>
+    <a href="#" class="as-logo">Halden</a>
+    <nav class="as-nav" id="as-nav" aria-label="Primary">
+      <a href="#works">Works</a>
+      <a href="#approach">Approach</a>
+      <a href="#studio">Studio</a>
+      <a href="#enquire">Enquire</a>
+    </nav>
+    <div class="as-header-actions">
+      <a href="#enquire" class="as-btn as-btn--header">Enquire</a>
+      <button type="button" class="as-menu-btn" data-as-menu aria-expanded="false" aria-controls="as-nav" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="as-hero" data-as-hero aria-label="Featured work">
+      <div class="as-hero-media">
+        <div class="as-hero-slide is-active" data-as-hero-slide>
+          <img src="assets/img/hero-01.jpg" alt="Concrete residence with courtyard light" width="1600" height="1000" fetchpriority="high">
+        </div>
+        <div class="as-hero-slide" data-as-hero-slide>
+          <img src="assets/img/hero-02.jpg" alt="Gallery volume with stone facade" width="1600" height="1000">
+        </div>
+        <div class="as-hero-slide" data-as-hero-slide>
+          <img src="assets/img/hero-03.jpg" alt="Interior with oak and glass" width="1600" height="1000">
+        </div>
+        <div class="as-hero-shade" aria-hidden="true"></div>
+      </div>
+      <div class="as-hero-content">
+        <p class="as-brand" aria-label="Halden">
+          <span>Hal</span><span class="as-brand-slash">/</span><span>den</span>
+        </p>
+        <p class="as-hero-line">Spaces measured in light, material, and use.</p>
+        <p class="as-hero-sub">Architecture and interiors for residential, cultural, and hospitality clients.</p>
+        <div class="as-hero-actions">
+          <a href="#enquire" class="as-btn as-btn--light">Start a project</a>
+        </div>
+      </div>
+      <div class="as-hero-stamp" aria-hidden="true">EST. 2008</div>
+      <div class="as-hero-index" data-as-hero-index aria-hidden="true">01 / 03</div>
+    </section>
+
+    <div class="as-marquee" aria-hidden="true">
+      <div class="as-marquee-track">
+        <span>Concrete · Timber · Glass · Light · Site · Draw · Build · Concrete · Timber · Glass · Light · Site · Draw · Build ·</span>
+        <span>Concrete · Timber · Glass · Light · Site · Draw · Build · Concrete · Timber · Glass · Light · Site · Draw · Build ·</span>
+      </div>
+    </div>
+
+    <section class="as-section" id="works">
+      <div class="as-wrap">
+        <div class="as-section-head as-reveal">
+          <div>
+            <span class="as-tag">Selected works</span>
+            <h2 class="as-title">Projects <em>in use</em></h2>
+          </div>
+          <div class="as-filters" data-as-filters role="tablist" aria-label="Filter projects">
+            <button type="button" class="as-filter is-active" data-as-filter="all" role="tab" aria-selected="true">All</button>
+            <button type="button" class="as-filter" data-as-filter="residential" role="tab" aria-selected="false">Residential</button>
+            <button type="button" class="as-filter" data-as-filter="cultural" role="tab" aria-selected="false">Cultural</button>
+            <button type="button" class="as-filter" data-as-filter="hospitality" role="tab" aria-selected="false">Hospitality</button>
+          </div>
+        </div>
+
+        <div class="as-works-grid" data-as-grid>
+          <button type="button" class="as-project" data-as-project data-type="residential" data-title="Courtyard House" data-location="Portland, OR" data-year="2024" data-blurb="A single-family home organized around a planted court. Concrete shell, oak joinery, and north light for the studio wing." data-image="assets/img/work-01.jpg">
+            <img src="assets/img/work-01.jpg" alt="Courtyard House exterior" loading="lazy" width="1200" height="900">
+            <span class="as-project-num">01</span>
+            <span class="as-project-meta"><strong>Courtyard House</strong><span>Residential · 2024</span></span>
+          </button>
+
+          <button type="button" class="as-project" data-as-project data-type="cultural" data-title="River Gallery" data-location="Seattle, WA" data-year="2023" data-blurb="Adaptive reuse of a warehouse into a daylight-controlled gallery. Steel frame retained; new timber mezzanine for education." data-image="assets/img/work-02.jpg">
+            <img src="assets/img/work-02.jpg" alt="River Gallery facade" loading="lazy" width="1200" height="900">
+            <span class="as-project-num">02</span>
+            <span class="as-project-meta"><strong>River Gallery</strong><span>Cultural · 2023</span></span>
+          </button>
+
+          <button type="button" class="as-project" data-as-project data-type="hospitality" data-title="Harbor Inn" data-location="Astoria, OR" data-year="2025" data-blurb="Twelve-room inn on the waterfront. Compact rooms, shared lounge, and a kitchen that opens to the dock." data-image="assets/img/work-03.jpg">
+            <img src="assets/img/work-03.jpg" alt="Harbor Inn courtyard" loading="lazy" width="1200" height="900">
+            <span class="as-project-num">03</span>
+            <span class="as-project-meta"><strong>Harbor Inn</strong><span>Hospitality · 2025</span></span>
+          </button>
+
+          <button type="button" class="as-project" data-as-project data-type="residential" data-title="Ridge Cabin" data-location="Bend, OR" data-year="2022" data-blurb="A compact cabin with a long window wall to the ridge. CLT structure, blackened cedar, and a single open living volume." data-image="assets/img/work-04.jpg">
+            <img src="assets/img/work-04.jpg" alt="Ridge Cabin terrace" loading="lazy" width="1200" height="900">
+            <span class="as-project-num">04</span>
+            <span class="as-project-meta"><strong>Ridge Cabin</strong><span>Residential · 2022</span></span>
+          </button>
+
+          <button type="button" class="as-project" data-as-project data-type="cultural" data-title="Library Annex" data-location="Eugene, OR" data-year="2024" data-blurb="Reading rooms and a community hall added to a civic library. Brick matches the original; interiors are quiet and bright." data-image="assets/img/work-05.jpg">
+            <img src="assets/img/work-05.jpg" alt="Library Annex interior" loading="lazy" width="1200" height="900">
+            <span class="as-project-num">05</span>
+            <span class="as-project-meta"><strong>Library Annex</strong><span>Cultural · 2024</span></span>
+          </button>
+
+          <button type="button" class="as-project" data-as-project data-type="hospitality" data-title="Stone Lodge" data-location="Hood River, OR" data-year="2023" data-blurb="Restaurant and guest suites set into a basalt slope. Local stone, deep eaves, and a dining room that faces the gorge." data-image="assets/img/work-06.jpg">
+            <img src="assets/img/work-06.jpg" alt="Stone Lodge architecture" loading="lazy" width="1200" height="900">
+            <span class="as-project-num">06</span>
+            <span class="as-project-meta"><strong>Stone Lodge</strong><span>Hospitality · 2023</span></span>
+          </button>
+        </div>
+        <p class="as-works-empty" data-as-empty>No projects in this category yet.</p>
+      </div>
+    </section>
+
+    <div class="as-viewer" data-as-viewer aria-hidden="true">
+      <button type="button" class="as-viewer-backdrop" data-as-viewer-close aria-label="Close project"></button>
+      <div class="as-viewer-panel" role="dialog" aria-modal="true" aria-labelledby="as-viewer-title">
+        <button type="button" class="as-viewer-close" data-as-viewer-close aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="as-viewer-media">
+          <img src="assets/img/work-01.jpg" alt="" data-as-viewer-image width="1200" height="900">
+        </div>
+        <div class="as-viewer-body">
+          <p class="as-viewer-kicker" data-as-viewer-type>Residential</p>
+          <h3 id="as-viewer-title" data-as-viewer-title>Project</h3>
+          <p class="as-viewer-meta" data-as-viewer-meta></p>
+          <p class="as-viewer-blurb" data-as-viewer-blurb></p>
+          <div class="as-viewer-nav">
+            <button type="button" class="as-btn as-btn--ghost" data-as-viewer-prev>Prev</button>
+            <button type="button" class="as-btn" data-as-viewer-next>Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="as-section as-approach" id="approach">
+      <div class="as-wrap">
+        <div class="as-section-head as-reveal">
+          <div>
+            <span class="as-tag">Approach</span>
+            <h2 class="as-title">How we <em>work</em></h2>
+            <p class="as-lead">Clear stages, few meetings that matter, drawings you can build from.</p>
+          </div>
+        </div>
+        <ol class="as-steps">
+          <li class="as-step as-reveal">
+            <span class="as-step-num">01</span>
+            <h3>Listen</h3>
+            <p>Site walk, brief, budget, and constraints. We write the problem before we draw.</p>
+          </li>
+          <li class="as-step as-reveal">
+            <span class="as-step-num">02</span>
+            <h3>Draw</h3>
+            <p>Massing, materials, and light studies. Options stay few so decisions stay sharp.</p>
+          </li>
+          <li class="as-step as-reveal">
+            <span class="as-step-num">03</span>
+            <h3>Build</h3>
+            <p>Construction documents and site support through completion — details that hold up.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="as-section" id="studio">
+      <div class="as-wrap">
+        <div class="as-studio-grid">
+          <div class="as-studio-visual as-reveal">
+            <img src="assets/img/studio.jpg" alt="HALDEN studio workspace" loading="lazy" width="1200" height="1500">
+          </div>
+          <div class="as-reveal">
+            <span class="as-tag">Studio</span>
+            <h2 class="as-title">A small practice, <em>built for making</em></h2>
+            <p class="as-lead">HALDEN is a Pacific Northwest studio focused on durable buildings and quiet interiors. We take on fewer projects so each one gets full attention.</p>
+            <div class="as-stats" data-as-stats>
+              <div class="as-stat">
+                <strong data-as-count data-to="18">0</strong>
+                <span>Years</span>
+              </div>
+              <div class="as-stat">
+                <strong data-as-count data-to="64">0</strong>
+                <span>Projects</span>
+              </div>
+              <div class="as-stat">
+                <strong data-as-count data-to="11">0</strong>
+                <span>Cities</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="as-section as-enquire" id="enquire">
+      <div class="as-wrap">
+        <div class="as-enquire-grid">
+          <div class="as-reveal">
+            <span class="as-tag">Enquire</span>
+            <h2 class="as-title">Tell us about <em>the site</em></h2>
+            <p class="as-lead">Share the location, program, and timing. We reply within two business days.</p>
+            <ul class="as-enquire-points">
+              <li>Feasibility and concept studies</li>
+              <li>Full architectural services</li>
+              <li>Interiors with the building team</li>
+            </ul>
+          </div>
+          <form class="as-form as-reveal" data-as-form novalidate>
+            <div class="as-form-row">
+              <div class="as-field">
+                <label for="as-name">Name</label>
+                <input type="text" id="as-name" name="name" autocomplete="name" required placeholder="Your name">
+              </div>
+              <div class="as-field">
+                <label for="as-email">Email</label>
+                <input type="email" id="as-email" name="email" autocomplete="email" required placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="as-field">
+              <label for="as-type">Project type</label>
+              <select id="as-type" name="type">
+                <option value="residential">Residential</option>
+                <option value="cultural">Cultural</option>
+                <option value="hospitality">Hospitality</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="as-field">
+              <label for="as-message">Message</label>
+              <textarea id="as-message" name="message" rows="4" required placeholder="Site, program, timeline…"></textarea>
+            </div>
+            <button type="submit" class="as-btn as-form-submit">Send enquiry</button>
+            <p class="as-form-status" data-as-form-status role="status" aria-live="polite" hidden></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="as-footer">
+    <div class="as-wrap">
+      <div class="as-footer-grid as-reveal">
+        <div class="as-footer-brand">
+          <a href="#" class="as-logo">Halden</a>
+          <p>Architecture and interiors. Pacific Northwest, projects elsewhere by invitation.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#works">Works</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#studio">Studio</a></li>
+            <li><a href="#enquire">Enquire</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:studio@halden.example">studio@halden.example</a></li>
+            <li><a href="tel:+15035550192">+1 503 555 0192</a></li>
+            <li>Portland, OR</li>
+          </ul>
+        </div>
+      </div>
+      <div class="as-footer-bottom">
+        <span>© 2026 HALDEN. All rights reserved.</span>
+        <span>Privacy · Terms</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="modules/js/hero.js"></script>
+  <script src="modules/js/filter.js"></script>
+  <script src="modules/js/viewer.js"></script>
+  <script src="modules/js/counters.js"></script>
+  <script src="modules/js/reveal.js"></script>
+  <script src="modules/js/contact.js"></script>
+  <script src="modules/js/menu.js"></script>
+  <script src="modules/js/main.js"></script>
 </body>
 </html>

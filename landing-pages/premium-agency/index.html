@@ -3,10 +3,269 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premium Agency — Landing Page (Placeholder)</title>
+  <meta name="description" content="NORTH — premium digital agency. Brand, product, and growth for ambitious companies.">
+  <title>NORTH — Digital Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="modules/css/tokens.css">
+  <link rel="stylesheet" href="modules/css/base.css">
+  <link rel="stylesheet" href="modules/css/header-hero.css">
+  <link rel="stylesheet" href="modules/css/sections.css">
+  <link rel="stylesheet" href="modules/css/responsive.css">
 </head>
 <body>
-  <!-- Phase 4 — not yet built. See README.md -->
-  <p style="font-family: system-ui, sans-serif; padding: 2rem; color: #6b7280;">Premium agency landing page — coming soon.</p>
+  <header class="pa-header" data-pa-header>
+    <a href="#" class="pa-logo">North<span>.</span></a>
+    <nav class="pa-nav" id="pa-nav" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#studio">Studio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="pa-header-actions">
+      <a href="#contact" class="pa-btn pa-btn--header">Start a project</a>
+      <button type="button" class="pa-menu-btn" data-pa-menu aria-expanded="false" aria-controls="pa-nav" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="pa-hero" aria-label="Hero">
+      <div class="pa-hero-bg" aria-hidden="true">
+        <img src="assets/img/hero.jpg" alt="" width="1600" height="1000" fetchpriority="high">
+        <div class="pa-hero-shade"></div>
+      </div>
+      <div class="pa-hero-inner">
+        <p class="pa-hero-kicker">Digital agency · Est. 2016</p>
+        <h1 class="pa-hero-title">We build brands that <em>move</em></h1>
+        <div class="pa-hero-row">
+          <p class="pa-hero-text">Strategy, identity, and product experiences for companies that refuse to look average online.</p>
+          <div class="pa-hero-actions">
+            <a href="#work" class="pa-btn">See the work</a>
+            <a href="#contact" class="pa-btn pa-btn--ghost">Book a call</a>
+          </div>
+        </div>
+        <div class="pa-hero-meta">
+          <div><span>Selected</span><strong data-pa-count data-to="48">0</strong></div>
+          <div><span>Years</span><strong data-pa-count data-to="10">0</strong></div>
+          <div><span>Markets</span><strong data-pa-count data-to="14">0</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="pa-marquee" aria-hidden="true">
+      <div class="pa-marquee-track">
+        <span>Aether · Volt · Harbor · Lumen · Field · <b>North</b> · Cascade · Orbit · Prism · Nova · Aether · Volt · Harbor · Lumen · Field · <b>North</b> · Cascade · Orbit · Prism · Nova ·</span>
+        <span>Aether · Volt · Harbor · Lumen · Field · <b>North</b> · Cascade · Orbit · Prism · Nova · Aether · Volt · Harbor · Lumen · Field · <b>North</b> · Cascade · Orbit · Prism · Nova ·</span>
+      </div>
+    </div>
+
+    <section class="pa-section" id="work">
+      <div class="pa-wrap">
+        <div class="pa-section-head pa-reveal">
+          <div>
+            <span class="pa-tag">Selected work</span>
+            <h2 class="pa-title">Recent launches</h2>
+          </div>
+          <p class="pa-lead">Drag or scroll sideways. Every case is a full engagement — brand, site, and product.</p>
+        </div>
+        <div class="pa-runway-wrap pa-reveal">
+          <div class="pa-runway" data-pa-runway>
+            <article class="pa-case">
+              <img src="assets/img/case-01.jpg" alt="Aether rebrand" loading="lazy" width="900" height="700">
+              <div class="pa-case-body">
+                <span class="pa-case-num">01 — Brand</span>
+                <h3>Aether</h3>
+                <p>Identity system and launch site for a climate-tech platform.</p>
+              </div>
+            </article>
+            <article class="pa-case">
+              <img src="assets/img/case-02.jpg" alt="Volt product" loading="lazy" width="900" height="700">
+              <div class="pa-case-body">
+                <span class="pa-case-num">02 — Product</span>
+                <h3>Volt</h3>
+                <p>App redesign and design system for a fintech wallet.</p>
+              </div>
+            </article>
+            <article class="pa-case">
+              <img src="assets/img/case-03.jpg" alt="Harbor campaign" loading="lazy" width="900" height="700">
+              <div class="pa-case-body">
+                <span class="pa-case-num">03 — Campaign</span>
+                <h3>Harbor</h3>
+                <p>Campaign site and motion kit for a hospitality group.</p>
+              </div>
+            </article>
+            <article class="pa-case">
+              <img src="assets/img/case-04.jpg" alt="Lumen website" loading="lazy" width="900" height="700">
+              <div class="pa-case-body">
+                <span class="pa-case-num">04 — Web</span>
+                <h3>Lumen</h3>
+                <p>Marketing site and CMS for an architecture studio.</p>
+              </div>
+            </article>
+            <article class="pa-case">
+              <img src="assets/img/case-05.jpg" alt="Field commerce" loading="lazy" width="900" height="700">
+              <div class="pa-case-body">
+                <span class="pa-case-num">05 — Commerce</span>
+                <h3>Field</h3>
+                <p>E-commerce rebuild with custom PDP storytelling.</p>
+              </div>
+            </article>
+          </div>
+          <p class="pa-runway-hint">Drag to explore →</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pa-section" id="services">
+      <div class="pa-wrap">
+        <div class="pa-section-head pa-reveal">
+          <div>
+            <span class="pa-tag">Capabilities</span>
+            <h2 class="pa-title">What we ship</h2>
+          </div>
+        </div>
+        <div class="pa-services pa-reveal">
+          <a href="#contact" class="pa-service">
+            <span class="pa-service-num">01</span>
+            <div>
+              <h3>Brand</h3>
+              <p>Naming, identity, voice, and systems that scale across every touchpoint.</p>
+            </div>
+            <span class="pa-service-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#contact" class="pa-service">
+            <span class="pa-service-num">02</span>
+            <div>
+              <h3>Product</h3>
+              <p>UX, UI, and design systems for apps that feel inevitable to use.</p>
+            </div>
+            <span class="pa-service-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#contact" class="pa-service">
+            <span class="pa-service-num">03</span>
+            <div>
+              <h3>Web</h3>
+              <p>Marketing sites and platforms built to convert — and to win awards.</p>
+            </div>
+            <span class="pa-service-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#contact" class="pa-service">
+            <span class="pa-service-num">04</span>
+            <div>
+              <h3>Motion</h3>
+              <p>Launch films, UI motion, and campaign assets with a single visual language.</p>
+            </div>
+            <span class="pa-service-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pa-section" id="studio">
+      <div class="pa-wrap">
+        <div class="pa-split pa-reveal">
+          <div class="pa-split-visual">
+            <img src="assets/img/studio.jpg" alt="NORTH studio" loading="lazy" width="1200" height="900">
+          </div>
+          <div class="pa-split-copy">
+            <span class="pa-tag">Studio</span>
+            <h2 class="pa-title">Small team. Sharp output.</h2>
+            <p class="pa-lead">NORTH is a senior-only studio. No junior layers, no bloated decks — just work that holds up next to the agencies you already admire.</p>
+            <div class="pa-stats" data-pa-stats>
+              <div class="pa-stat"><strong>10</strong><span>Years</span></div>
+              <div class="pa-stat"><strong>48</strong><span>Launches</span></div>
+              <div class="pa-stat"><strong>6</strong><span>People</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pa-section" id="contact">
+      <div class="pa-wrap">
+        <div class="pa-contact">
+          <div class="pa-reveal">
+            <span class="pa-tag">Contact</span>
+            <h2 class="pa-title">Tell us what’s next</h2>
+            <p class="pa-lead">New brand, product rebuild, or launch site — send a short brief. We reply within two business days.</p>
+            <ul class="pa-points">
+              <li>Brand &amp; identity systems</li>
+              <li>Product design &amp; design systems</li>
+              <li>Marketing sites &amp; campaigns</li>
+            </ul>
+          </div>
+          <form class="pa-form pa-reveal" data-pa-form novalidate>
+            <div class="pa-form-row">
+              <div class="pa-field">
+                <label for="pa-name">Name</label>
+                <input type="text" id="pa-name" name="name" autocomplete="name" required placeholder="Your name">
+              </div>
+              <div class="pa-field">
+                <label for="pa-email">Email</label>
+                <input type="email" id="pa-email" name="email" autocomplete="email" required placeholder="you@company.com">
+              </div>
+            </div>
+            <div class="pa-field">
+              <label for="pa-type">Project type</label>
+              <select id="pa-type" name="type">
+                <option value="brand">Brand</option>
+                <option value="product">Product</option>
+                <option value="web">Web</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="pa-field">
+              <label for="pa-message">Brief</label>
+              <textarea id="pa-message" name="message" rows="4" required placeholder="Goals, timeline, links…"></textarea>
+            </div>
+            <button type="submit" class="pa-btn pa-form-submit">Send brief</button>
+            <p class="pa-form-status" data-pa-form-status role="status" aria-live="polite" hidden></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pa-footer">
+    <div class="pa-wrap">
+      <div class="pa-footer-grid pa-reveal">
+        <div class="pa-footer-brand">
+          <a href="#" class="pa-logo">North<span>.</span></a>
+          <p>Premium digital agency. Brand, product, and web for ambitious teams.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#studio">Studio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@north.example">hello@north.example</a></li>
+            <li><a href="tel:+12125550190">+1 212 555 0190</a></li>
+            <li>New York · Remote</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pa-footer-bottom">
+        <span>© 2026 NORTH. All rights reserved.</span>
+        <span>Privacy · Terms</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="modules/js/runway.js"></script>
+  <script src="modules/js/counters.js"></script>
+  <script src="modules/js/reveal.js"></script>
+  <script src="modules/js/contact.js"></script>
+  <script src="modules/js/menu.js"></script>
+  <script src="modules/js/main.js"></script>
 </body>
 </html>

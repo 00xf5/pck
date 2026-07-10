@@ -15,7 +15,3 @@ Copy the `<div>`, `<style>`, and `<script>` from `mortgage-affordability.html` i
   --w-muted: #64748b;
 }
 ```
-
-## Spec
-
-See [../../docs/CALCULATORS_SPEC.md](../../docs/CALCULATORS_SPEC.md#1-mortgage-affordability).

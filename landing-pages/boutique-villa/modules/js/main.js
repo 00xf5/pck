@@ -10,5 +10,6 @@
   });
 
   BVContact(document.querySelector("[data-contact-form]"));
+  BVAmenities(document.querySelector("[data-amenities]"));
   BVReveal();
 })();

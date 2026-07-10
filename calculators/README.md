@@ -8,9 +8,6 @@ Three self-contained HTML calculators — one file per product. Copy-paste into 
 | Airbnb Revenue Estimator | [airbnb-revenue/airbnb-revenue.html](airbnb-revenue/airbnb-revenue.html) | Ready |
 | Auto-Loan Amortization | [auto-loan-amortization/auto-loan-amortization.html](auto-loan-amortization/auto-loan-amortization.html) | Ready |
 
-Full input/output spec: [../docs/CALCULATORS_SPEC.md](../docs/CALCULATORS_SPEC.md)  
-Embed & share: [../docs/EMBED_GUIDE.md](../docs/EMBED_GUIDE.md)
-
 ## How to use (buyers)
 
 1. Open the `.html` file in a browser to preview.

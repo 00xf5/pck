@@ -22,5 +22,3 @@ Interactive widget for boutique hotels and vacation rentals — guests slide nig
 ## Embed
 
 Copy the `.pck-booking-slider` block through its `</script>`. Omit the preview `body:has()` wrapper.
-
-Spec: [../docs/BOOKING_SLIDER_SPEC.md](../docs/BOOKING_SLIDER_SPEC.md)

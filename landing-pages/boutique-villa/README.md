@@ -64,5 +64,3 @@ Recommended export: JPEG, 1600px wide minimum for hero, 800px for cards.
 **Shopify:** Upload images via Settings → Files; update `src` paths in HTML.
 
 Only external dependency: Google Fonts (Inter). Remove the `<link>` tags in `index.html` and set `--bv-font` in `tokens.css` to use system fonts offline.
-
-See [../../docs/LANDING_PAGE_SPEC.md](../../docs/LANDING_PAGE_SPEC.md).

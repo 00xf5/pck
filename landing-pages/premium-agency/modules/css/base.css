@@ -1,0 +1,88 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--pa-font);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--pa-ink);
+  background: var(--pa-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; border: none; background: none; padding: 0; }
+
+.pa-wrap {
+  width: min(78rem, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+.pa-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--pa-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pa-acid);
+  margin-bottom: 1rem;
+}
+
+.pa-tag::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  background: var(--pa-acid);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--pa-acid);
+}
+
+.pa-title {
+  margin: 0;
+  font-family: var(--pa-display);
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.pa-lead {
+  margin: 1rem 0 0;
+  max-width: 34rem;
+  color: var(--pa-muted);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.pa-reveal { opacity: 1; transform: none; }
+
+html.pa-js .pa-reveal {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.7s var(--pa-ease), transform 0.7s var(--pa-ease);
+}
+
+html.pa-js .pa-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}

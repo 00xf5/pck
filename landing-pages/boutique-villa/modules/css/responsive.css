@@ -132,4 +132,10 @@
   .bv-hero-slide {
     transition: none;
   }
+
+  .bv-lightbox,
+  .bv-lightbox-panel,
+  .bv-lightbox-figure img {
+    transition: none !important;
+  }
 }

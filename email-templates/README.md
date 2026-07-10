@@ -20,8 +20,6 @@ Preview hub: [preview/index.html](preview/index.html)
 | Pre-arrival | [blocks/05-pre-arrival.html](blocks/05-pre-arrival.html) | Check-in essentials |
 | Footer | [blocks/06-footer.html](blocks/06-footer.html) | Social + legal |
 
-Full spec: [../docs/EMAIL_BLOCKS_SPEC.md](../docs/EMAIL_BLOCKS_SPEC.md)
-
 ## How to use (buyers)
 
 1. Open the `.html` file in a browser.
@@ -29,5 +27,3 @@ Full spec: [../docs/EMAIL_BLOCKS_SPEC.md](../docs/EMAIL_BLOCKS_SPEC.md)
 3. Paste into your ESP code/HTML block.
 4. Replace images, links, copy, and unsubscribe merge tags.
 5. Test in Gmail, Apple Mail, and Outlook.
-
-See [../docs/EMBED_GUIDE.md](../docs/EMBED_GUIDE.md) for general embed notes.

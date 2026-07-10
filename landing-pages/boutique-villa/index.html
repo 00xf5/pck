@@ -308,26 +308,47 @@
             <p class="bv-lead">Pools, kitchens, cellars, and quiet corners — set up for week-long stays.</p>
           </div>
         </div>
-        <div class="bv-amenities bv-reveal">
-          <div class="bv-amenity">
+        <div class="bv-amenities bv-reveal" data-amenities>
+          <button type="button" class="bv-amenity" data-amenity data-amenity-src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80" data-amenity-label="Private pool" aria-label="Enlarge Private pool">
             <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80" alt="Private pool" loading="lazy" width="600" height="800">
             <span>Private pool</span>
-          </div>
-          <div class="bv-amenity">
+          </button>
+          <button type="button" class="bv-amenity" data-amenity data-amenity-src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80" data-amenity-label="Chef's kitchen" aria-label="Enlarge Chef's kitchen">
             <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Kitchen and dining" loading="lazy" width="600" height="800">
             <span>Chef's kitchen</span>
-          </div>
-          <div class="bv-amenity">
+          </button>
+          <button type="button" class="bv-amenity" data-amenity data-amenity-src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1600&q=80" data-amenity-label="Wine terrace" aria-label="Enlarge Wine terrace">
             <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=800&q=80" alt="Courtyard and wine terrace" loading="lazy" width="600" height="800">
             <span>Wine terrace</span>
-          </div>
-          <div class="bv-amenity">
+          </button>
+          <button type="button" class="bv-amenity" data-amenity data-amenity-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" data-amenity-label="Garden terrace" aria-label="Enlarge Garden terrace">
             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Garden and terrace" loading="lazy" width="600" height="800">
             <span>Garden terrace</span>
-          </div>
+          </button>
         </div>
       </div>
     </section>
+
+    <div class="bv-lightbox" data-amenity-lightbox aria-hidden="true">
+      <button type="button" class="bv-lightbox-backdrop" data-amenity-close aria-label="Close"></button>
+      <div class="bv-lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="bv-lightbox-label">
+        <button type="button" class="bv-lightbox-close" data-amenity-close aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <figure class="bv-lightbox-figure">
+          <img src="" alt="" data-amenity-image width="1600" height="1200">
+          <figcaption id="bv-lightbox-label" data-amenity-caption></figcaption>
+        </figure>
+        <div class="bv-lightbox-nav">
+          <button type="button" class="bv-lightbox-btn" data-amenity-prev aria-label="Previous amenity">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="bv-lightbox-btn" data-amenity-next aria-label="Next amenity">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
 
     <section class="bv-section" id="reviews">
       <div class="bv-wrap">
@@ -481,6 +502,7 @@
   <script src="modules/js/hero-strip.js"></script>
   <script src="modules/js/reveal.js"></script>
   <script src="modules/js/contact.js"></script>
+  <script src="modules/js/amenities.js"></script>
   <script src="modules/js/main.js"></script>
 </body>
 </html>

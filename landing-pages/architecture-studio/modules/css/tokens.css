@@ -1,0 +1,19 @@
+:root {
+  --as-ink: #090909;
+  --as-muted: #5c574f;
+  --as-soft: #8f897e;
+  --as-paper: #e4e0d8;
+  --as-surface: #efebe3;
+  --as-white: #faf8f4;
+  --as-accent: #0d3d52;
+  --as-mark: #ff3b1f;
+  --as-volt: #d4ff4a;
+  --as-line: rgba(9, 9, 9, 0.14);
+  --as-radius: 0;
+  --as-font: "DM Sans", system-ui, sans-serif;
+  --as-display: "Syne", system-ui, sans-serif;
+  --as-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --as-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --as-header-h: 4rem;
+  --as-shadow: 0 28px 70px rgba(9, 9, 9, 0.22);
+}

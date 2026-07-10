@@ -94,16 +94,27 @@
   overflow: hidden;
   aspect-ratio: 3/4;
   min-height: 12rem;
+  padding: 0;
+  border: 0;
+  background: var(--bv-ink);
+  color: var(--bv-white);
+  cursor: zoom-in;
+  width: 100%;
+  text-align: left;
 }
 
 .bv-amenity img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s var(--bv-ease);
+  transition: transform 0.55s var(--bv-ease), filter 0.4s;
 }
 
-.bv-amenity:hover img { transform: scale(1.06); }
+.bv-amenity:hover img,
+.bv-amenity:focus-visible img {
+  transform: scale(1.08);
+  filter: brightness(1.05);
+}
 
 .bv-amenity span {
   position: absolute;
@@ -116,6 +127,166 @@
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
+.bv-amenity::after {
+  content: "+";
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  color: var(--bv-ink);
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.25s, transform 0.25s var(--bv-ease);
+}
+
+.bv-amenity:hover::after,
+.bv-amenity:focus-visible::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bv-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s var(--bv-ease), visibility 0.35s;
+}
+
+.bv-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bv-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.bv-lightbox-panel {
+  position: relative;
+  z-index: 1;
+  width: min(56rem, 100%);
+  transform: scale(0.88) translateY(1.25rem);
+  opacity: 0;
+  transition: transform 0.45s var(--bv-ease), opacity 0.45s var(--bv-ease);
+}
+
+.bv-lightbox.is-open .bv-lightbox-panel {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.bv-lightbox-figure {
+  margin: 0;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: var(--bv-ink);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+.bv-lightbox-figure img {
+  width: 100%;
+  max-height: min(78vh, 44rem);
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 0.45s var(--bv-ease), transform 0.55s var(--bv-ease);
+}
+
+.bv-lightbox-figure img.is-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bv-lightbox-figure figcaption {
+  position: absolute;
+  left: 1.1rem;
+  bottom: 1.1rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.94);
+  color: var(--bv-ink);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.bv-lightbox-figure {
+  position: relative;
+}
+
+.bv-lightbox-close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  color: var(--bv-ink);
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s;
+}
+
+.bv-lightbox-close:hover {
+  transform: scale(1.06);
+}
+
+.bv-lightbox-close svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.bv-lightbox-nav {
+  position: absolute;
+  inset: 50% 0.65rem auto;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.bv-lightbox-btn {
+  pointer-events: auto;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  color: var(--bv-ink);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.bv-lightbox-btn:hover {
+  transform: scale(1.06);
+}
+
+.bv-lightbox-btn svg {
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .bv-booking {

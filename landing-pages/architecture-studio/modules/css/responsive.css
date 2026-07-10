@@ -1,0 +1,164 @@
+@media (max-width: 960px) {
+  .as-menu-btn {
+    display: inline-flex;
+  }
+
+  .as-btn--header {
+    display: none;
+  }
+
+  .as-nav {
+    position: fixed;
+    inset: var(--as-header-h) 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 0 1rem;
+    background: rgba(228, 224, 216, 0.98);
+    border-bottom: 2px solid var(--as-ink);
+    transform: translateY(-110%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.3s var(--as-ease), opacity 0.3s, visibility 0.3s;
+    z-index: 55;
+  }
+
+  .as-header.is-open .as-nav {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .as-nav a {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--as-line);
+    font-size: 0.85rem;
+  }
+
+  .as-hero-content {
+    margin-bottom: 3rem;
+  }
+
+  .as-hero-stamp {
+    width: 5rem;
+    height: 5rem;
+    top: 12%;
+    right: 4%;
+    font-size: 0.58rem;
+  }
+
+  .as-marquee {
+    margin-top: -1.5rem;
+    transform: rotate(-0.8deg) scale(1.04);
+  }
+
+  .as-brand {
+    font-size: clamp(3rem, 16vw, 5rem);
+  }
+
+  .as-project,
+  .as-project:nth-child(1),
+  .as-project:nth-child(2),
+  .as-project:nth-child(5),
+  .as-project:nth-child(6) {
+    grid-column: span 6;
+    min-height: 16rem;
+  }
+
+  .as-viewer-panel {
+    grid-template-columns: 1fr;
+    max-height: min(92vh, 48rem);
+  }
+
+  .as-viewer-media {
+    min-height: 14rem;
+    max-height: 40vh;
+  }
+
+  .as-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .as-studio-grid,
+  .as-enquire-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .as-studio-visual {
+    aspect-ratio: 16 / 10;
+  }
+
+  .as-footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .as-footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .as-wrap {
+    width: min(72rem, calc(100% - 1.5rem));
+  }
+
+  .as-section {
+    padding: 3.5rem 0;
+  }
+
+  .as-project,
+  .as-project:nth-child(n) {
+    grid-column: span 12;
+    min-height: 15rem;
+  }
+
+  .as-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .as-stats {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .as-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .as-hero-index {
+    right: auto;
+    left: 1.25rem;
+    bottom: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .as-hero-slide img,
+  .as-marquee-track {
+    animation: none !important;
+  }
+
+  .as-hero-slide,
+  .as-project,
+  .as-viewer,
+  .as-viewer-panel,
+  html.as-js .as-reveal {
+    transition: none !important;
+  }
+
+  html.as-js .as-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .as-marquee {
+    transform: none;
+  }
+}
