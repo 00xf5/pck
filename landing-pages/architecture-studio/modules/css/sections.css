@@ -34,10 +34,32 @@
   transition: background 0.3s, border-color 0.3s, transform 0.3s;
 }
 
-.as-step:hover {
+.as-step.is-inview,
+.as-step:active {
   background: var(--as-mark);
   border-color: var(--as-mark);
   transform: translateY(-6px);
+}
+
+html.as-js .as-step.as-reveal.is-visible.is-inview,
+html.as-js .as-step.as-reveal.is-visible:active {
+  background: var(--as-mark);
+  border-color: var(--as-mark);
+  transform: translateY(-6px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .as-step:hover {
+    background: var(--as-mark);
+    border-color: var(--as-mark);
+    transform: translateY(-6px);
+  }
+
+  html.as-js .as-step.as-reveal.is-visible:hover {
+    background: var(--as-mark);
+    border-color: var(--as-mark);
+    transform: translateY(-6px);
+  }
 }
 
 .as-step-num {
@@ -50,10 +72,18 @@
   color: var(--as-volt);
   margin-bottom: 1rem;
   opacity: 0.9;
+  transition: color 0.3s;
 }
 
-.as-step:hover .as-step-num {
+.as-step.is-inview .as-step-num,
+.as-step:active .as-step-num {
   color: var(--as-white);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .as-step:hover .as-step-num {
+    color: var(--as-white);
+  }
 }
 
 .as-step h3 {
@@ -70,10 +100,18 @@
   font-size: 0.92rem;
   color: rgba(250, 248, 244, 0.7);
   line-height: 1.6;
+  transition: color 0.3s;
 }
 
-.as-step:hover p {
+.as-step.is-inview p,
+.as-step:active p {
   color: rgba(250, 248, 244, 0.92);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .as-step:hover p {
+    color: rgba(250, 248, 244, 0.92);
+  }
 }
 
 .as-studio-grid {

@@ -15,6 +15,18 @@
   position: relative;
 }
 
+.pa-runway-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0.5rem;
+  width: 2.5rem;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--pa-bg));
+  z-index: 1;
+}
+
 .pa-runway {
   display: flex;
   gap: 1rem;
@@ -23,6 +35,9 @@
   scrollbar-width: none;
   padding-bottom: 0.5rem;
   cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
 }
 
 .pa-runway::-webkit-scrollbar { display: none; }
@@ -41,7 +56,8 @@
   transition: border-color 0.25s, transform 0.35s var(--pa-ease);
 }
 
-.pa-case:hover {
+.pa-case.is-inview,
+.pa-case:active {
   border-color: var(--pa-acid);
   transform: translateY(-4px);
 }
@@ -54,9 +70,22 @@
   transition: filter 0.4s, transform 0.6s var(--pa-ease);
 }
 
-.pa-case:hover img {
+.pa-case.is-inview img,
+.pa-case:active img {
   filter: none;
   transform: scale(1.05);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pa-case:hover {
+    border-color: var(--pa-acid);
+    transform: translateY(-4px);
+  }
+
+  .pa-case:hover img {
+    filter: none;
+    transform: scale(1.05);
+  }
 }
 
 .pa-case-body {
@@ -111,7 +140,8 @@
   transition: background 0.25s, padding 0.25s;
 }
 
-.pa-service:hover {
+.pa-service.is-inview,
+.pa-service:active {
   background: linear-gradient(90deg, rgba(200, 255, 0, 0.06), transparent 55%);
 }
 
@@ -132,7 +162,8 @@
   transition: color 0.25s, transform 0.25s var(--pa-ease);
 }
 
-.pa-service:hover h3 {
+.pa-service.is-inview h3,
+.pa-service:active h3 {
   color: var(--pa-acid);
   transform: translateX(0.35rem);
 }
@@ -150,9 +181,26 @@
   transition: color 0.2s, transform 0.25s var(--pa-ease);
 }
 
-.pa-service:hover .pa-service-arrow {
+.pa-service.is-inview .pa-service-arrow,
+.pa-service:active .pa-service-arrow {
   color: var(--pa-acid);
   transform: translateX(4px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pa-service:hover {
+    background: linear-gradient(90deg, rgba(200, 255, 0, 0.06), transparent 55%);
+  }
+
+  .pa-service:hover h3 {
+    color: var(--pa-acid);
+    transform: translateX(0.35rem);
+  }
+
+  .pa-service:hover .pa-service-arrow {
+    color: var(--pa-acid);
+    transform: translateX(4px);
+  }
 }
 
 .pa-split {

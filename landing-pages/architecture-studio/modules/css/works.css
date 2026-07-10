@@ -31,10 +31,18 @@
   transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 
-.as-filter:hover {
+.as-filter:active {
   background: var(--as-volt);
   transform: translate(-2px, -2px);
   box-shadow: 2px 2px 0 var(--as-ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .as-filter:hover {
+    background: var(--as-volt);
+    transform: translate(-2px, -2px);
+    box-shadow: 2px 2px 0 var(--as-ink);
+  }
 }
 
 .as-filter.is-active {
@@ -65,7 +73,14 @@
 }
 
 .as-project[hidden] {
-  display: none;
+  display: none !important;
+}
+
+.as-project.is-filtered-out {
+  opacity: 0;
+  transform: scale(0.96);
+  pointer-events: none;
+  box-shadow: none;
 }
 
 .as-project:nth-child(1),
@@ -80,14 +95,64 @@
   min-height: 24rem;
 }
 
-.as-project:nth-child(odd):hover {
+html.as-js .as-project.as-reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+}
+
+html.as-js .as-project.as-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+html.as-js .as-project.as-reveal.is-visible.is-filtered-out {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+html.as-js .as-project.as-reveal:nth-child(1) { transition-delay: 0.02s; }
+html.as-js .as-project.as-reveal:nth-child(2) { transition-delay: 0.08s; }
+html.as-js .as-project.as-reveal:nth-child(3) { transition-delay: 0.14s; }
+html.as-js .as-project.as-reveal:nth-child(4) { transition-delay: 0.2s; }
+html.as-js .as-project.as-reveal:nth-child(5) { transition-delay: 0.26s; }
+html.as-js .as-project.as-reveal:nth-child(6) { transition-delay: 0.32s; }
+
+html.as-js .as-project.as-reveal.is-visible.is-inview:nth-child(odd),
+html.as-js .as-project.as-reveal.is-visible:active:nth-child(odd) {
   transform: rotate(-1.25deg) translateY(-6px);
   box-shadow: 8px 12px 0 var(--as-volt);
 }
 
-.as-project:nth-child(even):hover {
+html.as-js .as-project.as-reveal.is-visible.is-inview:nth-child(even),
+html.as-js .as-project.as-reveal.is-visible:active:nth-child(even) {
   transform: rotate(1.25deg) translateY(-6px);
   box-shadow: -8px 12px 0 var(--as-mark);
+}
+
+.as-project.is-inview:nth-child(odd):not(.as-reveal),
+.as-project:active:nth-child(odd):not(.as-reveal) {
+  transform: rotate(-1.25deg) translateY(-6px);
+  box-shadow: 8px 12px 0 var(--as-volt);
+}
+
+.as-project.is-inview:nth-child(even):not(.as-reveal),
+.as-project:active:nth-child(even):not(.as-reveal) {
+  transform: rotate(1.25deg) translateY(-6px);
+  box-shadow: -8px 12px 0 var(--as-mark);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html.as-js .as-project.as-reveal.is-visible:hover:nth-child(odd),
+  .as-project:hover:nth-child(odd) {
+    transform: rotate(-1.25deg) translateY(-6px);
+    box-shadow: 8px 12px 0 var(--as-volt);
+  }
+
+  html.as-js .as-project.as-reveal.is-visible:hover:nth-child(even),
+  .as-project:hover:nth-child(even) {
+    transform: rotate(1.25deg) translateY(-6px);
+    box-shadow: -8px 12px 0 var(--as-mark);
+  }
 }
 
 .as-project img {
@@ -99,11 +164,20 @@
   filter: grayscale(0.15);
 }
 
-.as-project:hover img,
+.as-project.is-inview img,
+.as-project:active img,
 .as-project:focus-visible img {
   transform: scale(1.08);
   opacity: 1;
   filter: grayscale(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .as-project:hover img {
+    transform: scale(1.08);
+    opacity: 1;
+    filter: grayscale(0);
+  }
 }
 
 .as-project-meta {

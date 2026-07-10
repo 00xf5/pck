@@ -10,6 +10,7 @@
   ASContact(document.querySelector("[data-as-form]"));
   ASMenu(document.querySelector("[data-as-header]"));
   ASReveal();
+  ASInview();
 
   var navLinks = document.querySelectorAll(".as-nav a[href^='#']");
   var sections = [];

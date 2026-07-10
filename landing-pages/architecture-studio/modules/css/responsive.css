@@ -149,6 +149,7 @@
   .as-project,
   .as-viewer,
   .as-viewer-panel,
+  .as-step,
   html.as-js .as-reveal {
     transition: none !important;
   }
@@ -156,6 +157,14 @@
   html.as-js .as-reveal {
     opacity: 1;
     transform: none;
+  }
+
+  html.as-js .as-project.as-reveal.is-visible.is-inview:nth-child(n),
+  html.as-js .as-step.as-reveal.is-visible.is-inview,
+  .as-step.is-inview,
+  .as-project.is-inview {
+    transform: none;
+    box-shadow: none;
   }
 
   .as-marquee {

@@ -8,6 +8,7 @@
   PAContact(document.querySelector("[data-pa-form]"));
   PAMenu(document.querySelector("[data-pa-header]"));
   PAReveal();
+  PAInview();
 
   var navLinks = document.querySelectorAll(".pa-nav a[href^='#']");
   var sections = [];
