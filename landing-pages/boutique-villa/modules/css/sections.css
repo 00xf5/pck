@@ -179,6 +179,142 @@
 
 .bv-btn-ghost:hover { background: rgba(255,255,255,0.1); }
 
+.bv-contact-block {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 2.5rem 3rem;
+  align-items: start;
+}
+
+.bv-contact-points {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.bv-contact-points li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  color: var(--bv-muted);
+}
+
+.bv-contact-points li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-top: 0.45rem;
+  border-radius: 50%;
+  background: var(--bv-gold);
+}
+
+.bv-contact-form {
+  background: var(--bv-white);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--bv-radius-card);
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+}
+
+.bv-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.bv-field {
+  margin-bottom: 1rem;
+}
+
+.bv-field label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bv-muted);
+}
+
+.bv-field input,
+.bv-field textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 0.85rem;
+  background: var(--bv-cream);
+  color: var(--bv-ink);
+  font: inherit;
+  font-size: 0.92rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bv-field textarea {
+  resize: vertical;
+  min-height: 6.5rem;
+}
+
+.bv-field input::placeholder,
+.bv-field textarea::placeholder {
+  color: var(--bv-soft);
+}
+
+.bv-field input:focus,
+.bv-field textarea:focus {
+  outline: none;
+  border-color: var(--bv-accent);
+  box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.12);
+  background: var(--bv-white);
+}
+
+.bv-form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.95rem 1.4rem;
+  border-radius: 999px;
+  background: var(--bv-ink);
+  color: var(--bv-white);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.bv-form-submit:hover {
+  background: var(--bv-accent);
+  transform: translateY(-1px);
+}
+
+.bv-form-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.bv-form-status {
+  margin: 0.85rem 0 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.bv-form-status.is-success {
+  background: rgba(30, 58, 95, 0.08);
+  color: var(--bv-accent);
+}
+
+.bv-form-status.is-error {
+  background: rgba(160, 40, 40, 0.08);
+  color: #8a1f1f;
+}
+
 .bv-footer {
   padding: 2.5rem 0 2rem;
   border-top: 1px solid rgba(0,0,0,0.06);

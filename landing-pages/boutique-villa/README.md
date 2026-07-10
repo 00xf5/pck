@@ -27,6 +27,7 @@ boutique-villa/
 | Experience | Four amenity tiles |
 | Reviews | Guest quote carousel |
 | Reserve | Direct-booking CTA band |
+| Contact | Notify me availability form |
 | Footer | Links and contact |
 
 ## Images

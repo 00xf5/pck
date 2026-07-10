@@ -66,6 +66,11 @@
     padding: 2rem 1.35rem;
   }
 
+  .bv-contact-block {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
   .bv-footer-grid {
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
@@ -111,6 +116,10 @@
   .bv-section { padding: 3rem 0; }
 
   .bv-amenities { grid-template-columns: 1fr 1fr; }
+
+  .bv-form-row { grid-template-columns: 1fr; }
+
+  .bv-contact-form { padding: 1.35rem 1.15rem; }
 
   .bv-footer-grid { grid-template-columns: 1fr; }
 }

@@ -383,16 +383,55 @@
             <p>No platform fees. Flexible arrival windows and late checkout on stays of three nights or more.</p>
           </div>
           <div class="bv-booking-actions">
-            <a href="#" class="bv-btn-light">Check availability</a>
-            <a href="#" class="bv-btn-ghost">Download guide</a>
+            <a href="#contact" class="bv-btn-light">Check availability</a>
+            <a href="#contact" class="bv-btn-ghost">Notify me</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bv-section bv-section--sand" id="contact">
+      <div class="bv-wrap">
+        <div class="bv-contact-block bv-reveal">
+          <div class="bv-contact-copy">
+            <span class="bv-tag">Contact</span>
+            <h2 class="bv-title">Notify me when dates open</h2>
+            <p class="bv-lead">Tell us your preferred villa and travel window. We’ll follow up when matching stays are available — usually within a day.</p>
+            <ul class="bv-contact-points">
+              <li>Direct rates, no platform fees</li>
+              <li>Availability alerts for your dates</li>
+              <li>Concierge reply by email</li>
+            </ul>
+          </div>
+          <form class="bv-contact-form" data-contact-form novalidate>
+            <div class="bv-form-row">
+              <div class="bv-field">
+                <label for="bv-name">Name</label>
+                <input type="text" id="bv-name" name="name" autocomplete="name" required placeholder="Your name">
+              </div>
+              <div class="bv-field">
+                <label for="bv-email">Email</label>
+                <input type="email" id="bv-email" name="email" autocomplete="email" required placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="bv-field">
+              <label for="bv-dates">Preferred dates</label>
+              <input type="text" id="bv-dates" name="dates" placeholder="e.g. 12 – 18 August 2026">
+            </div>
+            <div class="bv-field">
+              <label for="bv-message">Villa or notes</label>
+              <textarea id="bv-message" name="message" rows="4" placeholder="Which villa, guests, or anything we should know…"></textarea>
+            </div>
+            <button type="submit" class="bv-form-submit">Notify me</button>
+            <p class="bv-form-status" data-contact-status role="status" aria-live="polite" hidden></p>
+          </form>
         </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="bv-footer" id="contact">
+  <footer class="bv-footer">
     <div class="bv-wrap">
       <div class="bv-footer-grid bv-reveal">
         <div class="bv-footer-brand">
@@ -424,9 +463,9 @@
         <div class="bv-footer-col">
           <h4>Contact</h4>
           <ul>
+            <li><a href="#contact">Notify me</a></li>
             <li><a href="mailto:hello@maison.example">hello@maison.example</a></li>
             <li><a href="tel:+390551234567">+39 055 123 4567</a></li>
-            <li><a href="#">Montepulciano SI</a></li>
           </ul>
         </div>
       </div>
@@ -441,6 +480,7 @@
   <script src="modules/js/hero.js"></script>
   <script src="modules/js/hero-strip.js"></script>
   <script src="modules/js/reveal.js"></script>
+  <script src="modules/js/contact.js"></script>
   <script src="modules/js/main.js"></script>
 </body>
 </html>

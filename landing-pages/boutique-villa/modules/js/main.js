@@ -9,5 +9,6 @@
     BVCarousel(el);
   });
 
+  BVContact(document.querySelector("[data-contact-form]"));
   BVReveal();
 })();
