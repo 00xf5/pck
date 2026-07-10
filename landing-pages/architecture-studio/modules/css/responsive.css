@@ -140,8 +140,7 @@
     scroll-behavior: auto;
   }
 
-  .as-hero-slide img,
-  .as-marquee-track {
+  .as-hero-slide img {
     animation: none !important;
   }
 

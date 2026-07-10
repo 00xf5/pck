@@ -89,8 +89,7 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
-  .pa-hero-bg img,
-  .pa-marquee-track {
+  .pa-hero-bg img {
     animation: none !important;
   }
 

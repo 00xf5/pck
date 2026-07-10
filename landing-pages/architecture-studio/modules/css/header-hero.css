@@ -270,7 +270,7 @@
 .as-marquee-track {
   display: flex;
   width: max-content;
-  animation: as-marquee 28s linear infinite;
+  animation: as-marquee 16s linear infinite;
   font-family: var(--as-display);
   font-size: clamp(1.1rem, 2.5vw, 1.6rem);
   font-weight: 800;
@@ -278,13 +278,16 @@
   text-transform: uppercase;
   white-space: nowrap;
   padding: 0.85rem 0;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .as-marquee-track span {
   padding-right: 1.5rem;
+  flex: 0 0 auto;
 }
 
 @keyframes as-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
 }

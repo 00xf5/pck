@@ -4,6 +4,7 @@
   document.documentElement.classList.add("as-js");
 
   ASHero(document.querySelector("[data-as-hero]"));
+  ASMarquee(document.querySelector(".as-marquee"));
   ASFilter(document.querySelector("[data-as-filters]"));
   ASViewer(document.querySelector("[data-as-viewer]"));
   ASCounters(document.querySelector("[data-as-stats]"));

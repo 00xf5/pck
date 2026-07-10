@@ -4,6 +4,7 @@
   document.documentElement.classList.add("pa-js");
 
   PARunway(document.querySelector("[data-pa-runway]"));
+  PAMarquee(document.querySelector(".pa-marquee"));
   PACounters(document.querySelector(".pa-hero-meta"));
   PAContact(document.querySelector("[data-pa-form]"));
   PAMenu(document.querySelector("[data-pa-header]"));
