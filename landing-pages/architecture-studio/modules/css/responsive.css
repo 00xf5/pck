@@ -37,8 +37,12 @@
     font-size: 0.85rem;
   }
 
+  .as-hero {
+    min-height: min(68dvh, 36rem);
+  }
+
   .as-hero-content {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
 
   .as-hero-stamp {
@@ -55,7 +59,7 @@
   }
 
   .as-brand {
-    font-size: clamp(3rem, 16vw, 5rem);
+    font-size: clamp(2.4rem, 11vw, 3.75rem);
   }
 
   .as-project,
@@ -107,6 +111,32 @@
 
   .as-section {
     padding: 3.5rem 0;
+  }
+
+  .as-hero {
+    min-height: min(58dvh, 30rem);
+    clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
+  }
+
+  .as-hero-content {
+    margin-bottom: 1.75rem;
+    width: min(74rem, calc(100% - 1.5rem));
+  }
+
+  .as-hero-line {
+    margin-top: 0.85rem;
+  }
+
+  .as-hero-actions {
+    margin-top: 1.25rem;
+  }
+
+  .as-hero-stamp {
+    width: 4.25rem;
+    height: 4.25rem;
+    top: 9%;
+    right: 3%;
+    font-size: 0.52rem;
   }
 
   .as-project,

@@ -216,7 +216,11 @@
               <li>Interiors with the building team</li>
             </ul>
           </div>
-          <form class="as-form as-reveal" data-as-form novalidate>
+          <!-- Buyers: replace studio@halden.example with your email to receive submissions -->
+          <form class="as-form as-reveal" action="https://formsubmit.co/studio@halden.example" method="POST">
+            <input type="hidden" name="_subject" value="HALDEN — project enquiry">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
             <div class="as-form-row">
               <div class="as-field">
                 <label for="as-name">Name</label>
@@ -241,7 +245,6 @@
               <textarea id="as-message" name="message" rows="4" required placeholder="Site, program, timeline…"></textarea>
             </div>
             <button type="submit" class="as-btn as-form-submit">Send enquiry</button>
-            <p class="as-form-status" data-as-form-status role="status" aria-live="polite" hidden></p>
           </form>
         </div>
       </div>

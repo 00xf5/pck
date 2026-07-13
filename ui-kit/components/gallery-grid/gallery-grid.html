@@ -2,30 +2,142 @@
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>html:not(.pck-tw-ready){visibility:hidden}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}</style><script src="https://cdn.tailwindcss.com"></script></head>
 <body class="bg-pck-ink m-0 py-12 px-4">
 
+<!-- PASTE START — Gallery grid + lightbox. Replace image URLs/alts. -->
 <div id="pck-gallery-grid" class="font-sans max-w-6xl mx-auto">
-  <div class="grid grid-cols-2 gap-2 md:grid-cols-4 md:grid-rows-2 md:gap-3 md:min-h-[420px]">
-    <a href="#" class="col-span-2 aspect-[4/3] md:aspect-auto md:col-span-2 md:row-span-2 relative rounded-xl overflow-hidden group">
-      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=900&q=85" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+  <div class="grid grid-cols-2 gap-2 md:grid-cols-4 md:grid-rows-2 md:gap-3 md:min-h-[420px]" data-pck-gallery-grid>
+    <button type="button" data-pck-gallery-open data-index="0" class="col-span-2 aspect-[4/3] md:aspect-auto md:col-span-2 md:row-span-2 relative rounded-xl overflow-hidden group text-left p-0 border-0 cursor-pointer bg-pck-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-pck-gold focus-visible:ring-offset-2 focus-visible:ring-offset-pck-ink">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=900&q=85" alt="Pool terrace at dusk" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
       <div class="absolute inset-0 bg-gradient-to-t from-pck-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-    </a>
-    <a href="#" class="relative rounded-xl overflow-hidden group aspect-square">
-      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=500&q=85" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-    </a>
-    <a href="#" class="relative rounded-xl overflow-hidden group aspect-square">
-      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500&q=85" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-    </a>
-    <a href="#" class="relative rounded-xl overflow-hidden group aspect-square">
-      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&q=85" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-    </a>
-    <a href="#" class="relative rounded-xl overflow-hidden group aspect-square">
-      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=500&q=85" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-      <div class="absolute inset-0 bg-pck-ink/50 flex items-center justify-center">
+    </button>
+    <button type="button" data-pck-gallery-open data-index="1" class="relative rounded-xl overflow-hidden group aspect-square text-left p-0 border-0 cursor-pointer bg-pck-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-pck-gold focus-visible:ring-offset-2 focus-visible:ring-offset-pck-ink">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=500&q=85" alt="Living room with stone fireplace" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+    </button>
+    <button type="button" data-pck-gallery-open data-index="2" class="relative rounded-xl overflow-hidden group aspect-square text-left p-0 border-0 cursor-pointer bg-pck-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-pck-gold focus-visible:ring-offset-2 focus-visible:ring-offset-pck-ink">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500&q=85" alt="Suite interior" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+    </button>
+    <button type="button" data-pck-gallery-open data-index="3" class="relative rounded-xl overflow-hidden group aspect-square text-left p-0 border-0 cursor-pointer bg-pck-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-pck-gold focus-visible:ring-offset-2 focus-visible:ring-offset-pck-ink">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&q=85" alt="Stone villa facade" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+    </button>
+    <button type="button" data-pck-gallery-open data-index="4" aria-label="View all 17 photos" class="relative rounded-xl overflow-hidden group aspect-square text-left p-0 border-0 cursor-pointer bg-pck-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-pck-gold focus-visible:ring-offset-2 focus-visible:ring-offset-pck-ink">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=500&q=85" alt="Courtyard dining" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+      <div class="absolute inset-0 bg-pck-ink/55 flex items-center justify-center group-hover:bg-pck-ink/45 transition-colors duration-300">
         <span class="text-white text-sm font-semibold tracking-wide">+ 12 photos</span>
       </div>
-    </a>
+    </button>
+  </div>
+
+  <div data-pck-gallery-lightbox class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-pck-ink/92 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Photo gallery" aria-hidden="true">
+    <button type="button" data-pck-gallery-close class="absolute top-4 right-4 z-20 w-11 h-11 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-pck-gold" aria-label="Close gallery">
+      <span class="block text-2xl leading-none" aria-hidden="true">&times;</span>
+    </button>
+    <button type="button" data-pck-gallery-prev class="absolute left-3 md:left-6 z-20 w-11 h-11 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-pck-gold" aria-label="Previous photo">
+      <span class="block text-xl leading-none" aria-hidden="true">‹</span>
+    </button>
+    <button type="button" data-pck-gallery-next class="absolute right-3 md:right-6 z-20 w-11 h-11 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-pck-gold" aria-label="Next photo">
+      <span class="block text-xl leading-none" aria-hidden="true">›</span>
+    </button>
+    <figure class="relative w-full max-w-5xl mx-auto">
+      <img data-pck-gallery-image src="" alt="" width="1600" height="1067" class="w-full max-h-[78vh] object-contain rounded-lg bg-pck-ink shadow-2xl opacity-0 transition-opacity duration-300 data-[ready=true]:opacity-100">
+      <figcaption class="mt-4 flex items-center justify-between gap-4 text-sm text-white/70">
+        <span data-pck-gallery-caption class="truncate"></span>
+        <span data-pck-gallery-counter class="shrink-0 tabular-nums tracking-wide"></span>
+      </figcaption>
+    </figure>
   </div>
 </div>
 
+<script>
+(function () {
+  var root = document.getElementById("pck-gallery-grid");
+  if (!root) return;
+
+  // Full gallery: first 5 match the grid; remaining power the "+12 photos" count.
+  var photos = [
+    { src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600&q=85", alt: "Pool terrace at dusk" },
+    { src: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1600&q=85", alt: "Living room with stone fireplace" },
+    { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=85", alt: "Suite interior" },
+    { src: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1600&q=85", alt: "Stone villa facade" },
+    { src: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1600&q=85", alt: "Courtyard dining" },
+    { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=85", alt: "Villa exterior at golden hour" },
+    { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=85", alt: "Hillside architecture" },
+    { src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=85", alt: "Kitchen and dining" },
+    { src: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1600&q=85", alt: "Master bedroom" },
+    { src: "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=1600&q=85", alt: "Bathroom with marble" },
+    { src: "https://images.unsplash.com/photo-1600047509358-9dc7556ee70b?w=1600&q=85", alt: "Garden path" },
+    { src: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1600&q=85", alt: "Evening lounge" },
+    { src: "https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?w=1600&q=85", alt: "Covered terrace" },
+    { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1600&q=85", alt: "Entry hall" },
+    { src: "https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=1600&q=85", alt: "Morning light in the study" },
+    { src: "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=1600&q=85", alt: "Outdoor seating" },
+    { src: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1600&q=90", alt: "Evening courtyard" }
+  ];
+
+  var lightbox = root.querySelector("[data-pck-gallery-lightbox]");
+  var imageEl = root.querySelector("[data-pck-gallery-image]");
+  var captionEl = root.querySelector("[data-pck-gallery-caption]");
+  var counterEl = root.querySelector("[data-pck-gallery-counter]");
+  var openBtns = root.querySelectorAll("[data-pck-gallery-open]");
+  var index = 0;
+  var lastFocus = null;
+  var total = photos.length;
+
+  function show(i) {
+    index = ((i % total) + total) % total;
+    var photo = photos[index];
+    imageEl.removeAttribute("data-ready");
+    imageEl.onload = function () {
+      imageEl.setAttribute("data-ready", "true");
+    };
+    imageEl.src = photo.src;
+    imageEl.alt = photo.alt;
+    if (imageEl.complete) imageEl.setAttribute("data-ready", "true");
+    captionEl.textContent = photo.alt;
+    counterEl.textContent = (index + 1) + " / " + total;
+  }
+
+  function open(i) {
+    lastFocus = document.activeElement;
+    show(i);
+    lightbox.classList.remove("hidden");
+    lightbox.classList.add("flex");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    var next = root.querySelector("[data-pck-gallery-next]");
+    if (next) next.focus();
+  }
+
+  function close() {
+    lightbox.classList.add("hidden");
+    lightbox.classList.remove("flex");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  openBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var start = parseInt(btn.getAttribute("data-index"), 10) || 0;
+      open(start);
+    });
+  });
+
+  root.querySelector("[data-pck-gallery-close]").addEventListener("click", close);
+  root.querySelector("[data-pck-gallery-prev]").addEventListener("click", function () { show(index - 1); });
+  root.querySelector("[data-pck-gallery-next]").addEventListener("click", function () { show(index + 1); });
+
+  lightbox.addEventListener("click", function (e) {
+    if (e.target === lightbox) close();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (lightbox.getAttribute("aria-hidden") === "true") return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(index - 1);
+    if (e.key === "ArrowRight") show(index + 1);
+  });
+})();
+</script>
+<!-- PASTE END -->
 
 <script>tailwind.config={important:"#pck-gallery-grid",theme:{extend:{colors:{pck:{ink:"#0c0a09",muted:"#78716c",surface:"#fafaf9",cream:"#f5f0eb",accent:"#1e3a5f",gold:"#a6833d",line:"#e7e5e4"}},fontFamily:{serif:["Georgia","Cambria","Times New Roman","serif"],sans:["system-ui","-apple-system","Segoe UI","Roboto","sans-serif"]}}}};document.documentElement.classList.add('pck-tw-ready');</script>
 </body></html>

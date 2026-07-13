@@ -4,6 +4,7 @@
 
 - **One file = one product**
 - **Table-based** layout · inline styles · 600px width
+- **Hidden preheader** on content blocks (01–05) for cleaner inbox previews
 - **PCK neutral luxury** palette — professional, not flashy
 - **No external dependencies**
 

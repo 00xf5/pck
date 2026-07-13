@@ -167,7 +167,7 @@
 .pa-hero-title {
   margin: 0;
   font-family: var(--pa-display);
-  font-size: clamp(3.4rem, 12vw, 8.5rem);
+  font-size: clamp(2.85rem, 9vw, 6.5rem);
   font-weight: 800;
   letter-spacing: -0.055em;
   line-height: 0.88;

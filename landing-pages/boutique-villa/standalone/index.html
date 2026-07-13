@@ -1,0 +1,2367 @@
+<!DOCTYPE html>
+<!-- PCK standalone build: HTML + CSS + JS inlined. Asset paths relative to ../assets/ -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Maison Colline — curated boutique villa rentals in Tuscany and the Mediterranean.">
+  <title>Maison Colline — Boutique Villa Rentals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+/* inlined: modules/css/tokens.css */
+:root {
+  --bv-ink: #0a0a0a;
+  --bv-muted: #6b6b6b;
+  --bv-soft: #9a9a9a;
+  --bv-white: #ffffff;
+  --bv-cream: #f4f2ef;
+  --bv-sand: #ebe6df;
+  --bv-accent: #1e3a5f;
+  --bv-gold: #a6833d;
+  --bv-glass: rgba(8, 8, 10, 0.46);
+  --bv-radius-shell: 3.25rem;
+  --bv-radius-hero: 2.5rem;
+  --bv-radius-card: 1.25rem;
+  --bv-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+  --bv-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bv-serif: Georgia, "Times New Roman", serif;
+  --bv-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --bv-header-h: 4.25rem;
+}
+
+</style>
+  <style>
+/* inlined: modules/css/base.css */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--bv-font);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--bv-ink);
+  background: var(--bv-cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.bv-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.bv-wrap {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.bv-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bv-gold);
+  margin-bottom: 0.75rem;
+}
+
+.bv-title {
+  margin: 0;
+  font-family: var(--bv-serif);
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+.bv-lead {
+  margin: 0.85rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--bv-muted);
+  max-width: 36rem;
+}
+
+.bv-reveal {
+  opacity: 1;
+  transform: none;
+}
+
+html.bv-js .bv-reveal {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.75s var(--bv-ease), transform 0.75s var(--bv-ease);
+}
+
+html.bv-js .bv-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  html.bv-js .bv-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+</style>
+  <style>
+/* inlined: modules/css/frame.css */
+.bv-page { min-height: 100vh; padding: 0.85rem 1rem 1.25rem; }
+
+.bv-frame {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 2rem);
+  background: var(--bv-white);
+  border-radius: var(--bv-radius-shell);
+  padding: 1rem 1.25rem 1.25rem;
+  box-shadow: var(--bv-shadow);
+}
+
+.bv-header {
+  position: relative;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.bv-logo svg { width: 2.35rem; height: 2.35rem; }
+
+.bv-nav-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin-top: -1rem;
+  padding: 1.05rem 2rem 1.1rem;
+  background: var(--bv-white);
+  border-radius: 0 0 1.5rem 1.5rem;
+}
+
+.bv-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--bv-soft);
+  transition: color 0.2s;
+}
+
+.bv-nav-link:hover,
+.bv-nav-link.is-active { color: var(--bv-ink); font-weight: 600; }
+
+.bv-nav-diamond { font-size: 0.42rem; }
+
+.bv-nav-chevron {
+  width: 0.65rem;
+  height: 0.65rem;
+  opacity: 0.5;
+}
+
+.bv-contact {
+  justify-self: end;
+  margin-top: 0.5rem;
+  padding: 0.68rem 1.3rem;
+  border: 1.5px solid var(--bv-ink);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+
+.bv-contact:hover {
+  background: var(--bv-ink);
+  color: var(--bv-white);
+}
+
+.bv-hero {
+  position: relative;
+  flex: 1;
+  min-height: 26rem;
+  border-radius: var(--bv-radius-hero);
+  overflow: hidden;
+}
+
+.bv-hero-carousel {
+  position: absolute;
+  inset: 0;
+}
+
+.bv-hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+
+.bv-hero-slide.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.bv-hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bv-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.06) 0%, transparent 24%),
+    linear-gradient(95deg, rgba(0,0,0,0.42) 0%, transparent 50%),
+    linear-gradient(0deg, rgba(0,0,0,0.28) 0%, transparent 42%);
+  pointer-events: none;
+}
+
+.bv-glass {
+  position: absolute;
+  z-index: 10;
+  top: 1.15rem;
+  left: 1.15rem;
+  width: min(22rem, calc(100% - 2rem));
+  padding: 0.65rem 0;
+  border-radius: 1rem;
+  background: rgba(8, 8, 10, 0.32);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.bv-strip-label {
+  margin: 0 0 0.5rem;
+  padding: 0 0.85rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+
+.bv-strip-row {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0.4rem;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+}
+
+.bv-strip-row:last-child { margin-bottom: 0; }
+
+.bv-strip-track {
+  display: flex;
+  gap: 0.4rem;
+  width: max-content;
+  padding: 0 0.85rem;
+  transform: translate3d(0, 0, 0);
+}
+
+.bv-strip-row--alt .bv-strip-track {
+  /* direction handled in JS */
+}
+
+.bv-strip-item {
+  flex-shrink: 0;
+  width: 4.75rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  opacity: 0.88;
+}
+
+.bv-strip-item:hover {
+  opacity: 1;
+  border-color: rgba(255,255,255,0.75);
+}
+
+.bv-strip-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bv-hero-progress {
+  position: absolute;
+  z-index: 10;
+  left: 1.25rem;
+  bottom: 4.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--bv-white);
+}
+
+.bv-hero-track {
+  position: relative;
+  width: 4.5rem;
+  height: 1px;
+  background: rgba(255,255,255,0.28);
+}
+
+.bv-hero-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin: -0.2rem 0 0 -0.2rem;
+  border-radius: 50%;
+  background: var(--bv-white);
+  transition: left 0.45s var(--bv-ease);
+}
+
+.bv-hero-counter {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+
+.bv-thumbs {
+  position: absolute;
+  z-index: 10;
+  left: 1.25rem;
+  bottom: 1.15rem;
+  display: flex;
+  gap: 0.45rem;
+}
+
+.bv-thumb {
+  width: 5.25rem;
+  height: 3.2rem;
+  border-radius: 0.65rem;
+  overflow: hidden;
+  border: 2px solid transparent;
+  opacity: 0.65;
+  transition: opacity 0.25s, transform 0.25s, border-color 0.25s;
+}
+
+.bv-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bv-thumb:hover,
+.bv-thumb.is-active {
+  opacity: 1;
+  border-color: rgba(255,255,255,0.95);
+  transform: translateY(-2px);
+}
+
+.bv-cta-headline {
+  position: absolute;
+  z-index: 10;
+  right: 1.35rem;
+  bottom: 5.5rem;
+  margin: 0;
+  max-width: 14.5rem;
+  font-family: var(--bv-serif);
+  font-size: clamp(1.45rem, 2.6vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--bv-white);
+  text-align: right;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+}
+
+.bv-cta-tab {
+  position: absolute;
+  z-index: 11;
+  right: 0;
+  bottom: 0;
+  padding: 1.1rem 1.25rem 1.15rem 2.5rem;
+  background: var(--bv-white);
+  border-radius: 1.85rem 0 var(--bv-radius-hero) 0;
+}
+
+.bv-cta-tab::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  bottom: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: radial-gradient(circle at 0 0, transparent 2.4rem, var(--bv-white) 2.45rem);
+}
+
+.bv-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.82rem 1.45rem;
+  border: 1.5px solid rgba(0,0,0,0.08);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bv-cta-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.bv-cta-btn svg { width: 0.95rem; height: 0.95rem; }
+
+.bv-hero-arrows {
+  position: absolute;
+  z-index: 10;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bv-hero-arrow {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  color: var(--bv-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.bv-hero-arrow:hover {
+  transform: scale(1.06);
+  background: var(--bv-white);
+}
+
+.bv-hero-arrow svg { width: 1rem; height: 1rem; }
+
+</style>
+  <style>
+/* inlined: modules/css/carousel.css */
+.bv-carousel {
+  position: relative;
+}
+
+.bv-carousel-viewport {
+  overflow: hidden;
+}
+
+.bv-carousel-viewport--snap {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bv-carousel-viewport--snap::-webkit-scrollbar { display: none; }
+
+.bv-carousel-track {
+  display: flex;
+  transition: transform 0.55s var(--bv-ease);
+  will-change: transform;
+}
+
+.bv-carousel-track--snap {
+  transition: none;
+}
+
+.bv-carousel-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.bv-suites .bv-carousel-slide {
+  flex: 0 0 min(22rem, 88vw);
+  padding-right: 1rem;
+}
+
+.bv-suite-card {
+  background: var(--bv-white);
+  border-radius: var(--bv-radius-card);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  height: 100%;
+  transition: transform 0.35s var(--bv-ease), box-shadow 0.35s;
+}
+
+.bv-suite-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+}
+
+.bv-suite-img {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.bv-suite-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--bv-ease);
+}
+
+.bv-suite-card:hover .bv-suite-img img { transform: scale(1.05); }
+
+.bv-suite-badge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  padding: 0.35rem 0.7rem;
+  background: rgba(255,255,255,0.94);
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bv-gold);
+}
+
+.bv-suite-body { padding: 1.15rem 1.2rem 1.25rem; }
+
+.bv-suite-body h3 {
+  margin: 0;
+  font-family: var(--bv-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.bv-suite-meta {
+  margin: 0.4rem 0 0;
+  font-size: 0.82rem;
+  color: var(--bv-muted);
+}
+
+.bv-suite-price {
+  margin-top: 0.85rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.bv-suite-price strong {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.bv-suite-price span { font-size: 0.8rem; color: var(--bv-muted); }
+
+.bv-gallery-strip .bv-carousel-slide {
+  flex: 0 0 min(28rem, 92vw);
+  padding-right: 0.75rem;
+}
+
+.bv-gallery-card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  aspect-ratio: 16/10;
+}
+
+.bv-gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bv-gallery-card figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2.5rem 1.1rem 1rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.65));
+  color: var(--bv-white);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.bv-testimonials .bv-carousel-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  padding: 0 0.35rem;
+}
+
+.bv-quote {
+  background: var(--bv-white);
+  border-radius: var(--bv-radius-card);
+  padding: 1.75rem 1.5rem;
+  border: 1px solid rgba(0,0,0,0.05);
+  min-height: 11rem;
+}
+
+.bv-quote p {
+  margin: 0;
+  font-family: var(--bv-serif);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--bv-ink);
+}
+
+.bv-quote footer {
+  margin-top: 1.25rem;
+  font-size: 0.82rem;
+  color: var(--bv-muted);
+}
+
+.bv-quote footer strong {
+  display: block;
+  color: var(--bv-ink);
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.bv-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.bv-carousel-dots {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.bv-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.15);
+  transition: transform 0.25s, background 0.25s, width 0.25s;
+}
+
+.bv-dot.is-active {
+  background: var(--bv-accent);
+  width: 1.35rem;
+  border-radius: 999px;
+}
+
+.bv-carousel-btns {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bv-carousel-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: var(--bv-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.bv-carousel-btn:hover {
+  background: var(--bv-ink);
+  border-color: var(--bv-ink);
+  color: var(--bv-white);
+}
+
+.bv-carousel-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.bv-carousel-btn svg { width: 1rem; height: 1rem; }
+
+.bv-autoplay-bar {
+  height: 2px;
+  background: rgba(0,0,0,0.08);
+  border-radius: 1px;
+  overflow: hidden;
+  flex: 1;
+  max-width: 8rem;
+}
+
+.bv-autoplay-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--bv-accent);
+  transition: width linear;
+}
+
+</style>
+  <style>
+/* inlined: modules/css/sections.css */
+.bv-main { padding-bottom: 3rem; }
+
+.bv-section {
+  padding: 4.5rem 0;
+}
+
+.bv-section--sand {
+  background: var(--bv-sand);
+}
+
+.bv-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.bv-split {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.bv-split-visual {
+  position: relative;
+  border-radius: 1.35rem;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  box-shadow: var(--bv-shadow);
+}
+
+.bv-split-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bv-split-float {
+  position: absolute;
+  right: -1rem;
+  bottom: 1.5rem;
+  width: 42%;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  border: 3px solid var(--bv-white);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  aspect-ratio: 3/4;
+}
+
+.bv-split-float img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bv-feature-list {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.bv-feature-list li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: 0.92rem;
+  color: var(--bv-muted);
+}
+
+.bv-feature-list li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-top: 0.45rem;
+  border-radius: 50%;
+  background: var(--bv-gold);
+}
+
+.bv-amenities {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.bv-amenity {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  min-height: 12rem;
+  padding: 0;
+  border: 0;
+  background: var(--bv-ink);
+  color: var(--bv-white);
+  cursor: zoom-in;
+  width: 100%;
+  text-align: left;
+}
+
+.bv-amenity img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s var(--bv-ease), filter 0.4s;
+}
+
+.bv-amenity:hover img,
+.bv-amenity:focus-visible img {
+  transform: scale(1.08);
+  filter: brightness(1.05);
+}
+
+.bv-amenity span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2rem 0.85rem 0.85rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  color: var(--bv-white);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
+.bv-amenity::after {
+  content: "+";
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  color: var(--bv-ink);
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.25s, transform 0.25s var(--bv-ease);
+}
+
+.bv-amenity:hover::after,
+.bv-amenity:focus-visible::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bv-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s var(--bv-ease), visibility 0.35s;
+}
+
+.bv-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bv-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.bv-lightbox-panel {
+  position: relative;
+  z-index: 1;
+  width: min(56rem, 100%);
+  transform: scale(0.88) translateY(1.25rem);
+  opacity: 0;
+  transition: transform 0.45s var(--bv-ease), opacity 0.45s var(--bv-ease);
+}
+
+.bv-lightbox.is-open .bv-lightbox-panel {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.bv-lightbox-figure {
+  margin: 0;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: var(--bv-ink);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+.bv-lightbox-figure img {
+  width: 100%;
+  max-height: min(78vh, 44rem);
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 0.45s var(--bv-ease), transform 0.55s var(--bv-ease);
+}
+
+.bv-lightbox-figure img.is-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bv-lightbox-figure figcaption {
+  position: absolute;
+  left: 1.1rem;
+  bottom: 1.1rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.94);
+  color: var(--bv-ink);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.bv-lightbox-figure {
+  position: relative;
+}
+
+.bv-lightbox-close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  color: var(--bv-ink);
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s;
+}
+
+.bv-lightbox-close:hover {
+  transform: scale(1.06);
+}
+
+.bv-lightbox-close svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.bv-lightbox-nav {
+  position: absolute;
+  inset: 50% 0.65rem auto;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.bv-lightbox-btn {
+  pointer-events: auto;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  color: var(--bv-ink);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.bv-lightbox-btn:hover {
+  transform: scale(1.06);
+}
+
+.bv-lightbox-btn svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.bv-booking {
+  margin: 0 1rem;
+  padding: 2.5rem 2rem;
+  border-radius: 1.75rem;
+  background: var(--bv-accent);
+  color: var(--bv-white);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem 2rem;
+  align-items: center;
+}
+
+.bv-booking h2 {
+  margin: 0;
+  font-family: var(--bv-serif);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 600;
+}
+
+.bv-booking p {
+  margin: 0.5rem 0 0;
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.78);
+  max-width: 28rem;
+}
+
+.bv-booking-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.bv-btn-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.4rem;
+  background: var(--bv-white);
+  color: var(--bv-accent);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+
+.bv-btn-light:hover { transform: translateY(-1px); }
+
+.bv-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8rem 1.4rem;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--bv-white);
+  transition: background 0.2s;
+}
+
+.bv-btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+.bv-contact-block {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 2.5rem 3rem;
+  align-items: start;
+}
+
+.bv-contact-points {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.bv-contact-points li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  color: var(--bv-muted);
+}
+
+.bv-contact-points li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-top: 0.45rem;
+  border-radius: 50%;
+  background: var(--bv-gold);
+}
+
+.bv-contact-form {
+  background: var(--bv-white);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--bv-radius-card);
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+}
+
+.bv-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.bv-field {
+  margin-bottom: 1rem;
+}
+
+.bv-field label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bv-muted);
+}
+
+.bv-field input,
+.bv-field textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 0.85rem;
+  background: var(--bv-cream);
+  color: var(--bv-ink);
+  font: inherit;
+  font-size: 0.92rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bv-field textarea {
+  resize: vertical;
+  min-height: 6.5rem;
+}
+
+.bv-field input::placeholder,
+.bv-field textarea::placeholder {
+  color: var(--bv-soft);
+}
+
+.bv-field input:focus,
+.bv-field textarea:focus {
+  outline: none;
+  border-color: var(--bv-accent);
+  box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.12);
+  background: var(--bv-white);
+}
+
+.bv-form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.95rem 1.4rem;
+  border-radius: 999px;
+  background: var(--bv-ink);
+  color: var(--bv-white);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.bv-form-submit:hover {
+  background: var(--bv-accent);
+  transform: translateY(-1px);
+}
+
+.bv-form-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.bv-form-status {
+  margin: 0.85rem 0 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.bv-form-status.is-success {
+  background: rgba(30, 58, 95, 0.08);
+  color: var(--bv-accent);
+}
+
+.bv-form-status.is-error {
+  background: rgba(160, 40, 40, 0.08);
+  color: #8a1f1f;
+}
+
+.bv-footer {
+  padding: 2.5rem 0 2rem;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.bv-footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.bv-footer-brand p {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: var(--bv-muted);
+  max-width: 16rem;
+  line-height: 1.6;
+}
+
+.bv-footer-col h4 {
+  margin: 0 0 0.85rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bv-gold);
+}
+
+.bv-footer-col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.bv-footer-col a {
+  font-size: 0.85rem;
+  color: var(--bv-muted);
+  transition: color 0.2s;
+}
+
+.bv-footer-col a:hover { color: var(--bv-ink); }
+
+.bv-footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--bv-soft);
+}
+
+</style>
+  <style>
+/* inlined: modules/css/responsive.css */
+@media (max-width: 960px) {
+  .bv-header {
+    grid-template-columns: 1fr auto;
+  }
+
+  .bv-nav-tab {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-top: 0;
+    padding: 0.75rem 1.25rem;
+    gap: 1.25rem;
+    border-radius: 999px;
+  }
+
+  .bv-hero {
+    flex: none;
+    min-height: 24rem;
+    height: min(62dvh, 34rem);
+  }
+
+  .bv-glass {
+    top: 0.75rem;
+    left: 0.75rem;
+    width: min(20rem, calc(100% - 1.5rem));
+  }
+
+  .bv-strip-item {
+    width: 4rem;
+    height: 2.6rem;
+  }
+
+  .bv-hero-progress {
+    left: 0.85rem;
+    bottom: 4.1rem;
+  }
+
+  .bv-hero-arrows {
+    right: 0.75rem;
+  }
+
+  .bv-cta-headline {
+    right: 0.85rem;
+    bottom: 4.75rem;
+    font-size: 1.35rem;
+    max-width: 11rem;
+  }
+
+  .bv-cta-tab {
+    padding: 0.9rem 1rem 0.9rem 1.65rem;
+    border-radius: 1.25rem 0 1.5rem 0;
+  }
+
+  .bv-thumbs { bottom: 3.85rem; }
+
+  .bv-split {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .bv-split-float {
+    right: 1rem;
+    width: 38%;
+  }
+
+  .bv-amenities {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bv-booking {
+    grid-template-columns: 1fr;
+    margin: 0 0.5rem;
+    padding: 2rem 1.35rem;
+  }
+
+  .bv-contact-block {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .bv-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .bv-footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 600px) {
+  .bv-page { padding: 0.5rem; }
+
+  .bv-frame {
+    padding: 0.75rem;
+    border-radius: 2rem;
+    min-height: auto;
+  }
+
+  .bv-hero {
+    flex: none;
+    min-height: 20rem;
+    height: min(52dvh, 28rem);
+    max-height: 30rem;
+    border-radius: 1.35rem;
+  }
+
+  .bv-glass {
+    top: 0.55rem;
+    left: 0.55rem;
+    width: min(17.5rem, calc(100% - 1.1rem));
+    padding: 0.5rem 0;
+  }
+
+  .bv-strip-label {
+    margin-bottom: 0.35rem;
+    padding: 0 0.7rem;
+  }
+
+  .bv-strip-item {
+    width: 3.35rem;
+    height: 2.15rem;
+  }
+
+  .bv-hero-progress {
+    left: 0.65rem;
+    bottom: 3.35rem;
+    padding: 0.28rem 0.5rem;
+  }
+
+  .bv-hero-arrows {
+    right: 0.55rem;
+    gap: 0.35rem;
+  }
+
+  .bv-hero-arrow {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+
+  .bv-cta-headline {
+    right: 0.65rem;
+    bottom: 4.15rem;
+    font-size: 1.2rem;
+    max-width: 9.5rem;
+  }
+
+  .bv-cta-tab {
+    padding: 0.75rem 0.85rem 0.75rem 1.35rem;
+  }
+
+  .bv-cta-btn {
+    padding: 0.7rem 1.15rem;
+    font-size: 0.82rem;
+  }
+
+  .bv-thumb {
+    width: 3.5rem;
+    height: 2.2rem;
+  }
+
+  .bv-thumbs {
+    left: 0.55rem;
+    bottom: 0.85rem;
+    gap: 0.3rem;
+  }
+
+  .bv-section { padding: 3rem 0; }
+
+  .bv-amenities { grid-template-columns: 1fr 1fr; }
+
+  .bv-form-row { grid-template-columns: 1fr; }
+
+  .bv-contact-form { padding: 1.35rem 1.15rem; }
+
+  .bv-footer-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bv-autoplay-fill {
+    animation: none !important;
+  }
+
+  .bv-hero-slide {
+    transition: none;
+  }
+
+  .bv-lightbox,
+  .bv-lightbox-panel,
+  .bv-lightbox-figure img {
+    transition: none !important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <div class="bv-page">
+    <div class="bv-frame">
+
+      <header class="bv-header">
+        <a href="#" class="bv-logo" aria-label="Maison Colline">
+          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <path d="M14 24C14 16.5 19.5 10 27 10C34.5 10 40 16.5 40 24C40 31.5 34.5 38 27 38C19.5 38 14 31.5 14 24Z" stroke="#0a0a0a" stroke-width="2.2"/>
+            <path d="M8 24C8 13.5 16.5 5 27 5C37.5 5 46 13.5 46 24" stroke="#0a0a0a" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M20 24C20 20 23 17 27 17C31 17 34 20 34 24" stroke="#0a0a0a" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <nav class="bv-nav-tab" aria-label="Primary">
+          <a href="#suites" class="bv-nav-link is-active"><span class="bv-nav-diamond" aria-hidden="true">◆</span> Villas</a>
+          <a href="#architecture" class="bv-nav-link">
+            Estates
+            <svg class="bv-nav-chevron" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </nav>
+        <a href="#contact" class="bv-contact">Contact Us</a>
+      </header>
+
+      <div class="bv-hero" data-hero>
+        <div class="bv-hero-carousel" aria-live="polite">
+          <div class="bv-hero-slide is-active" data-hero-slide>
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80" alt="Villa exterior at dusk" width="1600" height="900" fetchpriority="high">
+          </div>
+          <div class="bv-hero-slide" data-hero-slide>
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80" alt="Pool terrace" width="1600" height="900">
+          </div>
+          <div class="bv-hero-slide" data-hero-slide>
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="Hillside architecture" width="1600" height="900">
+          </div>
+          <div class="bv-hero-slide" data-hero-slide>
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80" alt="Suite interior" width="1600" height="900">
+          </div>
+          <div class="bv-hero-slide" data-hero-slide>
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=80" alt="Stone villa" width="1600" height="900">
+          </div>
+        </div>
+        <div class="bv-hero-overlay" aria-hidden="true"></div>
+
+        <div class="bv-glass" data-hero-strip aria-label="Villa collection preview">
+          <p class="bv-strip-label">The collection</p>
+          <div class="bv-strip-row">
+            <div class="bv-strip-track">
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="0"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=200&q=70" alt="Casa delle Colline" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="1"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=200&q=70" alt="Villa Aria" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="2"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=200&q=70" alt="Limonaia Estate" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="3"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=200&q=70" alt="Masseria Bianca" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="4"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=200&q=70" alt="Coastal retreat" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="0"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=200&q=70" alt="Courtyard manor" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="0" aria-hidden="true"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=200&q=70" alt="" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="1" aria-hidden="true"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=200&q=70" alt="" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="2" aria-hidden="true"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=200&q=70" alt="" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="3" aria-hidden="true"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=200&q=70" alt="" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="4" aria-hidden="true"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=200&q=70" alt="" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="0" aria-hidden="true"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=200&q=70" alt="" width="96" height="64"></a>
+            </div>
+          </div>
+          <div class="bv-strip-row bv-strip-row--alt">
+            <div class="bv-strip-track">
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="4"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=200&q=70" alt="Suite interior" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="1"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=200&q=70" alt="Stone villa" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="2"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=200&q=70" alt="Courtyard" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="3"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=200&q=70" alt="Pool view" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="0"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=200&q=70" alt="Exterior" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="1"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=200&q=70" alt="Architecture" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="4" aria-hidden="true"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=200&q=70" alt="" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="1" aria-hidden="true"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=200&q=70" alt="" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="2" aria-hidden="true"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=200&q=70" alt="" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="3" aria-hidden="true"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=200&q=70" alt="" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="0" aria-hidden="true"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=200&q=70" alt="" width="96" height="64"></a>
+              <a href="#suites" class="bv-strip-item" data-strip-item data-hero-index="1" aria-hidden="true"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=200&q=70" alt="" width="96" height="64"></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bv-hero-progress" aria-label="Hero gallery position">
+          <div class="bv-hero-track"><span class="bv-hero-thumb" data-hero-thumb-dot></span></div>
+          <span class="bv-hero-counter" data-hero-counter>01  &gt;</span>
+        </div>
+
+        <div class="bv-thumbs" aria-label="Hero gallery previews">
+          <button type="button" class="bv-thumb is-active" data-hero-thumb aria-label="Slide 1">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=240&q=70" alt="" width="120" height="80">
+          </button>
+          <button type="button" class="bv-thumb" data-hero-thumb aria-label="Slide 2">
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=240&q=70" alt="" width="120" height="80">
+          </button>
+          <button type="button" class="bv-thumb" data-hero-thumb aria-label="Slide 3">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=240&q=70" alt="" width="120" height="80">
+          </button>
+          <button type="button" class="bv-thumb" data-hero-thumb aria-label="Slide 4">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=240&q=70" alt="" width="120" height="80">
+          </button>
+          <button type="button" class="bv-thumb" data-hero-thumb aria-label="Slide 5">
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=240&q=70" alt="" width="120" height="80">
+          </button>
+        </div>
+
+        <div class="bv-hero-arrows">
+          <button type="button" class="bv-hero-arrow" data-hero-prev aria-label="Previous slide">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="bv-hero-arrow" data-hero-next aria-label="Next slide">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+        <h2 class="bv-cta-headline">Plan Your Private Stay</h2>
+        <div class="bv-cta-tab">
+          <a href="#reserve" class="bv-cta-btn">
+            Reserve
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <main class="bv-main">
+
+    <section class="bv-section" id="suites">
+      <div class="bv-wrap">
+        <div class="bv-section-head bv-reveal">
+          <div>
+            <span class="bv-tag">Collections</span>
+            <h2 class="bv-title">Boutique villas, hand-picked</h2>
+            <p class="bv-lead">Architectural stays with private pools, vineyard access, and direct rates.</p>
+          </div>
+        </div>
+
+        <div class="bv-carousel bv-suites" data-carousel data-autoplay="false">
+          <div class="bv-carousel-viewport bv-carousel-viewport--snap">
+            <div class="bv-carousel-track bv-carousel-track--snap" data-carousel-track>
+              <article class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-suite-card">
+                  <div class="bv-suite-img">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80" alt="Casa delle Colline exterior" loading="lazy" width="800" height="600">
+                    <span class="bv-suite-badge">Editor's pick</span>
+                  </div>
+                  <div class="bv-suite-body">
+                    <h3>Casa delle Colline</h3>
+                    <p class="bv-suite-meta">Montepulciano · 6 suites · Pool &amp; vineyard</p>
+                    <div class="bv-suite-price"><strong>€285</strong><span>per night · direct rate</span></div>
+                  </div>
+                </div>
+              </article>
+              <article class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-suite-card">
+                  <div class="bv-suite-img">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80" alt="Villa Aria pool terrace" loading="lazy" width="800" height="600">
+                    <span class="bv-suite-badge">New</span>
+                  </div>
+                  <div class="bv-suite-body">
+                    <h3>Villa Aria</h3>
+                    <p class="bv-suite-meta">Amalfi Coast · 4 bedrooms · Sea view</p>
+                    <div class="bv-suite-price"><strong>€420</strong><span>per night · direct rate</span></div>
+                  </div>
+                </div>
+              </article>
+              <article class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-suite-card">
+                  <div class="bv-suite-img">
+                    <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80" alt="Limonaia Estate" loading="lazy" width="800" height="600">
+                  </div>
+                  <div class="bv-suite-body">
+                    <h3>Limonaia Estate</h3>
+                    <p class="bv-suite-meta">Lake Como · 5 bedrooms · Private dock</p>
+                    <div class="bv-suite-price"><strong>€510</strong><span>per night · direct rate</span></div>
+                  </div>
+                </div>
+              </article>
+              <article class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-suite-card">
+                  <div class="bv-suite-img">
+                    <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80" alt="Masseria Bianca courtyard" loading="lazy" width="800" height="600">
+                  </div>
+                  <div class="bv-suite-body">
+                    <h3>Masseria Bianca</h3>
+                    <p class="bv-suite-meta">Puglia · 8 suites · Olive grove</p>
+                    <div class="bv-suite-price"><strong>€340</strong><span>per night · direct rate</span></div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="bv-carousel-controls">
+            <div class="bv-carousel-dots" role="tablist" aria-label="Villa slides">
+              <button type="button" class="bv-dot is-active" data-carousel-dot role="tab" aria-selected="true" aria-label="Slide 1"></button>
+              <button type="button" class="bv-dot" data-carousel-dot role="tab" aria-selected="false" aria-label="Slide 2"></button>
+              <button type="button" class="bv-dot" data-carousel-dot role="tab" aria-selected="false" aria-label="Slide 3"></button>
+              <button type="button" class="bv-dot" data-carousel-dot role="tab" aria-selected="false" aria-label="Slide 4"></button>
+            </div>
+            <div class="bv-carousel-btns">
+              <button type="button" class="bv-carousel-btn" data-carousel-prev aria-label="Previous villa"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button type="button" class="bv-carousel-btn" data-carousel-next aria-label="Next villa"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bv-section bv-section--sand" id="architecture">
+      <div class="bv-wrap">
+        <div class="bv-split">
+          <div class="bv-split-visual bv-reveal">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Contemporary villa architecture" loading="lazy" width="900" height="1125">
+            <div class="bv-split-float">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Suite interior" loading="lazy" width="500" height="667">
+            </div>
+          </div>
+          <div class="bv-reveal">
+            <span class="bv-tag">Architecture</span>
+            <h2 class="bv-title">Design-led spaces you live in</h2>
+            <p class="bv-lead">Each property is selected for material quality — stone, oak, glass — and how daylight moves through the rooms.</p>
+            <ul class="bv-feature-list">
+              <li>Floor-to-ceiling glazing with vineyard or sea aspect</li>
+              <li>Locally sourced stone and hand-finished plaster</li>
+              <li>Furnished for stays, not staged for photographs</li>
+              <li>Pools integrated into the landscape</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bv-section" id="gallery">
+      <div class="bv-wrap">
+        <div class="bv-section-head bv-reveal">
+          <div>
+            <span class="bv-tag">Gallery</span>
+            <h2 class="bv-title">Inside the collection</h2>
+          </div>
+        </div>
+        <div class="bv-carousel bv-gallery-strip" data-carousel data-autoplay="true" data-interval="4500" data-loop="true">
+          <div class="bv-carousel-viewport bv-carousel-viewport--snap">
+            <div class="bv-carousel-track bv-carousel-track--snap" data-carousel-track>
+              <figure class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-gallery-card">
+                  <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80" alt="Pool at sunset" loading="lazy" width="900" height="563">
+                  <figcaption>Pool terrace · Casa delle Colline</figcaption>
+                </div>
+              </figure>
+              <figure class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-gallery-card">
+                  <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Living area" loading="lazy" width="900" height="563">
+                  <figcaption>Living room · Villa Aria</figcaption>
+                </div>
+              </figure>
+              <figure class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-gallery-card">
+                  <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80" alt="Stone villa facade" loading="lazy" width="900" height="563">
+                  <figcaption>Facade · Limonaia Estate</figcaption>
+                </div>
+              </figure>
+              <figure class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-gallery-card">
+                  <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80" alt="Courtyard dining" loading="lazy" width="900" height="563">
+                  <figcaption>Courtyard · Masseria Bianca</figcaption>
+                </div>
+              </figure>
+            </div>
+          </div>
+          <div class="bv-carousel-controls">
+            <div class="bv-autoplay-bar"><div class="bv-autoplay-fill" data-carousel-progress></div></div>
+            <div class="bv-carousel-dots" role="tablist">
+              <button type="button" class="bv-dot is-active" data-carousel-dot aria-label="Gallery 1"></button>
+              <button type="button" class="bv-dot" data-carousel-dot aria-label="Gallery 2"></button>
+              <button type="button" class="bv-dot" data-carousel-dot aria-label="Gallery 3"></button>
+              <button type="button" class="bv-dot" data-carousel-dot aria-label="Gallery 4"></button>
+            </div>
+            <div class="bv-carousel-btns">
+              <button type="button" class="bv-carousel-btn" data-carousel-prev aria-label="Previous"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button type="button" class="bv-carousel-btn" data-carousel-next aria-label="Next"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bv-section bv-section--sand">
+      <div class="bv-wrap">
+        <div class="bv-section-head bv-reveal">
+          <div>
+            <span class="bv-tag">Experience</span>
+            <h2 class="bv-title">On-site amenities</h2>
+            <p class="bv-lead">Pools, kitchens, cellars, and quiet corners — set up for week-long stays.</p>
+          </div>
+        </div>
+        <div class="bv-amenities bv-reveal" data-amenities>
+          <button type="button" class="bv-amenity" data-amenity data-amenity-src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80" data-amenity-label="Private pool" aria-label="Enlarge Private pool">
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80" alt="Private pool" loading="lazy" width="600" height="800">
+            <span>Private pool</span>
+          </button>
+          <button type="button" class="bv-amenity" data-amenity data-amenity-src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80" data-amenity-label="Chef's kitchen" aria-label="Enlarge Chef's kitchen">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Kitchen and dining" loading="lazy" width="600" height="800">
+            <span>Chef's kitchen</span>
+          </button>
+          <button type="button" class="bv-amenity" data-amenity data-amenity-src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1600&q=80" data-amenity-label="Wine terrace" aria-label="Enlarge Wine terrace">
+            <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=800&q=80" alt="Courtyard and wine terrace" loading="lazy" width="600" height="800">
+            <span>Wine terrace</span>
+          </button>
+          <button type="button" class="bv-amenity" data-amenity data-amenity-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" data-amenity-label="Garden terrace" aria-label="Enlarge Garden terrace">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Garden and terrace" loading="lazy" width="600" height="800">
+            <span>Garden terrace</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="bv-lightbox" data-amenity-lightbox aria-hidden="true">
+      <button type="button" class="bv-lightbox-backdrop" data-amenity-close aria-label="Close"></button>
+      <div class="bv-lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="bv-lightbox-label">
+        <button type="button" class="bv-lightbox-close" data-amenity-close aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <figure class="bv-lightbox-figure">
+          <img src="" alt="" data-amenity-image width="1600" height="1200">
+          <figcaption id="bv-lightbox-label" data-amenity-caption></figcaption>
+        </figure>
+        <div class="bv-lightbox-nav">
+          <button type="button" class="bv-lightbox-btn" data-amenity-prev aria-label="Previous amenity">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="bv-lightbox-btn" data-amenity-next aria-label="Next amenity">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <section class="bv-section" id="reviews">
+      <div class="bv-wrap">
+        <div class="bv-section-head bv-reveal">
+          <div>
+            <span class="bv-tag">Guest reviews</span>
+            <h2 class="bv-title">From recent stays</h2>
+          </div>
+        </div>
+        <div class="bv-carousel bv-testimonials" data-carousel data-autoplay="true" data-interval="6000" data-loop="true">
+          <div class="bv-carousel-viewport">
+            <div class="bv-carousel-track" data-carousel-track>
+              <blockquote class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-quote">
+                  <p>Quiet rooms, good light, and a kitchen we actually cooked in. The pool was private enough that we never shared it with another group.</p>
+                  <footer><strong>Elena Marchetti</strong>June 2025 · Casa delle Colline</footer>
+                </div>
+              </blockquote>
+              <blockquote class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-quote">
+                  <p>Booking on the villa site was straightforward. Rate was lower than the platform listing, and check-in instructions arrived the night before.</p>
+                  <footer><strong>James &amp; Sarah Cole</strong>August 2025 · Villa Aria</footer>
+                </div>
+              </blockquote>
+              <blockquote class="bv-carousel-slide" data-carousel-slide>
+                <div class="bv-quote">
+                  <p>Stone exterior, warm interior. We added two nights after arriving — the dock and morning coffee on the terrace were hard to leave.</p>
+                  <footer><strong>Marco De Luca</strong>September 2025 · Limonaia Estate</footer>
+                </div>
+              </blockquote>
+            </div>
+          </div>
+          <div class="bv-carousel-controls">
+            <div class="bv-carousel-dots" role="tablist">
+              <button type="button" class="bv-dot is-active" data-carousel-dot aria-label="Review 1"></button>
+              <button type="button" class="bv-dot" data-carousel-dot aria-label="Review 2"></button>
+              <button type="button" class="bv-dot" data-carousel-dot aria-label="Review 3"></button>
+            </div>
+            <div class="bv-carousel-btns">
+              <button type="button" class="bv-carousel-btn" data-carousel-prev aria-label="Previous review"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button type="button" class="bv-carousel-btn" data-carousel-next aria-label="Next review"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bv-section" id="reserve">
+      <div class="bv-wrap">
+        <div class="bv-booking bv-reveal">
+          <div>
+            <h2>Book direct. Stay longer, pay less.</h2>
+            <p>No platform fees. Flexible arrival windows and late checkout on stays of three nights or more.</p>
+          </div>
+          <div class="bv-booking-actions">
+            <a href="#contact" class="bv-btn-light">Check availability</a>
+            <a href="#contact" class="bv-btn-ghost">Notify me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bv-section bv-section--sand" id="contact">
+      <div class="bv-wrap">
+        <div class="bv-contact-block bv-reveal">
+          <div class="bv-contact-copy">
+            <span class="bv-tag">Contact</span>
+            <h2 class="bv-title">Notify me when dates open</h2>
+            <p class="bv-lead">Tell us your preferred villa and travel window. We’ll follow up when matching stays are available — usually within a day.</p>
+            <ul class="bv-contact-points">
+              <li>Direct rates, no platform fees</li>
+              <li>Availability alerts for your dates</li>
+              <li>Concierge reply by email</li>
+            </ul>
+          </div>
+          <!-- Buyers: replace hello@maison.example with your email to receive submissions -->
+          <form class="bv-contact-form" action="https://formsubmit.co/hello@maison.example" method="POST">
+            <input type="hidden" name="_subject" value="Maison Colline — availability request">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+            <div class="bv-form-row">
+              <div class="bv-field">
+                <label for="bv-name">Name</label>
+                <input type="text" id="bv-name" name="name" autocomplete="name" required placeholder="Your name">
+              </div>
+              <div class="bv-field">
+                <label for="bv-email">Email</label>
+                <input type="email" id="bv-email" name="email" autocomplete="email" required placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="bv-field">
+              <label for="bv-dates">Preferred dates</label>
+              <input type="text" id="bv-dates" name="dates" placeholder="e.g. 12 – 18 August 2026">
+            </div>
+            <div class="bv-field">
+              <label for="bv-message">Villa or notes</label>
+              <textarea id="bv-message" name="message" rows="4" placeholder="Which villa, guests, or anything we should know…"></textarea>
+            </div>
+            <button type="submit" class="bv-form-submit">Notify me</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bv-footer">
+    <div class="bv-wrap">
+      <div class="bv-footer-grid bv-reveal">
+        <div class="bv-footer-brand">
+          <a href="#" class="bv-logo" aria-label="Maison Colline">
+            <svg viewBox="0 0 48 48" fill="none" width="36" height="36" aria-hidden="true">
+              <path d="M14 24C14 16.5 19.5 10 27 10C34.5 10 40 16.5 40 24C40 31.5 34.5 38 27 38C19.5 38 14 31.5 14 24Z" stroke="#0a0a0a" stroke-width="2.2"/>
+              <path d="M8 24C8 13.5 16.5 5 27 5C37.5 5 46 13.5 46 24" stroke="#0a0a0a" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <p>Boutique villa rentals across Italy and the Mediterranean. Direct booking, on-site concierge.</p>
+        </div>
+        <div class="bv-footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#suites">Villas</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+          </ul>
+        </div>
+        <div class="bv-footer-col">
+          <h4>Guest info</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Policies</a></li>
+            <li><a href="#">Concierge</a></li>
+          </ul>
+        </div>
+        <div class="bv-footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="#contact">Notify me</a></li>
+            <li><a href="mailto:hello@maison.example">hello@maison.example</a></li>
+            <li><a href="tel:+390551234567">+39 055 123 4567</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bv-footer-bottom">
+        <span>© 2026 Maison Colline. All rights reserved.</span>
+        <span>Privacy · Terms · Cookies</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+/* inlined: modules/js/carousel.js */
+function BVCarousel(root) {
+  if (!root) return;
+
+  var track = root.querySelector("[data-carousel-track]");
+  var slides = root.querySelectorAll("[data-carousel-slide]");
+  var dots = root.querySelectorAll("[data-carousel-dot]");
+  var prevBtn = root.querySelector("[data-carousel-prev]");
+  var nextBtn = root.querySelector("[data-carousel-next]");
+  var progress = root.querySelector("[data-carousel-progress]");
+  var viewport = root.querySelector(".bv-carousel-viewport");
+  var index = 0;
+  var total = slides.length;
+  var autoplay = root.dataset.autoplay === "true";
+  var interval = parseInt(root.dataset.interval, 10) || 5000;
+  var timer = null;
+  var isSnap = track && track.classList.contains("bv-carousel-track--snap");
+  var scroller = isSnap ? viewport : null;
+
+  if (!track || total === 0) return;
+  if (isSnap && !scroller) return;
+
+  function goTo(i) {
+    var loop = root.dataset.loop === "true";
+    if (!loop && i < 0) i = 0;
+    if (!loop && i >= total) i = total - 1;
+    index = loop ? ((i % total) + total) % total : i;
+
+    if (isSnap) {
+      var slide = slides[index];
+      if (slide) {
+        scroller.scrollTo({
+          left: slide.offsetLeft - track.offsetLeft,
+          behavior: "smooth"
+        });
+      }
+    } else if (viewport) {
+      track.style.transform = "translateX(-" + index * viewport.offsetWidth + "px)";
+    }
+
+    dots.forEach(function (dot, n) {
+      dot.classList.toggle("is-active", n === index);
+      dot.setAttribute("aria-selected", n === index ? "true" : "false");
+    });
+  }
+
+  function next() { goTo(index + 1); }
+  function prev() { goTo(index - 1); }
+
+  function start() {
+    stop();
+    if (!autoplay) return;
+    if (progress) {
+      progress.style.transition = "none";
+      progress.style.width = "0%";
+      requestAnimationFrame(function () {
+        progress.style.transition = "width " + interval + "ms linear";
+        progress.style.width = "100%";
+      });
+    }
+    timer = setTimeout(function () {
+      next();
+      start();
+    }, interval);
+  }
+
+  function stop() {
+    if (timer) clearTimeout(timer);
+    timer = null;
+  }
+
+  if (prevBtn) prevBtn.addEventListener("click", function () { prev(); start(); });
+  if (nextBtn) nextBtn.addEventListener("click", function () { next(); start(); });
+
+  dots.forEach(function (dot, i) {
+    dot.addEventListener("click", function () { goTo(i); start(); });
+  });
+
+  if (isSnap) {
+    var scrollTimer;
+    scroller.addEventListener("scroll", function () {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function () {
+        var left = scroller.scrollLeft;
+        var closest = 0;
+        var min = Infinity;
+        slides.forEach(function (slide, i) {
+          var dist = Math.abs((slide.offsetLeft - track.offsetLeft) - left);
+          if (dist < min) { min = dist; closest = i; }
+        });
+        if (closest !== index) {
+          index = closest;
+          dots.forEach(function (dot, n) {
+            dot.classList.toggle("is-active", n === index);
+          });
+        }
+      }, 80);
+    }, { passive: true });
+  }
+
+  window.addEventListener("resize", function () {
+    if (!isSnap) goTo(index);
+  });
+
+  goTo(0);
+  start();
+}
+
+window.BVCarousel = BVCarousel;
+
+</script>
+  <script>
+/* inlined: modules/js/hero.js */
+function BVHero(root) {
+  if (!root) return;
+
+  var slides = root.querySelectorAll("[data-hero-slide]");
+  var thumbs = root.querySelectorAll("[data-hero-thumb]");
+  var counter = root.querySelector("[data-hero-counter]");
+  var thumbDot = root.querySelector("[data-hero-thumb-dot]");
+  var prevBtn = root.querySelector("[data-hero-prev]");
+  var nextBtn = root.querySelector("[data-hero-next]");
+  var index = 0;
+  var total = slides.length;
+  var timer = null;
+  var interval = 5000;
+  var touchX = 0;
+  var touchY = 0;
+
+  if (total < 2) return;
+
+  function pad(n) {
+    return n < 10 ? "0" + n : String(n);
+  }
+
+  function goTo(i) {
+    index = ((i % total) + total) % total;
+    slides.forEach(function (slide, n) {
+      slide.classList.toggle("is-active", n === index);
+    });
+    thumbs.forEach(function (thumb, n) {
+      thumb.classList.toggle("is-active", n === index);
+    });
+    if (counter) counter.textContent = pad(index + 1) + "  >";
+    if (thumbDot) thumbDot.style.left = (index / (total - 1)) * 100 + "%";
+  }
+
+  function next() { goTo(index + 1); }
+  function prev() { goTo(index - 1); }
+
+  function start() {
+    stop();
+    timer = setInterval(next, interval);
+  }
+
+  function stop() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  thumbs.forEach(function (thumb, i) {
+    thumb.addEventListener("click", function () {
+      goTo(i);
+      start();
+    });
+  });
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", function () {
+      prev();
+      start();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", function () {
+      next();
+      start();
+    });
+  }
+
+  root.addEventListener("touchstart", function (e) {
+    if (!e.changedTouches || !e.changedTouches[0]) return;
+    if (e.target.closest("a, button, [data-hero-strip]")) return;
+    touchX = e.changedTouches[0].clientX;
+    touchY = e.changedTouches[0].clientY;
+  }, { passive: true });
+
+  root.addEventListener("touchend", function (e) {
+    if (!e.changedTouches || !e.changedTouches[0]) return;
+    if (e.target.closest("a, button, [data-hero-strip]")) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    var dy = e.changedTouches[0].clientY - touchY;
+    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+    if (dx > 0) prev();
+    else next();
+    start();
+  }, { passive: true });
+
+  goTo(0);
+  start();
+}
+
+window.BVHero = BVHero;
+
+</script>
+  <script>
+/* inlined: modules/js/hero-strip.js */
+function BVHeroStrip(stripRoot, heroRoot) {
+  if (!stripRoot) return;
+
+  var tracks = stripRoot.querySelectorAll(".bv-strip-track");
+  var thumbs = heroRoot ? heroRoot.querySelectorAll("[data-hero-thumb]") : [];
+  var timer = null;
+  var offsets = [];
+  var speeds = [];
+
+  tracks.forEach(function (track, i) {
+    var reverse = !!track.closest(".bv-strip-row--alt");
+    speeds[i] = reverse ? 1.2 : -1.5;
+    offsets[i] = 0;
+  });
+
+  function step() {
+    tracks.forEach(function (track, i) {
+      var half = track.scrollWidth / 2;
+      if (half < 40) return;
+      offsets[i] += speeds[i];
+      if (offsets[i] <= -half) offsets[i] += half;
+      if (offsets[i] >= 0) offsets[i] -= half;
+      track.style.transform = "translate3d(" + offsets[i] + "px,0,0)";
+    });
+  }
+
+  function start() {
+    if (timer) return;
+    tracks.forEach(function (track, i) {
+      var half = track.scrollWidth / 2;
+      offsets[i] = speeds[i] > 0 && half > 40 ? -half : 0;
+    });
+    timer = setInterval(step, 16);
+  }
+
+  function boot() {
+    var tries = 0;
+    (function wait() {
+      var ready = true;
+      tracks.forEach(function (track) {
+        if (track.scrollWidth < 80) ready = false;
+      });
+      if (ready || tries > 40) start();
+      else {
+        tries += 1;
+        setTimeout(wait, 100);
+      }
+    })();
+  }
+
+  stripRoot.addEventListener("click", function (e) {
+    var item = e.target.closest("[data-strip-item]");
+    if (!item || !heroRoot) return;
+    var idx = parseInt(item.getAttribute("data-hero-index"), 10);
+    if (isNaN(idx) || !thumbs[idx]) return;
+    e.preventDefault();
+    thumbs[idx].click();
+  });
+
+  if (document.readyState === "complete") boot();
+  else window.addEventListener("load", boot);
+  boot();
+}
+
+window.BVHeroStrip = BVHeroStrip;
+
+</script>
+  <script>
+/* inlined: modules/js/reveal.js */
+function BVReveal() {
+  var els = document.querySelectorAll(".bv-reveal");
+  if (!els.length) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    els.forEach(function (el) { el.classList.add("is-visible"); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+  els.forEach(function (el) { observer.observe(el); });
+}
+
+window.BVReveal = BVReveal;
+
+</script>
+  <script>
+/* inlined: modules/js/contact.js */
+/* Contact form submits natively via form[action] (FormSubmit).
+   Buyers: replace the email in index.html form action with yours. */
+function BVContact() {}
+
+window.BVContact = BVContact;
+
+</script>
+  <script>
+/* inlined: modules/js/amenities.js */
+function BVAmenities(root) {
+  if (!root) return;
+
+  var items = Array.prototype.slice.call(root.querySelectorAll("[data-amenity]"));
+  var lightbox = document.querySelector("[data-amenity-lightbox]");
+  if (!items.length || !lightbox) return;
+
+  var img = lightbox.querySelector("[data-amenity-image]");
+  var caption = lightbox.querySelector("[data-amenity-caption]");
+  var closeBtns = lightbox.querySelectorAll("[data-amenity-close]");
+  var prevBtn = lightbox.querySelector("[data-amenity-prev]");
+  var nextBtn = lightbox.querySelector("[data-amenity-next]");
+  var index = 0;
+  var lastFocus = null;
+
+  function fill(i) {
+    index = ((i % items.length) + items.length) % items.length;
+    var item = items[index];
+    var src = item.getAttribute("data-amenity-src") || "";
+    var label = item.getAttribute("data-amenity-label") || "";
+    if (img) {
+      img.classList.remove("is-in");
+      img.src = src;
+      img.alt = label;
+      requestAnimationFrame(function () {
+        img.classList.add("is-in");
+      });
+    }
+    if (caption) caption.textContent = label;
+  }
+
+  function open(i) {
+    fill(i);
+    lastFocus = document.activeElement;
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    if (nextBtn) nextBtn.focus();
+  }
+
+  function close() {
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  items.forEach(function (item, i) {
+    item.addEventListener("click", function () { open(i); });
+  });
+
+  closeBtns.forEach(function (btn) {
+    btn.addEventListener("click", close);
+  });
+
+  if (prevBtn) prevBtn.addEventListener("click", function () { fill(index - 1); });
+  if (nextBtn) nextBtn.addEventListener("click", function () { fill(index + 1); });
+
+  document.addEventListener("keydown", function (e) {
+    if (!lightbox.classList.contains("is-open")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") fill(index - 1);
+    if (e.key === "ArrowRight") fill(index + 1);
+  });
+}
+
+window.BVAmenities = BVAmenities;
+
+</script>
+  <script>
+/* inlined: modules/js/main.js */
+(function () {
+  "use strict";
+
+  var heroEl = document.querySelector("[data-hero]");
+  BVHero(heroEl);
+  BVHeroStrip(document.querySelector("[data-hero-strip]"), heroEl);
+
+  document.querySelectorAll("[data-carousel]").forEach(function (el) {
+    BVCarousel(el);
+  });
+
+  BVContact(document.querySelector("[data-contact-form]"));
+  BVAmenities(document.querySelector("[data-amenities]"));
+  BVReveal();
+})();
+
+</script>
+</body>
+</html>

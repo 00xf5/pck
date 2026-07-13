@@ -39,7 +39,27 @@
   }
 
   .pa-hero {
-    padding-top: calc(var(--pa-header-h) + 2rem);
+    min-height: auto;
+    height: auto;
+    padding: calc(var(--pa-header-h) + 1.75rem) 0 2.5rem;
+    align-items: start;
+  }
+
+  .pa-hero-title {
+    font-size: clamp(2.4rem, 9.5vw, 4.25rem);
+  }
+
+  .pa-title {
+    font-size: clamp(2rem, 6vw, 3.25rem);
+  }
+
+  .pa-hero-meta {
+    margin-top: 1.75rem;
+    gap: 1.25rem;
+  }
+
+  .pa-hero-meta strong {
+    font-size: 1.25rem;
   }
 
   .pa-service {
@@ -70,6 +90,30 @@
   .pa-wrap,
   .pa-hero-inner {
     width: min(78rem, calc(100% - 1.5rem));
+  }
+
+  .pa-hero {
+    padding: calc(var(--pa-header-h) + 1.25rem) 0 1.75rem;
+  }
+
+  .pa-hero-title {
+    font-size: clamp(2.1rem, 11vw, 3rem);
+    max-width: 10ch;
+  }
+
+  .pa-hero-kicker {
+    margin-bottom: 0.85rem;
+  }
+
+  .pa-hero-row {
+    margin-top: 1.25rem;
+    gap: 1rem;
+  }
+
+  .pa-hero-meta {
+    margin-top: 1.35rem;
+    padding-top: 1rem;
+    gap: 1rem 1.5rem;
   }
 
   .pa-section { padding: 3.75rem 0; }

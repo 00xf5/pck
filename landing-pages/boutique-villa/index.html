@@ -424,7 +424,11 @@
               <li>Concierge reply by email</li>
             </ul>
           </div>
-          <form class="bv-contact-form" data-contact-form novalidate>
+          <!-- Buyers: replace hello@maison.example with your email to receive submissions -->
+          <form class="bv-contact-form" action="https://formsubmit.co/hello@maison.example" method="POST">
+            <input type="hidden" name="_subject" value="Maison Colline — availability request">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
             <div class="bv-form-row">
               <div class="bv-field">
                 <label for="bv-name">Name</label>
@@ -444,7 +448,6 @@
               <textarea id="bv-message" name="message" rows="4" placeholder="Which villa, guests, or anything we should know…"></textarea>
             </div>
             <button type="submit" class="bv-form-submit">Notify me</button>
-            <p class="bv-form-status" data-contact-status role="status" aria-live="polite" hidden></p>
           </form>
         </div>
       </div>

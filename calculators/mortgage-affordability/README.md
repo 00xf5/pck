@@ -10,7 +10,7 @@ Copy the `<div>`, `<style>`, and `<script>` from `mortgage-affordability.html` i
 
 ```css
 .pck-mortgage-calc {
-  --w-accent: #334155;  /* headline + focus */
+  --w-accent: #0a0a0a;  /* result panel + focus (matte black) */
   --w-border: #e2e8f0;
   --w-muted: #64748b;
 }

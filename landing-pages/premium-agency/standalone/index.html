@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<!-- PCK standalone build: HTML + CSS + JS inlined. Asset paths relative to ../assets/ -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NORTH — premium digital agency. Brand, product, and growth for ambitious companies.">
+  <title>NORTH — Digital Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+/* inlined: modules/css/tokens.css */
+:root {
+  --pa-bg: #070708;
+  --pa-elev: #111114;
+  --pa-ink: #f4f4f0;
+  --pa-muted: #8b8b92;
+  --pa-dim: #5c5c64;
+  --pa-line: rgba(244, 244, 240, 0.12);
+  --pa-acid: #c8ff00;
+  --pa-hot: #ff4d2e;
+  --pa-font: "Manrope", system-ui, sans-serif;
+  --pa-display: "Syne", system-ui, sans-serif;
+  --pa-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --pa-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --pa-header-h: 4rem;
+}
+
+</style>
+  <style>
+/* inlined: modules/css/base.css */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--pa-font);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--pa-ink);
+  background: var(--pa-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; border: none; background: none; padding: 0; }
+
+.pa-wrap {
+  width: min(78rem, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+.pa-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--pa-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pa-acid);
+  margin-bottom: 1rem;
+}
+
+.pa-tag::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  background: var(--pa-acid);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--pa-acid);
+}
+
+.pa-title {
+  margin: 0;
+  font-family: var(--pa-display);
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.pa-lead {
+  margin: 1rem 0 0;
+  max-width: 34rem;
+  color: var(--pa-muted);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.pa-reveal { opacity: 1; transform: none; }
+
+html.pa-js .pa-reveal {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.7s var(--pa-ease), transform 0.7s var(--pa-ease);
+}
+
+html.pa-js .pa-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+</style>
+  <style>
+/* inlined: modules/css/header-hero.css */
+.pa-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--pa-header-h);
+  padding: 0 1.5rem;
+  background: rgba(7, 7, 8, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--pa-line);
+}
+
+.pa-logo {
+  font-family: var(--pa-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pa-logo span { color: var(--pa-acid); }
+
+.pa-nav {
+  display: flex;
+  gap: 1.75rem;
+}
+
+.pa-nav a {
+  font-family: var(--pa-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pa-muted);
+  transition: color 0.2s;
+}
+
+.pa-nav a:hover,
+.pa-nav a.is-active { color: var(--pa-ink); }
+
+.pa-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.pa-menu-btn {
+  display: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 1px solid var(--pa-line);
+  background: rgba(244, 244, 240, 0.06);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.35rem;
+  z-index: 60;
+}
+
+.pa-menu-btn span {
+  display: block;
+  width: 1.1rem;
+  height: 2px;
+  background: var(--pa-ink);
+  transition: transform 0.25s var(--pa-ease), opacity 0.2s;
+}
+
+.pa-header.is-open .pa-menu-btn span:first-child {
+  transform: translateY(4.5px) rotate(45deg);
+}
+
+.pa-header.is-open .pa-menu-btn span:last-child {
+  transform: translateY(-4.5px) rotate(-45deg);
+}
+
+.pa-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid var(--pa-acid);
+  background: var(--pa-acid);
+  color: #070708;
+  font-family: var(--pa-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: transform 0.25s var(--pa-ease), background 0.2s, color 0.2s, box-shadow 0.25s;
+}
+
+.pa-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(200, 255, 0, 0.35);
+}
+
+.pa-btn--ghost {
+  background: transparent;
+  color: var(--pa-ink);
+  border-color: var(--pa-line);
+}
+
+.pa-btn--ghost:hover {
+  border-color: var(--pa-ink);
+  box-shadow: none;
+  background: rgba(244, 244, 240, 0.06);
+}
+
+.pa-hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: calc(var(--pa-header-h) + 3rem) 0 4rem;
+  overflow: hidden;
+  display: grid;
+  align-items: end;
+}
+
+.pa-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.pa-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.38;
+  filter: grayscale(0.35) contrast(1.1);
+  transform: scale(1.08);
+  animation: pa-drift 20s ease-in-out infinite alternate;
+}
+
+@keyframes pa-drift {
+  from { transform: scale(1.08) translate3d(0, 0, 0); }
+  to { transform: scale(1.16) translate3d(-2%, -1%, 0); }
+}
+
+.pa-hero-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 50% at 80% 20%, rgba(200, 255, 0, 0.12), transparent 55%),
+    linear-gradient(180deg, rgba(7,7,8,0.35) 0%, rgba(7,7,8,0.55) 40%, rgba(7,7,8,0.96) 100%);
+}
+
+.pa-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(78rem, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+.pa-hero-kicker {
+  margin: 0 0 1.25rem;
+  font-family: var(--pa-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pa-acid);
+}
+
+.pa-hero-title {
+  margin: 0;
+  font-family: var(--pa-display);
+  font-size: clamp(2.85rem, 9vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.88;
+  text-transform: uppercase;
+  max-width: 12ch;
+}
+
+.pa-hero-title em {
+  font-style: normal;
+  color: var(--pa-acid);
+}
+
+.pa-hero-row {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.pa-hero-text {
+  margin: 0;
+  max-width: 26rem;
+  color: var(--pa-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.pa-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.pa-hero-meta {
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--pa-line);
+  font-family: var(--pa-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pa-dim);
+}
+
+.pa-hero-meta strong {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--pa-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--pa-ink);
+  text-transform: none;
+}
+
+.pa-marquee {
+  border-block: 1px solid var(--pa-line);
+  background: var(--pa-elev);
+  overflow: hidden;
+}
+
+.pa-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 0;
+  animation: pa-marquee 18s linear infinite;
+  padding: 1rem 0;
+  font-family: var(--pa-display);
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--pa-muted);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.pa-marquee-track span {
+  padding-right: 2rem;
+  flex: 0 0 auto;
+}
+
+.pa-marquee-track b {
+  color: var(--pa-acid);
+  font-weight: 800;
+}
+
+@keyframes pa-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+</style>
+  <style>
+/* inlined: modules/css/sections.css */
+.pa-section {
+  padding: 5.5rem 0;
+}
+
+.pa-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem 2rem;
+  margin-bottom: 2.25rem;
+}
+
+.pa-runway-wrap {
+  position: relative;
+}
+
+.pa-runway-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0.5rem;
+  width: 2.5rem;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--pa-bg));
+  z-index: 1;
+}
+
+.pa-runway {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 0.5rem;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+}
+
+.pa-runway::-webkit-scrollbar { display: none; }
+.pa-runway.is-dragging { cursor: grabbing; }
+
+.pa-case {
+  flex: 0 0 min(28rem, 82vw);
+  scroll-snap-align: start;
+  position: relative;
+  border: 1px solid var(--pa-line);
+  background: var(--pa-elev);
+  overflow: hidden;
+  min-height: 22rem;
+  text-align: left;
+  color: var(--pa-ink);
+  transition: border-color 0.25s, transform 0.35s var(--pa-ease);
+}
+
+.pa-case.is-inview,
+.pa-case:active {
+  border-color: var(--pa-acid);
+  transform: translateY(-4px);
+}
+
+.pa-case img {
+  width: 100%;
+  height: 16rem;
+  object-fit: cover;
+  filter: grayscale(0.4);
+  transition: filter 0.4s, transform 0.6s var(--pa-ease);
+}
+
+.pa-case.is-inview img,
+.pa-case:active img {
+  filter: none;
+  transform: scale(1.05);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pa-case:hover {
+    border-color: var(--pa-acid);
+    transform: translateY(-4px);
+  }
+
+  .pa-case:hover img {
+    filter: none;
+    transform: scale(1.05);
+  }
+}
+
+.pa-case-body {
+  padding: 1.15rem 1.2rem 1.35rem;
+}
+
+.pa-case-num {
+  font-family: var(--pa-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--pa-acid);
+}
+
+.pa-case h3 {
+  margin: 0.45rem 0 0;
+  font-family: var(--pa-display);
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.pa-case p {
+  margin: 0.45rem 0 0;
+  color: var(--pa-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.pa-runway-hint {
+  margin-top: 1rem;
+  font-family: var(--pa-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pa-dim);
+}
+
+.pa-services {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--pa-line);
+}
+
+.pa-service {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr auto;
+  gap: 1rem 1.5rem;
+  align-items: center;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--pa-line);
+  transition: background 0.25s, padding 0.25s;
+}
+
+.pa-service.is-inview,
+.pa-service:active {
+  background: linear-gradient(90deg, rgba(200, 255, 0, 0.06), transparent 55%);
+}
+
+.pa-service-num {
+  font-family: var(--pa-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--pa-acid);
+}
+
+.pa-service h3 {
+  margin: 0;
+  font-family: var(--pa-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  transition: color 0.25s, transform 0.25s var(--pa-ease);
+}
+
+.pa-service.is-inview h3,
+.pa-service:active h3 {
+  color: var(--pa-acid);
+  transform: translateX(0.35rem);
+}
+
+.pa-service p {
+  margin: 0.4rem 0 0;
+  max-width: 34rem;
+  color: var(--pa-muted);
+  font-size: 0.95rem;
+}
+
+.pa-service-arrow {
+  font-size: 1.5rem;
+  color: var(--pa-dim);
+  transition: color 0.2s, transform 0.25s var(--pa-ease);
+}
+
+.pa-service.is-inview .pa-service-arrow,
+.pa-service:active .pa-service-arrow {
+  color: var(--pa-acid);
+  transform: translateX(4px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pa-service:hover {
+    background: linear-gradient(90deg, rgba(200, 255, 0, 0.06), transparent 55%);
+  }
+
+  .pa-service:hover h3 {
+    color: var(--pa-acid);
+    transform: translateX(0.35rem);
+  }
+
+  .pa-service:hover .pa-service-arrow {
+    color: var(--pa-acid);
+    transform: translateX(4px);
+  }
+}
+
+.pa-split {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 2rem;
+  align-items: stretch;
+  background: var(--pa-elev);
+  border: 1px solid var(--pa-line);
+  overflow: hidden;
+}
+
+.pa-split-visual {
+  min-height: 22rem;
+  position: relative;
+}
+
+.pa-split-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.25);
+}
+
+.pa-split-copy {
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pa-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--pa-line);
+}
+
+.pa-stat strong {
+  display: block;
+  font-family: var(--pa-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--pa-acid);
+}
+
+.pa-stat span {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--pa-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pa-dim);
+}
+
+.pa-contact {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.pa-points {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.pa-points li {
+  display: flex;
+  gap: 0.75rem;
+  color: var(--pa-muted);
+  font-size: 0.95rem;
+}
+
+.pa-points li::before {
+  content: "→";
+  color: var(--pa-acid);
+}
+
+.pa-form {
+  background: var(--pa-elev);
+  border: 1px solid var(--pa-line);
+  padding: 1.75rem 1.5rem;
+}
+
+.pa-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.pa-field { margin-bottom: 1rem; }
+
+.pa-field label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-family: var(--pa-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pa-dim);
+}
+
+.pa-field input,
+.pa-field select,
+.pa-field textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--pa-line);
+  background: #0c0c0f;
+  color: var(--pa-ink);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.pa-field textarea { min-height: 7rem; resize: vertical; }
+
+.pa-field input:focus,
+.pa-field select:focus,
+.pa-field textarea:focus {
+  outline: none;
+  border-color: var(--pa-acid);
+  box-shadow: 0 0 0 3px rgba(200, 255, 0, 0.12);
+}
+
+.pa-form-submit { width: 100%; margin-top: 0.25rem; }
+
+.pa-form-status {
+  margin: 0.85rem 0 0;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.85rem;
+}
+
+.pa-form-status.is-success {
+  background: rgba(200, 255, 0, 0.1);
+  color: var(--pa-acid);
+}
+
+.pa-footer {
+  padding: 2.5rem 0 2rem;
+  border-top: 1px solid var(--pa-line);
+}
+
+.pa-footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.pa-footer-brand p {
+  margin: 0.75rem 0 0;
+  max-width: 18rem;
+  color: var(--pa-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.pa-footer h4 {
+  margin: 0 0 0.85rem;
+  font-family: var(--pa-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pa-acid);
+}
+
+.pa-footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.pa-footer a {
+  color: var(--pa-muted);
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.pa-footer a:hover { color: var(--pa-ink); }
+
+.pa-footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--pa-line);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--pa-dim);
+}
+
+</style>
+  <style>
+/* inlined: modules/css/responsive.css */
+@media (max-width: 960px) {
+  .pa-menu-btn {
+    display: inline-flex;
+  }
+
+  .pa-btn--header {
+    display: none;
+  }
+
+  .pa-nav {
+    position: fixed;
+    inset: var(--pa-header-h) 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 0 1rem;
+    background: rgba(7, 7, 8, 0.98);
+    border-bottom: 1px solid var(--pa-line);
+    transform: translateY(-110%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.3s var(--pa-ease), opacity 0.3s, visibility 0.3s;
+    z-index: 55;
+  }
+
+  .pa-header.is-open .pa-nav {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .pa-nav a {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--pa-line);
+    font-size: 0.85rem;
+    color: var(--pa-ink);
+  }
+
+  .pa-hero {
+    min-height: auto;
+    height: auto;
+    padding: calc(var(--pa-header-h) + 1.75rem) 0 2.5rem;
+    align-items: start;
+  }
+
+  .pa-hero-title {
+    font-size: clamp(2.4rem, 9.5vw, 4.25rem);
+  }
+
+  .pa-title {
+    font-size: clamp(2rem, 6vw, 3.25rem);
+  }
+
+  .pa-hero-meta {
+    margin-top: 1.75rem;
+    gap: 1.25rem;
+  }
+
+  .pa-hero-meta strong {
+    font-size: 1.25rem;
+  }
+
+  .pa-service {
+    grid-template-columns: 3rem 1fr auto;
+  }
+
+  .pa-service-arrow {
+    font-size: 1.25rem;
+  }
+
+  .pa-split,
+  .pa-contact {
+    grid-template-columns: 1fr;
+  }
+
+  .pa-split-visual {
+    min-height: 16rem;
+  }
+
+  .pa-footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pa-footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 600px) {
+  .pa-wrap,
+  .pa-hero-inner {
+    width: min(78rem, calc(100% - 1.5rem));
+  }
+
+  .pa-hero {
+    padding: calc(var(--pa-header-h) + 1.25rem) 0 1.75rem;
+  }
+
+  .pa-hero-title {
+    font-size: clamp(2.1rem, 11vw, 3rem);
+    max-width: 10ch;
+  }
+
+  .pa-hero-kicker {
+    margin-bottom: 0.85rem;
+  }
+
+  .pa-hero-row {
+    margin-top: 1.25rem;
+    gap: 1rem;
+  }
+
+  .pa-hero-meta {
+    margin-top: 1.35rem;
+    padding-top: 1rem;
+    gap: 1rem 1.5rem;
+  }
+
+  .pa-section { padding: 3.75rem 0; }
+
+  .pa-form-row,
+  .pa-stats,
+  .pa-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pa-case {
+    flex-basis: min(20rem, 88vw);
+    min-height: 20rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .pa-hero-bg img {
+    animation: none !important;
+  }
+
+  html.pa-js .pa-reveal,
+  .pa-case,
+  .pa-case img,
+  .pa-service,
+  .pa-service h3,
+  .pa-service-arrow {
+    transition: none !important;
+  }
+
+  .pa-case.is-inview,
+  .pa-case:active,
+  .pa-service.is-inview,
+  .pa-service:active {
+    transform: none;
+  }
+
+  .pa-case.is-inview img,
+  .pa-case:active img {
+    transform: none;
+  }
+
+  html.pa-js .pa-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+</style>
+</head>
+<body>
+  <header class="pa-header" data-pa-header>
+    <a href="#" class="pa-logo">North<span>.</span></a>
+    <nav class="pa-nav" id="pa-nav" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#studio">Studio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="pa-header-actions">
+      <a href="#contact" class="pa-btn pa-btn--header">Start a project</a>
+      <button type="button" class="pa-menu-btn" data-pa-menu aria-expanded="false" aria-controls="pa-nav" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="pa-hero" aria-label="Hero">
+      <div class="pa-hero-bg" aria-hidden="true">
+        <img src="../assets/img/hero.jpg" alt="" width="1600" height="1000" fetchpriority="high">
+        <div class="pa-hero-shade"></div>
+      </div>
+      <div class="pa-hero-inner">
+        <p class="pa-hero-kicker">Digital agency · Est. 2016</p>
+        <h1 class="pa-hero-title">We build brands that <em>move</em></h1>
+        <div class="pa-hero-row">
+          <p class="pa-hero-text">Strategy, identity, and product experiences for companies that refuse to look average online.</p>
+          <div class="pa-hero-actions">
+            <a href="#work" class="pa-btn">See the work</a>
+            <a href="#contact" class="pa-btn pa-btn--ghost">Book a call</a>
+          </div>
+        </div>
+        <div class="pa-hero-meta">
+          <div><span>Selected</span><strong data-pa-count data-to="48">0</strong></div>
+          <div><span>Years</span><strong data-pa-count data-to="10">0</strong></div>
+          <div><span>Markets</span><strong data-pa-count data-to="14">0</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="pa-marquee" aria-hidden="true">
+      <div class="pa-marquee-track">
+        <span>Aether · Volt · Harbor · Lumen · Field · <b>North</b> · Cascade · Orbit · Prism · Nova · Aether · Volt · Harbor · Lumen · Field · <b>North</b> · Cascade · Orbit · Prism · Nova ·</span>
+        <span>Aether · Volt · Harbor · Lumen · Field · <b>North</b> · Cascade · Orbit · Prism · Nova · Aether · Volt · Harbor · Lumen · Field · <b>North</b> · Cascade · Orbit · Prism · Nova ·</span>
+      </div>
+    </div>
+
+    <section class="pa-section" id="work">
+      <div class="pa-wrap">
+        <div class="pa-section-head pa-reveal">
+          <div>
+            <span class="pa-tag">Selected work</span>
+            <h2 class="pa-title">Recent launches</h2>
+          </div>
+          <p class="pa-lead">Swipe or drag sideways. Every case is a full engagement — brand, site, and product.</p>
+        </div>
+        <div class="pa-runway-wrap pa-reveal">
+          <div class="pa-runway" data-pa-runway>
+            <article class="pa-case">
+              <img src="../assets/img/case-01.jpg" alt="Aether rebrand" loading="lazy" width="900" height="700">
+              <div class="pa-case-body">
+                <span class="pa-case-num">01 — Brand</span>
+                <h3>Aether</h3>
+                <p>Identity system and launch site for a climate-tech platform.</p>
+              </div>
+            </article>
+            <article class="pa-case">
+              <img src="../assets/img/case-02.jpg" alt="Volt product" loading="lazy" width="900" height="700">
+              <div class="pa-case-body">
+                <span class="pa-case-num">02 — Product</span>
+                <h3>Volt</h3>
+                <p>App redesign and design system for a fintech wallet.</p>
+              </div>
+            </article>
+            <article class="pa-case">
+              <img src="../assets/img/case-03.jpg" alt="Harbor campaign" loading="lazy" width="900" height="700">
+              <div class="pa-case-body">
+                <span class="pa-case-num">03 — Campaign</span>
+                <h3>Harbor</h3>
+                <p>Campaign site and motion kit for a hospitality group.</p>
+              </div>
+            </article>
+            <article class="pa-case">
+              <img src="../assets/img/case-04.jpg" alt="Lumen website" loading="lazy" width="900" height="700">
+              <div class="pa-case-body">
+                <span class="pa-case-num">04 — Web</span>
+                <h3>Lumen</h3>
+                <p>Marketing site and CMS for an architecture studio.</p>
+              </div>
+            </article>
+            <article class="pa-case">
+              <img src="../assets/img/case-05.jpg" alt="Field commerce" loading="lazy" width="900" height="700">
+              <div class="pa-case-body">
+                <span class="pa-case-num">05 — Commerce</span>
+                <h3>Field</h3>
+                <p>E-commerce rebuild with custom PDP storytelling.</p>
+              </div>
+            </article>
+          </div>
+          <p class="pa-runway-hint">Swipe to explore →</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pa-section" id="services">
+      <div class="pa-wrap">
+        <div class="pa-section-head pa-reveal">
+          <div>
+            <span class="pa-tag">Capabilities</span>
+            <h2 class="pa-title">What we ship</h2>
+          </div>
+        </div>
+        <div class="pa-services pa-reveal">
+          <a href="#contact" class="pa-service">
+            <span class="pa-service-num">01</span>
+            <div>
+              <h3>Brand</h3>
+              <p>Naming, identity, voice, and systems that scale across every touchpoint.</p>
+            </div>
+            <span class="pa-service-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#contact" class="pa-service">
+            <span class="pa-service-num">02</span>
+            <div>
+              <h3>Product</h3>
+              <p>UX, UI, and design systems for apps that feel inevitable to use.</p>
+            </div>
+            <span class="pa-service-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#contact" class="pa-service">
+            <span class="pa-service-num">03</span>
+            <div>
+              <h3>Web</h3>
+              <p>Marketing sites and platforms built to convert — and to win awards.</p>
+            </div>
+            <span class="pa-service-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#contact" class="pa-service">
+            <span class="pa-service-num">04</span>
+            <div>
+              <h3>Motion</h3>
+              <p>Launch films, UI motion, and campaign assets with a single visual language.</p>
+            </div>
+            <span class="pa-service-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pa-section" id="studio">
+      <div class="pa-wrap">
+        <div class="pa-split pa-reveal">
+          <div class="pa-split-visual">
+            <img src="../assets/img/studio.jpg" alt="NORTH studio" loading="lazy" width="1200" height="900">
+          </div>
+          <div class="pa-split-copy">
+            <span class="pa-tag">Studio</span>
+            <h2 class="pa-title">Small team. Sharp output.</h2>
+            <p class="pa-lead">NORTH is a senior-only studio. No junior layers, no bloated decks — just work that holds up next to the agencies you already admire.</p>
+            <div class="pa-stats" data-pa-stats>
+              <div class="pa-stat"><strong>10</strong><span>Years</span></div>
+              <div class="pa-stat"><strong>48</strong><span>Launches</span></div>
+              <div class="pa-stat"><strong>6</strong><span>People</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pa-section" id="contact">
+      <div class="pa-wrap">
+        <div class="pa-contact">
+          <div class="pa-reveal">
+            <span class="pa-tag">Contact</span>
+            <h2 class="pa-title">Tell us what’s next</h2>
+            <p class="pa-lead">New brand, product rebuild, or launch site — send a short brief. We reply within two business days.</p>
+            <ul class="pa-points">
+              <li>Brand &amp; identity systems</li>
+              <li>Product design &amp; design systems</li>
+              <li>Marketing sites &amp; campaigns</li>
+            </ul>
+          </div>
+          <!-- Buyers: replace hello@north.example with your email to receive submissions -->
+          <form class="pa-form pa-reveal" action="https://formsubmit.co/hello@north.example" method="POST">
+            <input type="hidden" name="_subject" value="NORTH — project brief">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+            <div class="pa-form-row">
+              <div class="pa-field">
+                <label for="pa-name">Name</label>
+                <input type="text" id="pa-name" name="name" autocomplete="name" required placeholder="Your name">
+              </div>
+              <div class="pa-field">
+                <label for="pa-email">Email</label>
+                <input type="email" id="pa-email" name="email" autocomplete="email" required placeholder="you@company.com">
+              </div>
+            </div>
+            <div class="pa-field">
+              <label for="pa-type">Project type</label>
+              <select id="pa-type" name="type">
+                <option value="brand">Brand</option>
+                <option value="product">Product</option>
+                <option value="web">Web</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="pa-field">
+              <label for="pa-message">Brief</label>
+              <textarea id="pa-message" name="message" rows="4" required placeholder="Goals, timeline, links…"></textarea>
+            </div>
+            <button type="submit" class="pa-btn pa-form-submit">Send brief</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pa-footer">
+    <div class="pa-wrap">
+      <div class="pa-footer-grid pa-reveal">
+        <div class="pa-footer-brand">
+          <a href="#" class="pa-logo">North<span>.</span></a>
+          <p>Premium digital agency. Brand, product, and web for ambitious teams.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#studio">Studio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@north.example">hello@north.example</a></li>
+            <li><a href="tel:+12125550190">+1 212 555 0190</a></li>
+            <li>New York · Remote</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pa-footer-bottom">
+        <span>© 2026 NORTH. All rights reserved.</span>
+        <span>Privacy · Terms</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+/* inlined: modules/js/runway.js */
+function PARunway(root) {
+  if (!root) return;
+
+  var isDown = false;
+  var startX = 0;
+  var scrollLeft = 0;
+  var activeId = null;
+
+  root.style.touchAction = "pan-x";
+
+  function endDrag(e) {
+    if (!isDown) return;
+    if (e && activeId != null && e.pointerId !== activeId) return;
+    isDown = false;
+    activeId = null;
+    root.classList.remove("is-dragging");
+    try {
+      if (e) root.releasePointerCapture(e.pointerId);
+    } catch (err) {}
+  }
+
+  root.addEventListener("pointerdown", function (e) {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    isDown = true;
+    activeId = e.pointerId;
+    root.classList.add("is-dragging");
+    startX = e.clientX;
+    scrollLeft = root.scrollLeft;
+    try {
+      root.setPointerCapture(e.pointerId);
+    } catch (err) {}
+  });
+
+  root.addEventListener("pointermove", function (e) {
+    if (!isDown || e.pointerId !== activeId) return;
+    /* Touch/pen: keep native momentum scrolling. Mouse: custom drag. */
+    if (e.pointerType !== "mouse") return;
+    e.preventDefault();
+    root.scrollLeft = scrollLeft - (e.clientX - startX) * 1.25;
+  });
+
+  root.addEventListener("pointerup", endDrag);
+  root.addEventListener("pointercancel", endDrag);
+  root.addEventListener("lostpointercapture", function () {
+    isDown = false;
+    activeId = null;
+    root.classList.remove("is-dragging");
+  });
+
+  root.addEventListener("dragstart", function (e) {
+    e.preventDefault();
+  });
+}
+
+window.PARunway = PARunway;
+
+</script>
+  <script>
+/* inlined: modules/js/marquee.js */
+function PAMarquee(root) {
+  if (!root) return;
+  var track = root.querySelector(".pa-marquee-track");
+  if (!track) return;
+
+  /* Ensure two equal halves for a seamless loop. */
+  if (track.children.length === 1) {
+    track.appendChild(track.children[0].cloneNode(true));
+  }
+
+  track.style.animation = "none";
+  void track.offsetWidth;
+  track.style.animation = "";
+
+  var cs = window.getComputedStyle(track);
+  var animating = cs.animationName && cs.animationName !== "none";
+  if (animating && cs.animationPlayState !== "paused") return;
+
+  /* Fallback when CSS animations are disabled by the OS / browser. */
+  var x = 0;
+  var last = 0;
+  var speed = 48; /* px per second */
+
+  track.style.animation = "none";
+  track.style.willChange = "transform";
+
+  function frame(now) {
+    if (!last) last = now;
+    var dt = Math.min(32, now - last) / 1000;
+    last = now;
+    var half = track.scrollWidth / 2;
+    if (half > 0) {
+      x -= speed * dt;
+      if (-x >= half) x += half;
+      track.style.transform = "translate3d(" + x.toFixed(2) + "px,0,0)";
+    }
+    window.requestAnimationFrame(frame);
+  }
+
+  window.requestAnimationFrame(frame);
+}
+
+window.PAMarquee = PAMarquee;
+
+</script>
+  <script>
+/* inlined: modules/js/counters.js */
+function PACounters(root) {
+  var nums = (root || document).querySelectorAll("[data-pa-count]");
+  if (!nums.length) return;
+  var done = false;
+
+  function animate(el) {
+    var to = parseInt(el.getAttribute("data-to"), 10) || 0;
+    var start = performance.now();
+    function frame(now) {
+      var t = Math.min(1, (now - start) / 1000);
+      el.textContent = String(Math.round(to * (1 - Math.pow(1 - t, 3))));
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    nums.forEach(function (el) { el.textContent = el.getAttribute("data-to") || "0"; });
+    return;
+  }
+
+  var target = root || nums[0].closest(".pa-hero-meta") || document.body;
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting && !done) {
+        done = true;
+        nums.forEach(animate);
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.2 });
+
+  observer.observe(target);
+}
+
+window.PACounters = PACounters;
+
+</script>
+  <script>
+/* inlined: modules/js/reveal.js */
+function PAReveal() {
+  var els = document.querySelectorAll(".pa-reveal");
+  if (!els.length) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    els.forEach(function (el) { el.classList.add("is-visible"); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+  els.forEach(function (el) { observer.observe(el); });
+}
+
+window.PAReveal = PAReveal;
+
+</script>
+  <script>
+/* inlined: modules/js/inview.js */
+function PAInview() {
+  if (!("IntersectionObserver" in window)) return;
+
+  var runway = document.querySelector("[data-pa-runway]");
+  var cases = document.querySelectorAll(".pa-case");
+  var services = document.querySelectorAll(".pa-service");
+
+  if (runway && cases.length) {
+    var caseObs = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          entry.target.classList.toggle("is-inview", entry.isIntersecting);
+        });
+      },
+      { root: runway, threshold: 0.55, rootMargin: "0px -8% 0px -8%" }
+    );
+    cases.forEach(function (el) {
+      caseObs.observe(el);
+    });
+  }
+
+  if (services.length) {
+    var svcObs = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          entry.target.classList.toggle("is-inview", entry.isIntersecting && entry.intersectionRatio >= 0.45);
+        });
+      },
+      { threshold: [0.35, 0.55, 0.75], rootMargin: "-12% 0px -28% 0px" }
+    );
+    services.forEach(function (el) {
+      svcObs.observe(el);
+    });
+  }
+}
+
+window.PAInview = PAInview;
+
+</script>
+  <script>
+/* inlined: modules/js/contact.js */
+/* Contact form submits natively via form[action] (FormSubmit).
+   Buyers: replace the email in index.html form action with yours. */
+function PAContact() {}
+
+window.PAContact = PAContact;
+
+</script>
+  <script>
+/* inlined: modules/js/menu.js */
+function PAMenu(header) {
+  if (!header) return;
+
+  var btn = header.querySelector("[data-pa-menu]");
+  var nav = header.querySelector(".pa-nav");
+  if (!btn || !nav) return;
+
+  function close() {
+    header.classList.remove("is-open");
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-label", "Open menu");
+  }
+
+  function open() {
+    header.classList.add("is-open");
+    btn.setAttribute("aria-expanded", "true");
+    btn.setAttribute("aria-label", "Close menu");
+  }
+
+  btn.addEventListener("click", function () {
+    if (header.classList.contains("is-open")) close();
+    else open();
+  });
+
+  nav.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", close);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") close();
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 960) close();
+  });
+}
+
+window.PAMenu = PAMenu;
+
+</script>
+  <script>
+/* inlined: modules/js/main.js */
+(function () {
+  "use strict";
+
+  document.documentElement.classList.add("pa-js");
+
+  PARunway(document.querySelector("[data-pa-runway]"));
+  PAMarquee(document.querySelector(".pa-marquee"));
+  PACounters(document.querySelector(".pa-hero-meta"));
+  PAContact(document.querySelector("[data-pa-form]"));
+  PAMenu(document.querySelector("[data-pa-header]"));
+  PAReveal();
+  PAInview();
+
+  var navLinks = document.querySelectorAll(".pa-nav a[href^='#']");
+  var sections = [];
+  navLinks.forEach(function (link) {
+    var section = document.getElementById(link.getAttribute("href").slice(1));
+    if (section) sections.push({ el: section, link: link });
+  });
+
+  function setActive() {
+    var y = window.scrollY + 100;
+    var current = sections[0];
+    sections.forEach(function (s) {
+      if (s.el.offsetTop <= y) current = s;
+    });
+    navLinks.forEach(function (link) {
+      link.classList.toggle("is-active", current && link === current.link);
+    });
+  }
+
+  if (sections.length) {
+    window.addEventListener("scroll", setActive, { passive: true });
+    setActive();
+  }
+})();
+
+</script>
+</body>
+</html>

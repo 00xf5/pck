@@ -112,7 +112,7 @@
     --w-surface: #fafaf9;
     --w-ink: #1c1917;
     --w-muted: #78716c;
-    --w-accent: #18181b;
+    --w-accent: #0a0a0a;
     --w-line: #e7e5e4;
     --w-prin: #2563eb;
     --w-int: #ea580c;
@@ -464,7 +464,7 @@
     BRL: { locale: "pt-BR" }, INR: { locale: "en-IN" }, SGD: { locale: "en-SG" },
     NZD: { locale: "en-NZ" }, AED: { locale: "en-AE" }, ZAR: { locale: "en-ZA" }
   };
-  var curCode = "USD", fmtWhole, fmtPrec;
+  var curCode = "EUR", fmtWhole, fmtPrec;
   function setCurrency(code) {
     var cfg = CUR_MAP[code] || CUR_MAP.USD;
     curCode = CUR_MAP[code] ? code : "USD";
@@ -622,8 +622,8 @@
       calculate();
     });
   });
-  setCurrency("USD");
-  currencySelect.value = "USD";
+  setCurrency("EUR");
+  currencySelect.value = "EUR";
   syncAffixes();
   loadState();
   calculate();

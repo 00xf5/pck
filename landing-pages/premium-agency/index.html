@@ -197,7 +197,11 @@
               <li>Marketing sites &amp; campaigns</li>
             </ul>
           </div>
-          <form class="pa-form pa-reveal" data-pa-form novalidate>
+          <!-- Buyers: replace hello@north.example with your email to receive submissions -->
+          <form class="pa-form pa-reveal" action="https://formsubmit.co/hello@north.example" method="POST">
+            <input type="hidden" name="_subject" value="NORTH — project brief">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
             <div class="pa-form-row">
               <div class="pa-field">
                 <label for="pa-name">Name</label>
@@ -222,7 +226,6 @@
               <textarea id="pa-message" name="message" rows="4" required placeholder="Goals, timeline, links…"></textarea>
             </div>
             <button type="submit" class="pa-btn pa-form-submit">Send brief</button>
-            <p class="pa-form-status" data-pa-form-status role="status" aria-live="polite" hidden></p>
           </form>
         </div>
       </div>
